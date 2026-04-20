@@ -11,7 +11,7 @@ export const Header = () => {
       name: "Products",
     },
     {
-      url: "/checkout/cart",
+      url: "/cart",
       name: "Cart",
     },
     {
@@ -28,7 +28,7 @@ export const Header = () => {
             <Link
               to={item.url}
               key={item.name}
-              className="[&.active]:font-bold"
+              className="[&.active]:border-blue-600 border-b-2 border-transparent hover:border-b-2 hover:border-blue-600"
             >
               {item.name}
             </Link>

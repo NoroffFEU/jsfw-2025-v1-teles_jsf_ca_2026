@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, updateQuantity } from "../../utils/redux/cartSlice";
+import { removeItem, updateQuantity } from "../../lib/redux/cartSlice";
 
 const CartDisplay = () => {
   const itemsMap = useSelector((state) => state.cart.items);

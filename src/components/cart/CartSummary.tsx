@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectTotalCartQuantity } from "../../utils/redux/cartSlice";
+import { selectTotalCartQuantity } from "../../lib/redux/cartSlice";
 
 const CartSummary = () => {
   const totalItems = useSelector(selectTotalCartQuantity);
