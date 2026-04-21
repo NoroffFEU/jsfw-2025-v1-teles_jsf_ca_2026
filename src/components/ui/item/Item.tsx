@@ -23,13 +23,15 @@ const Item = ({
   size = "default",
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof itemVariants>) => {
-  <div
-    data-slot="item"
-    data-variant={variant}
-    data-size={size}
-    className={cn(itemVariants({ variant, size, className }))}
-    {...props}
-  ></div>;
+  return (
+    <div
+      data-slot="item"
+      data-variant={variant}
+      data-size={size}
+      className={cn(itemVariants({ variant, size, className }))}
+      {...props}
+    ></div>
+  );
 };
 
 const ItemMedia = ({

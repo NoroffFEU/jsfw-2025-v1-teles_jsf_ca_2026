@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { Provider } from "react-redux";
-import { store } from "./lib/redux/store";
+import { store, persistor } from "./lib/redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 import "./index.css";
 
 const router = createRouter({ routeTree });
@@ -20,7 +21,9 @@ if (!rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <PersistGate loading={null} persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
       </Provider>
     </StrictMode>,
   );

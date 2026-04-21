@@ -1,15 +1,11 @@
-import { useSelector } from "react-redux";
-import { selectTotalCartQuantity } from "../../lib/redux/cartSlice";
+import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
+import { selectTotalCartQuantity } from "@/lib/redux/slices/cartSlice";
 
 const CartSummary = () => {
-  const totalItems = useSelector(selectTotalCartQuantity);
+  const totalItems = useAppSelector(selectTotalCartQuantity);
   // const totalPrice = useSelector(selectTotalPrice);
 
-  const itemsArray = Object.values(itemsMap);
-
-  if (itemsArray.length === 0) {
-    return <p>Shopping cart is empty.</p>;
-  }
+  if (totalItems === 0) return <p>Shopping cart is empty.</p>;
 
   return (
     <div

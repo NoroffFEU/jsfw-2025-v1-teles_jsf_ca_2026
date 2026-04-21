@@ -138,7 +138,7 @@ const ContactForm = () => {
         </form>
       </CardContent>
       <CardFooter>
-        <Field orientation="horizontal">
+        <Field orientation="horizontal" className="justify-end">
           <Button
             type="button"
             variant="outline"

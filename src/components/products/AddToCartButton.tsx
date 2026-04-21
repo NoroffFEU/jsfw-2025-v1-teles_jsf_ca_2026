@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button/Button";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import type { Product } from "@/services/models/product";
+import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
+import { addItem } from "@/lib/redux/slices/cartSlice";
 
 type AddToCartProps = {
   productId: Product["id"];
@@ -11,9 +13,12 @@ export const AddToCartButton = ({ productId }: AddToCartProps) => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [isAdded, setAdded] = useState(false);
   const [count, setCount] = useState(0);
+  const dispatch = useAppDispatch();
 
   const handleAddToCart = () => {
     toast.remove();
+
+    dispatch(addItem({ productId }));
 
     setIsDisabled(true);
     setAdded(true);

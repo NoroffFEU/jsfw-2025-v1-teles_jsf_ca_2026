@@ -1,15 +1,27 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createSelector,
+  type PayloadAction,
+} from "@reduxjs/toolkit";
+import type { RootState } from "@/lib/redux/store";
 
-const initialState = {
-  items: {},
+type CartItem = {
+  productId: string;
+  quantity: number;
 };
+
+type CartState = {
+  items: Record<string, CartItem>;
+};
+
+const initialState: CartState = { items: {} };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
 
   reducers: {
-    addItem: (state, action) => {
+    addItem: (state, action: PayloadAction<{ productId: string }>) => {
       const { productId } = action.payload;
       const existingItem = state.items[productId];
 
@@ -20,22 +32,24 @@ export const cartSlice = createSlice({
       }
     },
 
-    removeItem: (state, action) => {
-      const productId = action.payload;
-      delete state.items[productId];
+    removeItem: (state, action: PayloadAction<string>) => {
+      delete state.items[action.payload];
     },
 
-    updateQuantity: (state, action) => {
+    updateQuantity: (
+      state,
+      action: PayloadAction<{ productId: string; quantity: number }>,
+    ) => {
       const { productId, quantity } = action.payload;
       const item = state.items[productId];
+      if (!item) return;
 
-      if (item) {
-        if (quantity <= 0) {
-          delete state.items[productId];
-        } else {
-          item.quantity = quantity;
-        }
+      if (quantity <= 0) {
+        delete state.items[productId];
+      } else {
+        item.quantity = quantity;
       }
+
       // item doesn't exist, tell the user?
     },
 
@@ -50,8 +64,8 @@ export const { addItem, removeItem, updateQuantity, clearCart } =
 
 export default cartSlice.reducer;
 
-// selectors
-const selectCartItemsMap = (state) => state.cart.items;
+// selectors;
+const selectCartItemsMap = (state: RootState) => state.cart.items;
 
 export const selectCartItemsArray = createSelector(
   [selectCartItemsMap],

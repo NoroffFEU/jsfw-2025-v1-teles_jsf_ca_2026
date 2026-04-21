@@ -1,20 +1,30 @@
-import { useSelector, useDispatch } from "react-redux";
-import { removeItem, updateQuantity } from "../../lib/redux/cartSlice";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
+import { removeItem, updateQuantity } from "@/lib/redux/slices/cartSlice";
+import { Button } from "@/components/ui/button/Button";
 
 const CartDisplay = () => {
-  const itemsMap = useSelector((state) => state.cart.items);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const itemsMap = useAppSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
   const itemsArray = Object.values(itemsMap);
-
   if (itemsArray.length === 0) {
     return <p>Shopping cart is empty.</p>;
   }
 
+  const handleProceedToCheckout = () => {
+    setIsDisabled(true);
+    setTimeout(() => {
+      setIsDisabled(false);
+    }, 500);
+  };
+
   return (
-    <div>
+    <div className="grid gap-4">
       <h2>Shopping Cart</h2>
-      <ul>
+      <ul className="grid gap-2 p-8 rounded-sm bg-gray-100">
         {itemsArray.map((item) => (
           <li
             key={item.productId}
@@ -65,6 +75,20 @@ const CartDisplay = () => {
           </li>
         ))}
       </ul>
+
+      {itemsArray.length !== 0 && (
+        <Button
+          className={
+            isDisabled
+              ? "flex justify-self-end brightness-90"
+              : "flex justify-self-end hover:brightness-90"
+          }
+          disabled={isDisabled}
+          onClick={handleProceedToCheckout}
+        >
+          Proceed to Checkout
+        </Button>
+      )}
     </div>
   );
 };
