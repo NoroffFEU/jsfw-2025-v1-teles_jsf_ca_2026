@@ -128,7 +128,7 @@ const ContactForm = () => {
                 />
                 <InputGroupAddon align="block-end">
                   <InputGroupText className="tabular-nums">
-                    {values.description.length}/100 characters
+                    {values.description.length}/200 characters
                   </InputGroupText>
                 </InputGroupAddon>
               </InputGroup>
