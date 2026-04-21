@@ -12,6 +12,7 @@ function ProductDetail() {
   const product = Route.useLoaderData().data;
   // const selectProductName = (state) => state.product.productName;
   // const productName = useSelector(selectProductName);
+  const hasDiscount = product.discountedPrice !== product.price;
   return (
     <div className="grid gap-2 pt-10 pl-10 pr-10 md:pl-20 md:pr-20 justify-self-center">
       <h1 className="text-4xl">{product.title}</h1>
@@ -22,9 +23,12 @@ function ProductDetail() {
       />
       <p>{product.description}</p>
       <p>Rating: {product.rating}</p>
-      {!product.discountedPrice && <p>Price: {product.price}</p>}
-      {product.discountedPrice && (
-        <p>Discount price: {product.discountedPrice}</p>
+      {!hasDiscount && <p>Price: {product.price}</p>}
+      {hasDiscount && (
+        <div>
+          <p>Discount price: {product.discountedPrice}</p>
+          <s>Original price: {product.price}</s>
+        </div>
       )}
       <AddToCartButton productId={product.id} />
     </div>
