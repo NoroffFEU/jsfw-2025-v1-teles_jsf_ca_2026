@@ -1,12 +1,20 @@
 import { Button } from "@/components/ui/button/Button";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
+import type { Product } from "@/services/models/product";
 
-export const AddToCartButton = ({ productId }) => {
+type AddToCartProps = {
+  productId: Product["id"];
+};
+
+export const AddToCartButton = ({ productId }: AddToCartProps) => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [isAdded, setAdded] = useState(false);
   const [count, setCount] = useState(0);
 
   const handleAddToCart = () => {
+    toast.remove();
+
     setIsDisabled(true);
     setAdded(true);
     setCount((prev) => prev + 1);
@@ -14,6 +22,8 @@ export const AddToCartButton = ({ productId }) => {
     setTimeout(() => {
       setIsDisabled(false);
     }, 500);
+
+    toast(`Added to cart. ID: ${productId}`);
   };
 
   return (

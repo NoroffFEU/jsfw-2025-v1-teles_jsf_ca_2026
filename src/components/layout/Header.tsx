@@ -7,10 +7,6 @@ export const Header = () => {
       name: "Home",
     },
     {
-      url: "/products",
-      name: "Products",
-    },
-    {
       url: "/cart",
       name: "Cart",
     },

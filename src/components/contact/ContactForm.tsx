@@ -63,7 +63,7 @@ const ContactForm = () => {
   };
 
   return (
-    <Card className="w-150 mt-10 mx-auto">
+    <Card className="w-150 mt-10 mx-auto shadow-xl">
       <CardHeader>
         <CardTitle>Reach Out</CardTitle>
         <CardDescription>Let us know what's on your mind.</CardDescription>
@@ -139,10 +139,19 @@ const ContactForm = () => {
       </CardContent>
       <CardFooter>
         <Field orientation="horizontal">
-          <Button type="button" variant="outline" onClick={handleReset}>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={handleReset}
+            className="hover:brightness-90 cursor-pointer"
+          >
             Reset
           </Button>
-          <Button type="submit" form="contact-form">
+          <Button
+            type="submit"
+            form="contact-form"
+            className="hover:brightness-90 cursor-pointer"
+          >
             Submit
           </Button>
         </Field>

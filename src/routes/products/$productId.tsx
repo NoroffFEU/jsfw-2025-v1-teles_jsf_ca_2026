@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 // import { useSelector } from 'react-redux';
 import { fetchProductById } from "@/services/api/products/fetch/fetch-product-by-id";
 import { AddToCartButton } from "@/components/products/AddToCartButton";
+import { Badge } from "@/components/ui/badge/Badge";
 
 export const Route = createFileRoute("/products/$productId")({
   loader: ({ params }) => fetchProductById(params.productId),
@@ -14,21 +15,34 @@ function ProductDetail() {
   // const productName = useSelector(selectProductName);
   const hasDiscount = product.discountedPrice !== product.price;
   const hasReviews = product.reviews.length !== 0;
+  const hasTags = product.tags.length !== 0;
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 pt-10 pl-2 pr-2 md:pl-20 md:pr-20 justify-self-center justify-center">
+    <div className="grid gap-2 grid-cols-1 md:grid-cols-2 pt-10 pl-2 pr-2 md:pl-20 md:pr-20 justify-self-center justify-center">
       <div className="grid gap-2">
         <h1 className="text-4xl text-center">{product.title}</h1>
         <img
           src={product.image.url}
           alt={product.title}
-          className="w-80 justify-self-center rounded-sm hover:scale-102 hover:shadow-xl transition duration-200 cursor-pointer"
+          className="w-80 m-4 justify-self-center rounded-sm hover:scale-102 shadow-xl transition duration-200 cursor-pointer"
         />
         <div className="grid gap-4 w-80 justify-self-center">
+          {hasTags && <Badge>{product.tags}</Badge>}
           <p>{product.description}</p>
-          {!hasDiscount && <p>Price: {product.price}</p>}
+
+          {!hasDiscount && (
+            <p>
+              <span className="font-bold">Price:</span> {product.price}
+            </p>
+          )}
           {hasDiscount && (
-            <div>
-              <p>Discount price: {product.discountedPrice}</p>
+            <div className="text-sm">
+              <p className="font-bold">
+                Discount price:{" "}
+                <span className="text-green-600 font-bold">
+                  {product.discountedPrice}
+                </span>
+              </p>
               <s>Original price: {product.price}</s>
             </div>
           )}
