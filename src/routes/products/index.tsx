@@ -14,6 +14,8 @@ const ProductList = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
       {products.map((item) => {
+        const hasDiscount = item.discountedPrice !== item.price;
+
         return (
           <Card
             key={item.id}
@@ -38,9 +40,12 @@ const ProductList = () => {
 
             <CardFooter className="flex justify-between items-center text-sm">
               <p>Rating: {item.rating}</p>
-              {!item.discountedPrice && <p>Price: {item.price}</p>}
-              {item.discountedPrice && (
-                <p>Discount price: {item.discountedPrice}</p>
+              {!hasDiscount && <p>Price: {item.price}</p>}
+              {hasDiscount && (
+                <div>
+                  <p>Discount price: {item.discountedPrice}</p>
+                  <s>Original price: {item.price}</s>
+                </div>
               )}
             </CardFooter>
           </Card>
@@ -53,8 +58,8 @@ const ProductList = () => {
 function Products() {
   return (
     <div className="pt-10 pl-10 pr-10 md:pl-20 md:pr-20 justify-self-center">
-      <h1 className="text-4xl mb-2">All Products</h1>
-      <p>Find your favourite thing.</p>
+      <h1 className="text-4xl mb-2">Products</h1>
+      <p>Find your favourite gadget.</p>
       <hr />
       <ProductList />
     </div>
