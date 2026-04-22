@@ -3,8 +3,11 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { removeItem, updateQuantity } from "@/lib/redux/slices/cartSlice";
 import { Button } from "@/components/ui/button/Button";
+import { AlertBox } from "@/components/alerts/AlertBox";
+import { Trash2 } from "lucide-react";
 
 const CartDisplay = () => {
+  const [pendingItem, setIsPendingItem] = useState<string | null>(null);
   const [isDisabled, setIsDisabled] = useState(false);
   const itemsMap = useAppSelector((state) => state.cart.items);
   const dispatch = useDispatch();
@@ -21,57 +24,73 @@ const CartDisplay = () => {
     }, 500);
   };
 
+  const confirmDelete = () => {
+    if (!pendingItem) return;
+    dispatch(removeItem(pendingItem));
+    setIsPendingItem(null);
+  };
+
+  const cancelRemove = () => {
+    setIsPendingItem(null);
+  };
+
   return (
-    <div className="grid gap-4">
-      <h2>Shopping Cart</h2>
+    <div className="grid gap-4 mt-6">
+      {pendingItem && (
+        <AlertBox
+          open={true}
+          action={true}
+          title="Remove from cart?"
+          description="This will remove the selected product(s) from your cart."
+          onConfirm={confirmDelete}
+          onCancel={cancelRemove}
+        />
+      )}
+
       <ul className="grid gap-2 p-8 rounded-sm bg-gray-100">
         {itemsArray.map((item) => (
-          <li
-            key={item.productId}
-            style={{
-              margin: "10px 0",
-              borderBottom: "1px solid #eee",
-              paddingBottom: "5px",
-            }}
-          >
-            <span>Produkt ID: {item.productId}</span>
+          <li key={item.productId} className="m-2 p-2">
+            <span>Product ID: {item.productId}</span>
             <br />
-            <span>Antall: {item.quantity}</span>
 
-            <button
-              onClick={() =>
-                dispatch(
-                  updateQuantity({
-                    productId: item.productId,
-                    quantity: item.quantity - 1,
-                  }),
-                )
-              }
-              className="ml-2 pl-2 pr-2 bg-gray-300 rounded-sm"
-            >
-              -
-            </button>
+            <div className="flex gap-2 items-center justify-self-end">
+              <span>Quantity: {item.quantity}</span>
 
-            <button
-              onClick={() =>
-                dispatch(
-                  updateQuantity({
-                    productId: item.productId,
-                    quantity: item.quantity + 1,
-                  }),
-                )
-              }
-              className="ml-1 pl-2 pr-2 bg-gray-300 rounded-sm"
-            >
-              +
-            </button>
+              <Button
+                onClick={() =>
+                  dispatch(
+                    updateQuantity({
+                      productId: item.productId,
+                      quantity: item.quantity - 1,
+                    }),
+                  )
+                }
+                className="ml-2 w-8 h-8 bg-gray-300 text-black rounded-sm"
+              >
+                -
+              </Button>
 
-            <button
-              onClick={() => dispatch(removeItem(item.productId))}
-              style={{ marginLeft: "10px", color: "red" }}
-            >
-              Fjern
-            </button>
+              <Button
+                onClick={() =>
+                  dispatch(
+                    updateQuantity({
+                      productId: item.productId,
+                      quantity: item.quantity + 1,
+                    }),
+                  )
+                }
+                className="ml-1 w-8 h-8 bg-gray-300 text-black rounded-sm"
+              >
+                +
+              </Button>
+
+              <Button
+                onClick={() => setIsPendingItem(item.productId)}
+                className="ml-2 p-0 text-red-600 bg-transparent"
+              >
+                <Trash2 />
+              </Button>
+            </div>
           </li>
         ))}
       </ul>
@@ -81,7 +100,7 @@ const CartDisplay = () => {
           className={
             isDisabled
               ? "flex justify-self-end brightness-90 cursor-not-allowed"
-              : "flex justify-self-end hover:brightness-90 cursor-pointer"
+              : "flex justify-self-end hover:brightness-90"
           }
           disabled={isDisabled}
           onClick={handleProceedToCheckout}

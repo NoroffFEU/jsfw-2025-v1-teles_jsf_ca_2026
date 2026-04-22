@@ -63,7 +63,7 @@ const ContactForm = () => {
   };
 
   return (
-    <Card className="w-150 mt-10 mx-auto shadow-xl">
+    <Card className="w-full max-w-xl mt-10 mx-auto shadow-xl">
       <CardHeader>
         <CardTitle>Reach Out</CardTitle>
         <CardDescription>Let us know what's on your mind.</CardDescription>

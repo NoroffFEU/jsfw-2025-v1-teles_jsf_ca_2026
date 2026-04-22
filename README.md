@@ -1,4 +1,4 @@
-# JSF Online Shop
+# ShopNet (JSF Online Shop Assignment)
 
 **Author:** Tele Caster Nilsen<br/>
 **Website:** [telecasternilsen.com](https://telecasternilsen.com)<br/>
