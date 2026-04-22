@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-// import { useSelector } from 'react-redux';
+// import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { fetchProductById } from "@/services/api/products/fetch/fetch-product-by-id";
 import { AddToCartButton } from "@/components/products/AddToCartButton";
 import { Badge } from "@/components/ui/badge/Badge";
@@ -11,8 +11,8 @@ export const Route = createFileRoute("/products/$productId")({
 
 function ProductDetail() {
   const product = Route.useLoaderData().data;
-  // const selectProductName = (state) => state.product.productName;
-  // const productName = useSelector(selectProductName);
+  // const selectProductName = (state) => state.product.title;
+  // const productName = useAppSelector(selectProductName);
   const hasDiscount = product.discountedPrice !== product.price;
   const hasReviews = product.reviews.length !== 0;
   const hasTags = product.tags.length !== 0;
@@ -20,7 +20,7 @@ function ProductDetail() {
   return (
     <div className="grid gap-2 grid-cols-1 md:grid-cols-2 pt-10 pl-2 pr-2 md:pl-20 md:pr-20 justify-self-center justify-center">
       <div className="grid gap-2">
-        <h1 className="text-4xl text-center">{product.title}</h1>
+        <h1 className="text-4xl text-center font-bold">{product.title}</h1>
         <img
           src={product.image.url}
           alt={product.title}

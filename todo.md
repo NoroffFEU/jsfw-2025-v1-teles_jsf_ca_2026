@@ -12,7 +12,6 @@
 ### **TECHNICAL**
 
 - TypeScript Strict Mode (+ zod)
-- RTK state management and state persistence
 - Tanstack Query (search)
 - Tests (units + e2e)
 - Deployment > Netlify + sub-domain

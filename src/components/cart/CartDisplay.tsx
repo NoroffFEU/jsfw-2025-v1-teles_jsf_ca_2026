@@ -47,7 +47,7 @@ const CartDisplay = () => {
                   }),
                 )
               }
-              style={{ marginLeft: "10px" }}
+              className="ml-2 pl-2 pr-2 bg-gray-300 rounded-sm"
             >
               -
             </button>
@@ -61,7 +61,7 @@ const CartDisplay = () => {
                   }),
                 )
               }
-              style={{ marginLeft: "5px" }}
+              className="ml-1 pl-2 pr-2 bg-gray-300 rounded-sm"
             >
               +
             </button>
@@ -80,8 +80,8 @@ const CartDisplay = () => {
         <Button
           className={
             isDisabled
-              ? "flex justify-self-end brightness-90"
-              : "flex justify-self-end hover:brightness-90"
+              ? "flex justify-self-end brightness-90 cursor-not-allowed"
+              : "flex justify-self-end hover:brightness-90 cursor-pointer"
           }
           disabled={isDisabled}
           onClick={handleProceedToCheckout}

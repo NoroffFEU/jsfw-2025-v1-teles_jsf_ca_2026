@@ -40,7 +40,7 @@ export const AddToCartButton = ({ productId }: AddToCartProps) => {
         className={
           isDisabled
             ? `opacity-50 cursor-not-allowed`
-            : `hover:brightness-80 cursor-pointer`
+            : `hover:brightness-80 hover:shadow-lg cursor-pointer`
         }
       />
       {isAdded && <div>{count} ADDED TO CART</div>}
