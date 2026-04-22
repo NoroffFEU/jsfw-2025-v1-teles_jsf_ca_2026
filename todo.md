@@ -2,9 +2,14 @@
 
 ### **FEATURES**
 
-- Products --> needs styling and API updates
-- Product detail --> needs styling and API updates
-- Shopping cart --> needs UX and full flow
+- Products
+  - style improvements
+- Product detail
+  - style improvements
+- Shopping cart missing
+  - product image + title
+  - total cost calculation
+  - 'to checkout' redirect
 - Checkout flow --> needs UX and full flow
 - Search and Sort --> needs API and render results logic
 - Contact form (validated) --> needs to redirect to success page
