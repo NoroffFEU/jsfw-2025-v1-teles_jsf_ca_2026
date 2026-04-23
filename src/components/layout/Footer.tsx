@@ -3,11 +3,14 @@ export const Footer = () => {
   const url = "https://telecasternilsen.com";
 
   return (
-    <footer className="mt-4 justify-self-center">
-      &copy; {currentYear} -{" "}
-      <a href={url} className="hover:underline">
-        Devtones Studio
-      </a>
+    <footer className="w-full mt-12 justify-self-center justify-items-center">
+      <hr className="w-full" />
+      <div className="mt-4">
+        &copy; {currentYear} -{" "}
+        <a href={url} className="hover:underline">
+          Devtones Studio
+        </a>
+      </div>
     </footer>
   );
 };

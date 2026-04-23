@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { fetchProducts } from "@/services/api/products/fetch/fetch-products";
+import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
+import { setProducts } from "@/lib/redux/slices/productSlice";
 import { Card, CardContent, CardFooter } from "@/components/ui/card/Card";
 import { AddToCartButton } from "@/components/products/AddToCartButton";
 import { SortSelect } from "@/components/search/SortSelect";
@@ -11,6 +14,11 @@ export const Route = createFileRoute("/")({
 
 const ProductList = () => {
   const products = Route.useLoaderData().data;
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setProducts(products));
+  }, [dispatch, products]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-2">

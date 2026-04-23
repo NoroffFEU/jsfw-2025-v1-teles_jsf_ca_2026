@@ -15,6 +15,11 @@
 **Purpose:** Checking best practice in letting Tanstack Router infer types when using linkOptions, or explicitly type NavItem.<br/>
 **Outcome:** Learnt that letting Tanstack infer the types in my case are cleaner and seemingly best practice.<br/>
 
+**Tool used:** GPT-4.1<br/>
+**Date:** 23.04.2026<br/>
+**Purpose:** Forgot how to round decimals to max 2 decimals, so asked AI.<br/>
+**Outcome:** Got a suggestion to use ".toFixed(2)"<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.

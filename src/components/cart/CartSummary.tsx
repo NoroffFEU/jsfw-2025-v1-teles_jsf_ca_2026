@@ -2,16 +2,17 @@ import { useState } from "react";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { useNavigate } from "@tanstack/react-router";
 import { checkoutLinkOptions } from "@/lib/link-options";
-import { selectTotalCartQuantity } from "@/lib/redux/slices/cartSlice";
+import {
+  selectTotalCartQuantity,
+  selectTotalPrice,
+} from "@/lib/redux/slices/cartSlice";
 import { Button } from "@/components/ui/button/Button";
 
 const CartSummary = () => {
   const totalItems = useAppSelector(selectTotalCartQuantity);
+  const totalPrice = useAppSelector(selectTotalPrice);
   const [isDisabled, setIsDisabled] = useState(false);
   const navigate = useNavigate();
-  // const totalPrice = useAppSelector(selectTotalPrice);
-
-  // if (totalItems === 0) return <p>Shopping cart is empty.</p>;
 
   const handleProceedToCheckout = () => {
     setIsDisabled(true);
@@ -27,9 +28,11 @@ const CartSummary = () => {
       <div>
         <h3 className="font-bold">Summary</h3>
         <p>
-          Total products in the cart: <strong>{totalItems}</strong>
+          Total products: <strong>{totalItems}</strong>
         </p>
-        {/* <p>Total price: <strong>{totalPrice} NOK</strong></p> */}
+        <p>
+          Total price: <strong>{totalPrice.toFixed(2)} NOK</strong>
+        </p>
       </div>
 
       {totalItems !== 0 && (

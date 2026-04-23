@@ -4,6 +4,7 @@ import {
   type PayloadAction,
 } from "@reduxjs/toolkit";
 import type { RootState } from "@/lib/redux/store";
+import { selectProductsById } from "./productSlice";
 
 type CartItem = {
   productId: string;
@@ -78,9 +79,11 @@ export const selectTotalCartQuantity = createSelector(
 );
 
 export const selectTotalPrice = createSelector(
-  [selectCartItemsArray],
-  (itemsArray) =>
-    itemsArray.map((price) => {
-      return price.productId;
-    }),
+  [selectCartItemsArray, selectProductsById],
+  (itemsArray, productsById) =>
+    itemsArray.reduce((total, item) => {
+      const product = productsById[item.productId];
+      const itemPrice = product?.discountedPrice ?? 0;
+      return total + item.quantity * itemPrice;
+    }, 0),
 );
