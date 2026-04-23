@@ -69,6 +69,7 @@ This application is (will be) deployed with Netlify, as a sub-domain to: `teleca
 - [Tanstack Router](https://tanstack.com/router/latest/docs/quick-start)
 - [File-based-routing - the why](https://tanstack.com/router/latest/docs/decisions-on-dx)
 - [File-based-routing - the how](https://tanstack.com/router/latest/docs/routing/file-based-routing)
+- [Tanstack Router - LinkOptions](https://tanstack.com/router/latest/docs/guide/link-options)
 
 ---
 

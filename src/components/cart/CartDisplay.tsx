@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { removeItem, updateQuantity } from "@/lib/redux/slices/cartSlice";
+
+import CartSummary from "@/components/cart/CartSummary";
 import { Button } from "@/components/ui/button/Button";
 import { AlertBox } from "@/components/alerts/AlertBox";
 import { Trash2 } from "lucide-react";
 
 const CartDisplay = () => {
   const [pendingItem, setIsPendingItem] = useState<string | null>(null);
-  const [isDisabled, setIsDisabled] = useState(false);
   const itemsMap = useAppSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
@@ -16,13 +17,6 @@ const CartDisplay = () => {
   if (itemsArray.length === 0) {
     return <p>Shopping cart is empty.</p>;
   }
-
-  const handleProceedToCheckout = () => {
-    setIsDisabled(true);
-    setTimeout(() => {
-      setIsDisabled(false);
-    }, 500);
-  };
 
   const confirmDelete = () => {
     if (!pendingItem) return;
@@ -95,19 +89,7 @@ const CartDisplay = () => {
         ))}
       </ul>
 
-      {itemsArray.length !== 0 && (
-        <Button
-          className={
-            isDisabled
-              ? "flex justify-self-end brightness-90 cursor-not-allowed"
-              : "flex justify-self-end hover:brightness-90"
-          }
-          disabled={isDisabled}
-          onClick={handleProceedToCheckout}
-        >
-          Proceed to Checkout
-        </Button>
-      )}
+      <CartSummary />
     </div>
   );
 };

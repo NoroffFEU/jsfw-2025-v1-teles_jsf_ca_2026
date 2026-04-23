@@ -76,3 +76,11 @@ export const selectTotalCartQuantity = createSelector(
   [selectCartItemsArray],
   (itemsArray) => itemsArray.reduce((total, item) => total + item.quantity, 0),
 );
+
+export const selectTotalPrice = createSelector(
+  [selectCartItemsArray],
+  (itemsArray) =>
+    itemsArray.map((price) => {
+      return price.productId;
+    }),
+);

@@ -10,6 +10,11 @@
 **Purpose:** Confirming my Tanstack Router architectural approach (move "/products/Index.tsx" content into home "/" instead of the default Index + Products component)<br/>
 **Outcome:** Confirmation received.<br/>
 
+**Tool used:** Perplexity<br/>
+**Date:** 23.04.2026<br/>
+**Purpose:** Checking best practice in letting Tanstack Router infer types when using linkOptions, or explicitly type NavItem.<br/>
+**Outcome:** Learnt that letting Tanstack infer the types in my case are cleaner and seemingly best practice.<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.
