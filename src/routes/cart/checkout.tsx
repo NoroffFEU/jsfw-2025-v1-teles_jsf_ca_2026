@@ -8,7 +8,7 @@ export const Route = createFileRoute("/cart/checkout")({
 
 function Checkout() {
   return (
-    <div className="w-full pt-10 pl-10 pr-10 md:pl-20 md:pr-20 justify-self-center">
+    <div className="w-full pt-10 pl-10 pr-10 lg:pl-20 lg:pr-20 justify-self-center">
       <Link
         to="/cart"
         className="w-fit flex gap-2 items-center hover:underline"

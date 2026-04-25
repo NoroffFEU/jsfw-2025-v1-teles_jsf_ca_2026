@@ -46,7 +46,13 @@ function ProductDetail() {
               <s>Original price: {product.price} NOK</s>
             </div>
           )}
-          <AddToCartButton productId={product.id} />
+          <AddToCartButton
+            productId={product.id}
+            title={product.title}
+            image={product.image}
+            price={product.price}
+            discountedPrice={product.discountedPrice || product.price}
+          />
         </div>
       </div>
 

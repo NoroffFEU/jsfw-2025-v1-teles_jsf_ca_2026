@@ -41,52 +41,79 @@ const CartDisplay = () => {
         />
       )}
 
-      <ul className="grid gap-2 p-8 rounded-sm bg-gray-100">
-        {itemsArray.map((item) => (
-          <li key={item.productId} className="m-2 p-2">
-            <span>Product ID: {item.productId}</span>
-            <br />
+      <ul className="grid gap-2 w-fit sm:w-200 justify-self-center p-8 rounded-sm bg-gray-100">
+        {itemsArray.map((item) => {
+          const hasDiscount = item.discountedPrice < item.price;
 
-            <div className="flex gap-2 items-center justify-self-end">
-              <span>Quantity: {item.quantity}</span>
+          return (
+            <li key={item.productId} className="grid gap-2 m-2 p-2">
+              <h3 className="font-semibold">{item.title}</h3>
+              <div className="flex w-40 h-40 overflow-hidden">
+                <img
+                  src={item.image.url}
+                  alt={item.image.alt}
+                  className="w-full rounded-xs object-cover"
+                />
+              </div>
+              {!hasDiscount && (
+                <p>
+                  <span className="font-bold">Price:</span> {item.price} NOK
+                </p>
+              )}
+              {hasDiscount && (
+                <div className="text-sm">
+                  <p className="font-bold">
+                    Discount price:{" "}
+                    <span className="text-green-600 font-bold">
+                      {item.discountedPrice} NOK
+                    </span>
+                  </p>
+                  <s>Original price: {item.price} NOK</s>
+                </div>
+              )}
 
-              <Button
-                onClick={() =>
-                  dispatch(
-                    updateQuantity({
-                      productId: item.productId,
-                      quantity: item.quantity - 1,
-                    }),
-                  )
-                }
-                className="ml-2 w-8 h-8 bg-gray-300 text-black rounded-sm"
-              >
-                -
-              </Button>
+              <div className="flex gap-2 items-center justify-self-end">
+                <span className="text-sm">Quantity: {item.quantity}</span>
 
-              <Button
-                onClick={() =>
-                  dispatch(
-                    updateQuantity({
-                      productId: item.productId,
-                      quantity: item.quantity + 1,
-                    }),
-                  )
-                }
-                className="ml-1 w-8 h-8 bg-gray-300 text-black rounded-sm"
-              >
-                +
-              </Button>
+                <Button
+                  onClick={() =>
+                    dispatch(
+                      updateQuantity({
+                        productId: item.productId,
+                        quantity: item.quantity - 1,
+                      }),
+                    )
+                  }
+                  className="ml-2 w-8 h-8 bg-gray-300 text-black rounded-sm"
+                >
+                  -
+                </Button>
 
-              <Button
-                onClick={() => setIsPendingItem(item.productId)}
-                className="ml-2 p-0 text-red-600 bg-transparent"
-              >
-                <Trash2 />
-              </Button>
-            </div>
-          </li>
-        ))}
+                <Button
+                  onClick={() =>
+                    dispatch(
+                      updateQuantity({
+                        productId: item.productId,
+                        quantity: item.quantity + 1,
+                      }),
+                    )
+                  }
+                  className="ml-1 w-8 h-8 bg-gray-300 text-black rounded-sm"
+                >
+                  +
+                </Button>
+
+                <Button
+                  onClick={() => setIsPendingItem(item.productId)}
+                  className="ml-2 p-0 text-red-600 bg-transparent"
+                >
+                  <Trash2 />
+                </Button>
+              </div>
+              <hr />
+            </li>
+          );
+        })}
       </ul>
 
       <CartSummary />

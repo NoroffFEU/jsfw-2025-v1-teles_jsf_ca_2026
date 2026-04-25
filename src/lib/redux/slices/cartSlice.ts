@@ -8,6 +8,10 @@ import { selectProductsById } from "./productSlice";
 
 type CartItem = {
   productId: string;
+  title: string;
+  image: { url: string; alt: string };
+  price: number;
+  discountedPrice: number;
   quantity: number;
 };
 
@@ -22,14 +26,31 @@ export const cartSlice = createSlice({
   initialState,
 
   reducers: {
-    addItem: (state, action: PayloadAction<{ productId: string }>) => {
-      const { productId } = action.payload;
+    addItem: (
+      state,
+      action: PayloadAction<{
+        productId: string;
+        title: string;
+        image: { url: string; alt: string };
+        price: number;
+        discountedPrice: number;
+      }>,
+    ) => {
+      const { productId, title, image, price, discountedPrice } =
+        action.payload;
       const existingItem = state.items[productId];
 
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.items[productId] = { ...action.payload, quantity: 1 };
+        state.items[productId] = {
+          productId,
+          title,
+          image,
+          quantity: 1,
+          price,
+          discountedPrice,
+        };
       }
     },
 
@@ -50,8 +71,6 @@ export const cartSlice = createSlice({
       } else {
         item.quantity = quantity;
       }
-
-      // item doesn't exist, tell the user?
     },
 
     clearCart: (state) => {

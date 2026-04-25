@@ -44,7 +44,13 @@ const ProductList = () => {
               </Link>
               <p>{item.description}</p>
 
-              <AddToCartButton productId={item.id} />
+              <AddToCartButton
+                productId={item.id}
+                title={item.title}
+                image={item.image}
+                price={item.price}
+                discountedPrice={item.discountedPrice || item.price}
+              />
             </CardContent>
 
             <CardFooter className="flex w-full h-full justify-between items-center text-sm">

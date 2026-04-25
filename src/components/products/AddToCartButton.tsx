@@ -7,9 +7,19 @@ import { addItem } from "@/lib/redux/slices/cartSlice";
 
 type AddToCartProps = {
   productId: Product["id"];
+  title: Product["title"];
+  image: Product["image"];
+  price: Product["price"];
+  discountedPrice: Product["discountedPrice"];
 };
 
-export const AddToCartButton = ({ productId }: AddToCartProps) => {
+export const AddToCartButton = ({
+  productId,
+  title,
+  image,
+  price,
+  discountedPrice,
+}: AddToCartProps) => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [isAdded, setAdded] = useState(false);
   const [count, setCount] = useState(0);
@@ -18,7 +28,7 @@ export const AddToCartButton = ({ productId }: AddToCartProps) => {
   const handleAddToCart = () => {
     toast.remove();
 
-    dispatch(addItem({ productId }));
+    dispatch(addItem({ productId, title, image, price, discountedPrice }));
 
     setIsDisabled(true);
     setAdded(true);
