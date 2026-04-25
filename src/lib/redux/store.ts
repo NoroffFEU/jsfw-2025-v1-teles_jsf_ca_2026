@@ -25,7 +25,7 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  whitelist: ["cart"],
+  whitelist: ["cart", "products"],
   // blacklist: ["reducer-to-blacklist"],
 };
 

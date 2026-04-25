@@ -9,12 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CartIndexRouteImport } from './routes/cart/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
+import { Route as CartSuccessRouteImport } from './routes/cart/success'
 import { Route as CartCheckoutRouteImport } from './routes/cart/checkout'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -35,6 +42,11 @@ const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
   path: '/products/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CartSuccessRoute = CartSuccessRouteImport.update({
+  id: '/cart/success',
+  path: '/cart/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CartCheckoutRoute = CartCheckoutRouteImport.update({
   id: '/cart/checkout',
   path: '/cart/checkout',
@@ -44,14 +56,18 @@ const CartCheckoutRoute = CartCheckoutRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/terms': typeof TermsRoute
   '/cart/checkout': typeof CartCheckoutRoute
+  '/cart/success': typeof CartSuccessRoute
   '/products/$productId': typeof ProductsProductIdRoute
   '/cart/': typeof CartIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/terms': typeof TermsRoute
   '/cart/checkout': typeof CartCheckoutRoute
+  '/cart/success': typeof CartSuccessRoute
   '/products/$productId': typeof ProductsProductIdRoute
   '/cart': typeof CartIndexRoute
 }
@@ -59,7 +75,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/terms': typeof TermsRoute
   '/cart/checkout': typeof CartCheckoutRoute
+  '/cart/success': typeof CartSuccessRoute
   '/products/$productId': typeof ProductsProductIdRoute
   '/cart/': typeof CartIndexRoute
 }
@@ -68,16 +86,27 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact'
+    | '/terms'
     | '/cart/checkout'
+    | '/cart/success'
     | '/products/$productId'
     | '/cart/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/cart/checkout' | '/products/$productId' | '/cart'
+  to:
+    | '/'
+    | '/contact'
+    | '/terms'
+    | '/cart/checkout'
+    | '/cart/success'
+    | '/products/$productId'
+    | '/cart'
   id:
     | '__root__'
     | '/'
     | '/contact'
+    | '/terms'
     | '/cart/checkout'
+    | '/cart/success'
     | '/products/$productId'
     | '/cart/'
   fileRoutesById: FileRoutesById
@@ -85,13 +114,22 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  TermsRoute: typeof TermsRoute
   CartCheckoutRoute: typeof CartCheckoutRoute
+  CartSuccessRoute: typeof CartSuccessRoute
   ProductsProductIdRoute: typeof ProductsProductIdRoute
   CartIndexRoute: typeof CartIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -120,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cart/success': {
+      id: '/cart/success'
+      path: '/cart/success'
+      fullPath: '/cart/success'
+      preLoaderRoute: typeof CartSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cart/checkout': {
       id: '/cart/checkout'
       path: '/cart/checkout'
@@ -133,7 +178,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  TermsRoute: TermsRoute,
   CartCheckoutRoute: CartCheckoutRoute,
+  CartSuccessRoute: CartSuccessRoute,
   ProductsProductIdRoute: ProductsProductIdRoute,
   CartIndexRoute: CartIndexRoute,
 }

@@ -39,8 +39,8 @@ const CartSummary = () => {
         <Button
           className={
             isDisabled
-              ? "flex justify-self-end brightness-90 cursor-not-allowed"
-              : "flex justify-self-end hover:brightness-90"
+              ? "flex justify-self-end p-4 text-md brightness-90 cursor-not-allowed"
+              : "flex justify-self-end p-4 text-md hover:brightness-90"
           }
           disabled={isDisabled}
           onClick={handleProceedToCheckout}

@@ -5,6 +5,11 @@ export const checkoutLinkOptions = linkOptions({
   search: { search: "" },
 });
 
+export const paymentSuccessLinkOptions = linkOptions({
+  to: "/cart/success",
+  search: { search: "" },
+});
+
 export const navOptions = [
   {
     link: linkOptions({ to: "/", activeOptions: { exact: true } }),

@@ -6,7 +6,7 @@
 
 @layer base {
   #root {
-    @apply grid m-2;
+    @apply grid m-2 mt-35 md:mt-20;
   }
 
   * {
@@ -14,7 +14,7 @@
   }
 
   body {
-    @apply mt-35 md:mt-20 selection:bg-green-300 bg-background text-foreground;
+    @apply selection:bg-green-300 bg-background text-foreground;
   }
 
   html {

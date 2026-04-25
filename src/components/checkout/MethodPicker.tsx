@@ -1,0 +1,123 @@
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item/Item";
+import { Button } from "../ui/button/Button";
+
+export const MethodPicker = () => {
+  return (
+    <div className="grid grid-rows-2 gap-4">
+      <h3 className="text-lg font-semibold">PAYMENT</h3>
+      <h4 className="text-sm">Select your preferred payment method</h4>
+      <Item>
+        <ItemContent>
+          <ItemMedia variant="icon">
+            {" "}
+            <img
+              src="/payment-methods/klarna-rosa.jpg"
+              alt="Klarna logo"
+              className="w-20 -ml-2.5 rounded-sm"
+            />
+          </ItemMedia>
+          <ItemTitle className="sr-only">Klarna</ItemTitle>
+          <ItemDescription>
+            Get your order now and pay later with Klarna invoice.
+          </ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Button>Select</Button>
+        </ItemActions>
+      </Item>
+
+      <Item>
+        <ItemContent>
+          <ItemMedia variant="icon">
+            {" "}
+            <img
+              src="/payment-methods/vipps-mobilepay.png"
+              alt="Vipps logo"
+              className="w-20 -ml-2.5 rounded-sm"
+            />
+          </ItemMedia>
+          <ItemTitle className="sr-only">Vipps</ItemTitle>
+          <ItemDescription>Easy payment with Vipps Mobile Pay.</ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Button>Select</Button>
+        </ItemActions>
+      </Item>
+
+      <Item>
+        <ItemContent>
+          <ItemMedia variant="icon">
+            {" "}
+            <div className="grid grid-cols-2 gap-2 justify-center items-center">
+              <img
+                src="/payment-methods/Visa-Symbol.png"
+                alt="Visa logo"
+                className="w-10 rounded-sm"
+              />
+              <img
+                src="/payment-methods/Mastercard-logo-730x410.jpg"
+                alt="Mastercard logo"
+                className="w-10 rounded-sm"
+              />
+            </div>
+          </ItemMedia>
+          <ItemTitle className="sr-only">Card Payment</ItemTitle>
+          <ItemDescription>
+            Pay with your preferred debit or mastercard.
+          </ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Button>Select</Button>
+        </ItemActions>
+      </Item>
+
+      <hr />
+
+      <h3 className="text-lg font-semibold">DELIVERY</h3>
+      <h4 className="text-sm">Select your preferred delivery method</h4>
+      <Item>
+        <ItemContent>
+          <ItemTitle>Home Delivery</ItemTitle>
+          <ItemDescription>
+            Your order will be delivered at your registered delivery address.
+          </ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Button>Select</Button>
+        </ItemActions>
+      </Item>
+
+      <Item>
+        <ItemContent>
+          <ItemTitle>Post Office</ItemTitle>
+          <ItemDescription>
+            Your order will be available for pick-up at your nearest
+            post-office.
+          </ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Button>Select</Button>
+        </ItemActions>
+      </Item>
+
+      <Item>
+        <ItemContent>
+          <ItemTitle>Post Box</ItemTitle>
+          <ItemDescription>
+            Your order will be available for pick-up at your nearest post-box.
+          </ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Button>Select</Button>
+        </ItemActions>
+      </Item>
+    </div>
+  );
+};

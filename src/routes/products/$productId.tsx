@@ -32,7 +32,7 @@ function ProductDetail() {
 
           {!hasDiscount && (
             <p>
-              <span className="font-bold">Price:</span> {product.price}
+              <span className="font-bold">Price:</span> {product.price} NOK
             </p>
           )}
           {hasDiscount && (
@@ -40,10 +40,10 @@ function ProductDetail() {
               <p className="font-bold">
                 Discount price:{" "}
                 <span className="text-green-600 font-bold">
-                  {product.discountedPrice}
+                  {product.discountedPrice} NOK
                 </span>
               </p>
-              <s>Original price: {product.price}</s>
+              <s>Original price: {product.price} NOK</s>
             </div>
           )}
           <AddToCartButton productId={product.id} />

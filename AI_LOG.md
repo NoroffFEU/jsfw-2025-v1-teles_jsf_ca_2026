@@ -20,6 +20,11 @@
 **Purpose:** Forgot how to round decimals to max 2 decimals, so asked AI.<br/>
 **Outcome:** Got a suggestion to use ".toFixed(2)"<br/>
 
+**Tool used:** Perplexity<br/>
+**Date:** 25.04.2026<br/>
+**Purpose:** Made it generate a generic terms and conditions article.<br/>
+**Outcome:** Efficient workflow.<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.

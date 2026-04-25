@@ -8,9 +8,10 @@
   - style improvements
 - Shopping cart missing
   - product image + title
-  - total cost calculation
-  - 'to checkout' redirect
-- Checkout flow --> needs UX and full flow
+- Checkout flow missing
+  - discount and delivery calculation
+  - product image + title
+  - disable or hide other delivery/payment methods when one is chosen
 - Search and Sort --> needs API and render results logic
 - Contact form (validated) --> needs to redirect to success page
 

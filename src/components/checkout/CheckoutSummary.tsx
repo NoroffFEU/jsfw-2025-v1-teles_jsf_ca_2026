@@ -1,0 +1,68 @@
+import { useState } from "react";
+import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
+import { useNavigate, Link } from "@tanstack/react-router";
+import { paymentSuccessLinkOptions } from "@/lib/link-options";
+import {
+  selectTotalCartQuantity,
+  selectTotalPrice,
+} from "@/lib/redux/slices/cartSlice";
+import { Button } from "@/components/ui/button/Button";
+import { Input } from "../ui/input/input/Input";
+
+const CheckoutSummary = () => {
+  const totalItems = useAppSelector(selectTotalCartQuantity);
+  const totalPrice = useAppSelector(selectTotalPrice);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const navigate = useNavigate();
+
+  const handlePaymentProcess = () => {
+    setIsDisabled(true);
+    setTimeout(() => {
+      setIsDisabled(false);
+    }, 500);
+
+    navigate(paymentSuccessLinkOptions);
+  };
+
+  return (
+    <div className="flex flex-cols gap-4 items-center justify-between">
+      <div className="grid gap-2">
+        <p>
+          Discount code: <Input placeholder="SUMMER_26" />
+        </p>
+        <p>Order value: {totalPrice},-</p>
+        <p>Discount: 0,-</p>
+        <p>Delivery fee: 0,-</p>
+        <h3 className="font-bold mt-6 pt-6 border-t-2 border-t-black">
+          Payment Summary
+        </h3>
+        <p>
+          Total: <strong>{totalPrice.toFixed(2)} NOK</strong>
+        </p>
+
+        <p className="text-xs">
+          By continuing you agree to{" "}
+          <Link to="/terms" className="underline hover:no-underline">
+            ShopNet terms and conditions
+          </Link>
+        </p>
+
+        {totalItems !== 0 && (
+          <Button
+            className={
+              isDisabled
+                ? "flex justify-self-end mt-4 p-4 text-md brightness-90 cursor-not-allowed"
+                : "flex justify-self-end mt-4 p-4 text-md hover:brightness-90"
+            }
+            disabled={isDisabled}
+            onClick={handlePaymentProcess}
+          >
+            Pay order
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default CheckoutSummary;
