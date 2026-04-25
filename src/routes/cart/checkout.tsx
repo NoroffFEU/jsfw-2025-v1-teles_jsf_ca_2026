@@ -16,7 +16,7 @@ function Checkout() {
         <ArrowLeft /> Back to shoppingbag
       </Link>
 
-      <h1 className="w-fit p-1 rounded-sm text-3xl mt-4 mb-2 font-mono bg-green-300">
+      <h1 className="w-fit p-1 rounded-sm text-3xl mt-4 mb-2 font-mono bg-selection">
         Checkout
       </h1>
       <CheckoutDisplay />

@@ -1,7 +1,13 @@
 # ShopNet (JSF Online Shop Assignment)
 
+![image](public/shopnet-screenshot.png)
+
+**Live Site:** [shopnet.telecasternilsen.com](https://shopnet.telecasternilsen.com)
+
 **Author:** Tele Caster Nilsen<br/>
 **Website:** [telecasternilsen.com](https://telecasternilsen.com)<br/>
+
+---
 
 **Table of Contents**
 
@@ -40,10 +46,18 @@ Currently, this applications first iteration holds a rather simple state managem
 
 ## Get Started
 
+Clone and open the project
+
 ```bash
-git clone XXX
-cd XXX
+git clone https://github.com/NoroffFEU/jsfw-2025-v1-teles_jsf_ca_2026.git
+cd jsfw-2025-v1-teles_jsf_ca_2026
 code . # or IDE of choice
+```
+
+Install dependencies
+
+```bash
+npm install
 ```
 
 Run the project
@@ -62,10 +76,12 @@ npm run lint # formats all relevant files
 
 ### Deployment
 
-This application is (will be) deployed with Netlify, as a sub-domain to: `telecasternilsen.com`.
+This application is deployed with Netlify, as a sub-domain to: `telecasternilsen.com`.<br/>
+**Live Site:** [shopnet.telecasternilsen.com](https://shopnet.telecasternilsen.com)
 
 ## Resources
 
+- [Noroff API Documentation](https://docs.noroff.dev/docs/v2/basic/online-shop)
 - [Tanstack Router](https://tanstack.com/router/latest/docs/quick-start)
 - [File-based-routing - the why](https://tanstack.com/router/latest/docs/decisions-on-dx)
 - [File-based-routing - the how](https://tanstack.com/router/latest/docs/routing/file-based-routing)

@@ -7,7 +7,7 @@ export const Route = createFileRoute("/terms")({
 function Terms() {
   return (
     <div className="grid gap-6 max-w-250 pt-10 pl-10 pr-10 md:pl-20 md:pr-20 justify-self-center">
-      <h1 className="w-fit p-1 rounded-sm text-3xl mt-4 mb-2 font-mono bg-green-300">
+      <h1 className="w-fit p-1 rounded-sm text-3xl mt-4 mb-2 font-mono bg-selection">
         Terms and Conditions for ShopNet
       </h1>
 

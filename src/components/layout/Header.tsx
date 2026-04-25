@@ -15,7 +15,7 @@ export const Header = () => {
             <Link
               {...item.link}
               key={item.label}
-              className=" [&.active]:border-green-300 [&.active]:font-semibold font-mono border-b-2 border-transparent hover:border-b-2 hover:border-green-300"
+              className=" [&.active]:border-selection [&.active]:font-semibold font-mono border-b-2 border-transparent hover:border-b-2 hover:border-selection"
             >
               {item.icon ? <ShoppingCart /> : item.label}
             </Link>

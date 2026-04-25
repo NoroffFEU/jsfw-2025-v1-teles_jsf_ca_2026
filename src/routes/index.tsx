@@ -84,7 +84,7 @@ const ProductList = () => {
 function Products() {
   return (
     <div className="pt-10 pl-10 pr-10 md:pl-20 md:pr-20 justify-self-center">
-      <h1 className="w-fit p-1 rounded-sm text-3xl mt-4 mb-2 font-mono bg-green-300">
+      <h1 className="w-fit p-1 rounded-sm text-3xl mt-4 mb-2 font-mono bg-selection">
         Products
       </h1>
       <p>Find your favourite gadget.</p>
