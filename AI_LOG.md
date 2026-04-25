@@ -25,6 +25,11 @@
 **Purpose:** Made it generate a generic terms and conditions article.<br/>
 **Outcome:** Efficient workflow.<br/>
 
+**Tool used:** GPT-5.3-Codex<br/>
+**Date:** 25.04.2026<br/>
+**Purpose:** To sum up my changes to suggest a good commit message<br/>
+**Outcome:** Received suggestion for efficient workflow<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.
