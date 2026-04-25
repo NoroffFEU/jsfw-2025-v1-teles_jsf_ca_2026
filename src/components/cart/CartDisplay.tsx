@@ -15,7 +15,7 @@ const CartDisplay = () => {
 
   const itemsArray = Object.values(itemsMap);
   if (itemsArray.length === 0) {
-    return <p>Shopping cart is empty.</p>;
+    return <p className="mt-6 mb-4">Shopping cart is empty.</p>;
   }
 
   const confirmDelete = () => {
