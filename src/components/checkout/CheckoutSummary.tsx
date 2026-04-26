@@ -6,10 +6,21 @@ import {
   selectTotalCartQuantity,
   selectTotalPrice,
 } from "@/lib/redux/slices/cartSlice";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button/Button";
 import { Input } from "../ui/input/input/Input";
+import { PaymentProcessing } from "./PaymentProcessing";
+import toast from "react-hot-toast";
 
 const CheckoutSummary = () => {
+  const [openDialog, setOpenDialog] = useState(false);
   const totalItems = useAppSelector(selectTotalCartQuantity);
   const totalPrice = useAppSelector(selectTotalPrice);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -17,15 +28,30 @@ const CheckoutSummary = () => {
 
   const handlePaymentProcess = () => {
     setIsDisabled(true);
-    setTimeout(() => {
-      setIsDisabled(false);
-    }, 500);
+    setOpenDialog(true);
 
-    navigate(paymentSuccessLinkOptions);
+    setTimeout(() => {
+      toast.success("Payment success");
+      setIsDisabled(false);
+      navigate(paymentSuccessLinkOptions);
+    }, 1500);
   };
 
   return (
     <div className="flex flex-cols gap-4 items-center justify-between">
+      {openDialog && (
+        <Dialog open={openDialog}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle></DialogTitle>
+              <DialogDescription>
+                <PaymentProcessing />
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      )}
+
       <div className="grid gap-2">
         <p>
           Discount code: <Input placeholder="SUMMER_26" />

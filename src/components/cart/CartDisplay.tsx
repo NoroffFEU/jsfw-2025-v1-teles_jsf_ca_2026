@@ -68,7 +68,9 @@ const CartDisplay = () => {
                       {item.discountedPrice} NOK
                     </span>
                   </p>
-                  <s>Original price: {item.price} NOK</s>
+                  <s className="text-xs text-gray-500">
+                    Original price: {item.price} NOK
+                  </s>
                 </div>
               )}
 

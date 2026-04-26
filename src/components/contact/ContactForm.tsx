@@ -25,6 +25,8 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/components/ui/input/input/InputGroup";
+import { useNavigate } from "@tanstack/react-router";
+import { contactSuccessLinkOptions } from "@/lib/link-options";
 
 const ContactForm = () => {
   const [values, setValues] = useState({
@@ -34,6 +36,7 @@ const ContactForm = () => {
     description: "",
   });
   const [errors, setErrors] = useState<{ [k: string]: string[] }>({});
+  const navigate = useNavigate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -56,8 +59,9 @@ const ContactForm = () => {
       setErrors(fieldErrors);
     } else {
       setErrors({});
-      toast("Thank you for your inquiry. We'll get back to you soon! :)");
+      toast.success("Message sent! :)");
       // ?? dispatch(submitContactForm(result.data));
+      navigate(contactSuccessLinkOptions);
       handleReset();
     }
   };

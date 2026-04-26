@@ -10,10 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactIndexRouteImport } from './routes/contact/index'
 import { Route as CartIndexRouteImport } from './routes/cart/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
+import { Route as ContactThankYouRouteImport } from './routes/contact/thank-you'
 import { Route as CartSuccessRouteImport } from './routes/cart/success'
 import { Route as CartCheckoutRouteImport } from './routes/cart/checkout'
 
@@ -22,14 +23,14 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactIndexRoute = ContactIndexRouteImport.update({
+  id: '/contact/',
+  path: '/contact/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartIndexRoute = CartIndexRouteImport.update({
@@ -40,6 +41,11 @@ const CartIndexRoute = CartIndexRouteImport.update({
 const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
   id: '/products/$productId',
   path: '/products/$productId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactThankYouRoute = ContactThankYouRouteImport.update({
+  id: '/contact/thank-you',
+  path: '/contact/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartSuccessRoute = CartSuccessRouteImport.update({
@@ -55,70 +61,77 @@ const CartCheckoutRoute = CartCheckoutRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
   '/terms': typeof TermsRoute
   '/cart/checkout': typeof CartCheckoutRoute
   '/cart/success': typeof CartSuccessRoute
+  '/contact/thank-you': typeof ContactThankYouRoute
   '/products/$productId': typeof ProductsProductIdRoute
   '/cart/': typeof CartIndexRoute
+  '/contact/': typeof ContactIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
   '/terms': typeof TermsRoute
   '/cart/checkout': typeof CartCheckoutRoute
   '/cart/success': typeof CartSuccessRoute
+  '/contact/thank-you': typeof ContactThankYouRoute
   '/products/$productId': typeof ProductsProductIdRoute
   '/cart': typeof CartIndexRoute
+  '/contact': typeof ContactIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
   '/terms': typeof TermsRoute
   '/cart/checkout': typeof CartCheckoutRoute
   '/cart/success': typeof CartSuccessRoute
+  '/contact/thank-you': typeof ContactThankYouRoute
   '/products/$productId': typeof ProductsProductIdRoute
   '/cart/': typeof CartIndexRoute
+  '/contact/': typeof ContactIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/contact'
     | '/terms'
     | '/cart/checkout'
     | '/cart/success'
+    | '/contact/thank-you'
     | '/products/$productId'
     | '/cart/'
+    | '/contact/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/contact'
     | '/terms'
     | '/cart/checkout'
     | '/cart/success'
+    | '/contact/thank-you'
     | '/products/$productId'
     | '/cart'
+    | '/contact'
   id:
     | '__root__'
     | '/'
-    | '/contact'
     | '/terms'
     | '/cart/checkout'
     | '/cart/success'
+    | '/contact/thank-you'
     | '/products/$productId'
     | '/cart/'
+    | '/contact/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ContactRoute: typeof ContactRoute
   TermsRoute: typeof TermsRoute
   CartCheckoutRoute: typeof CartCheckoutRoute
   CartSuccessRoute: typeof CartSuccessRoute
+  ContactThankYouRoute: typeof ContactThankYouRoute
   ProductsProductIdRoute: typeof ProductsProductIdRoute
   CartIndexRoute: typeof CartIndexRoute
+  ContactIndexRoute: typeof ContactIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -130,18 +143,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact/': {
+      id: '/contact/'
+      path: '/contact'
+      fullPath: '/contact/'
+      preLoaderRoute: typeof ContactIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart/': {
@@ -156,6 +169,13 @@ declare module '@tanstack/react-router' {
       path: '/products/$productId'
       fullPath: '/products/$productId'
       preLoaderRoute: typeof ProductsProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact/thank-you': {
+      id: '/contact/thank-you'
+      path: '/contact/thank-you'
+      fullPath: '/contact/thank-you'
+      preLoaderRoute: typeof ContactThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart/success': {
@@ -177,12 +197,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ContactRoute: ContactRoute,
   TermsRoute: TermsRoute,
   CartCheckoutRoute: CartCheckoutRoute,
   CartSuccessRoute: CartSuccessRoute,
+  ContactThankYouRoute: ContactThankYouRoute,
   ProductsProductIdRoute: ProductsProductIdRoute,
   CartIndexRoute: CartIndexRoute,
+  ContactIndexRoute: ContactIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -86,6 +86,7 @@ This application is deployed with Netlify, as a sub-domain to: `telecasternilsen
 - [File-based-routing - the why](https://tanstack.com/router/latest/docs/decisions-on-dx)
 - [File-based-routing - the how](https://tanstack.com/router/latest/docs/routing/file-based-routing)
 - [Tanstack Router - LinkOptions](https://tanstack.com/router/latest/docs/guide/link-options)
+- [Open Dialog with React useState](https://stackoverflow.com/questions/78368196/triggering-a-radix-dialog-or-shadcn-dialog-via-a-react-component-not-a-button)
 
 ---
 

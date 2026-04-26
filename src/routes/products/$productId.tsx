@@ -43,7 +43,9 @@ function ProductDetail() {
                   {product.discountedPrice} NOK
                 </span>
               </p>
-              <s>Original price: {product.price} NOK</s>
+              <s className="text-xs text-gray-500">
+                Original price: {product.price} NOK
+              </s>
             </div>
           )}
           <AddToCartButton

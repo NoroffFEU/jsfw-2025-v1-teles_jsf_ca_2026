@@ -10,6 +10,11 @@ export const paymentSuccessLinkOptions = linkOptions({
   search: { search: "" },
 });
 
+export const contactSuccessLinkOptions = linkOptions({
+  to: "/contact/thank-you",
+  search: { search: "" },
+});
+
 export const navOptions = [
   {
     link: linkOptions({ to: "/", activeOptions: { exact: true } }),
