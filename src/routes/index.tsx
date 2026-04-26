@@ -34,6 +34,7 @@ const ProductList = () => {
               <Link to="/products/$productId" params={{ productId: item.id }}>
                 <img
                   src={item.image.url}
+                  alt={item.image.alt}
                   className="w-52 mx-auto cursor-pointer"
                 />
               </Link>

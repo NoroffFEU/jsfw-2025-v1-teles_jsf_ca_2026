@@ -43,7 +43,7 @@ const CheckoutSummary = () => {
         <Dialog open={openDialog}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle></DialogTitle>
+              <DialogTitle className="sr-only">Payment Processing</DialogTitle>
               <DialogDescription>
                 <PaymentProcessing />
               </DialogDescription>

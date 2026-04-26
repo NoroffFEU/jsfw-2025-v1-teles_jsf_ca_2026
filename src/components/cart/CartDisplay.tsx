@@ -109,7 +109,7 @@ const CartDisplay = () => {
                   onClick={() => setIsPendingItem(item.productId)}
                   className="ml-2 p-0 text-red-600 bg-transparent"
                 >
-                  <Trash2 />
+                  <Trash2 aria-label="Remove item from cart" />
                 </Button>
               </div>
               <hr />

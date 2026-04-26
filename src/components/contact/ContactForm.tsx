@@ -100,7 +100,7 @@ const ContactForm = () => {
                 placeholder="Full Name..."
                 autoComplete="on"
               />
-              {errors.email && <FieldError errors={errors.fullname} />}
+              {errors.fullname && <FieldError errors={errors.fullname} />}
             </Field>
 
             <Field data-invalid={!!errors.title}>

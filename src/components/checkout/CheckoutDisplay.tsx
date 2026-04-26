@@ -71,9 +71,12 @@ const CheckoutDisplay = () => {
           <h3 className="text-lg font-semibold">MY INFORMATION</h3>
           <p>{user.name}</p>
           <p>{user.email}</p>
-          <p className="w-fit underline hover:no-underline cursor-pointer">
+          <Button
+            variant="link"
+            className="w-fit p-0 underline hover:no-underline cursor-pointer"
+          >
             Edit info
-          </p>
+          </Button>
         </div>
         <hr />
 
@@ -84,9 +87,12 @@ const CheckoutDisplay = () => {
           </p>
           <p>{user.city}</p>
           <p>{user.country}</p>
-          <p className="w-fit underline hover:no-underline cursor-pointer">
+          <Button
+            variant="link"
+            className="w-fit p-0 underline hover:no-underline cursor-pointer"
+          >
             Edit info
-          </p>
+          </Button>
         </div>
         <hr />
 
@@ -118,7 +124,7 @@ const CheckoutDisplay = () => {
                   onClick={() => setIsPendingItem(item.productId)}
                   className="text-red-600 bg-transparent m-0 p-0"
                 >
-                  <Trash2 />
+                  <Trash2 aria-label="Remove item from cart" />
                 </Button>
               </div>
 
