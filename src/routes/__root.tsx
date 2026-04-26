@@ -9,40 +9,39 @@ import { Toaster } from "react-hot-toast";
 const RootLayout = () => (
   <>
     <HeadContent />
-    <main>
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          duration: 5000,
+    <Toaster
+      position="top-center"
+      toastOptions={{
+        duration: 5000,
+        style: {
+          color: "#1e40af",
+          backgroundColor: "#dbeafe",
+          border: "1px solid #93c5fd",
+        },
+        success: {
           style: {
-            color: "#1e40af",
-            backgroundColor: "#dbeafe",
-            border: "1px solid #93c5fd",
+            color: "#166534",
+            backgroundColor: "#f0fdf4",
+            border: "1px solid #86efac",
           },
-          success: {
-            style: {
-              color: "#166534",
-              backgroundColor: "#f0fdf4",
-              border: "1px solid #86efac",
-            },
+        },
+        error: {
+          style: {
+            color: "#991b1b",
+            backgroundColor: "#fef2f2",
+            border: "1px solid #fca5a5",
           },
-          error: {
-            style: {
-              color: "#991b1b",
-              backgroundColor: "#fef2f2",
-              border: "1px solid #fca5a5",
-            },
-          },
-        }}
-      />
+        },
+      }}
+    />
 
-      <Header />
-      <hr />
-
+    <Header />
+    <hr />
+    <main>
       <Outlet />
-      <Footer />
-      <TanStackRouterDevtools />
     </main>
+    <Footer />
+    <TanStackRouterDevtools />
   </>
 );
 
