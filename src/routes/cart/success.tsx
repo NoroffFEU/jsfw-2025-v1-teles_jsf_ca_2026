@@ -2,6 +2,17 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/cart/success")({
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "Thank you for shopping at ShopNet",
+      },
+      {
+        title: "Order confirmed - ShopNet",
+      },
+    ],
+  }),
   component: Success,
 });
 

@@ -6,6 +6,17 @@ import { Badge } from "@/components/ui/badge/Badge";
 
 export const Route = createFileRoute("/products/$productId")({
   loader: ({ params }) => fetchProductById(params.productId),
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "Product details at ShopNet online shop",
+      },
+      {
+        title: "Product - ShopNet",
+      },
+    ],
+  }),
   component: ProductDetail,
 });
 

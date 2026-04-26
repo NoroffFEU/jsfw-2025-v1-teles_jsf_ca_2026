@@ -8,6 +8,17 @@ import { AddToCartButton } from "@/components/products/AddToCartButton";
 import { SortSelect } from "@/components/search/SortSelect";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "Products page for ShopNet online shop",
+      },
+      {
+        title: "Products - ShopNet",
+      },
+    ],
+  }),
   component: Products,
   loader: () => fetchProducts(),
 });

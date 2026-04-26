@@ -5,6 +5,7 @@
 - General
   - style improvements
   - skeleton loaders
+  - accessibility and seo
 - Checkout flow missing
   - discount and delivery calculation
   - disable or hide other delivery/payment methods when one is chosen

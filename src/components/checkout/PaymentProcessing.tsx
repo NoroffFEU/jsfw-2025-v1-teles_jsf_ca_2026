@@ -17,7 +17,9 @@ export const PaymentProcessing = () => {
           <Spinner />
         </ItemMedia>
         <ItemContent>
-          <ItemTitle className="line-clamp-1">Processing payment...</ItemTitle>
+          <ItemTitle className="line-clamp-1" aria-live="assertive">
+            Processing payment...
+          </ItemTitle>
         </ItemContent>
         <ItemContent className="flex-none justify-end">
           <span className="text-sm tabular-nums">{totalPrice} NOK</span>

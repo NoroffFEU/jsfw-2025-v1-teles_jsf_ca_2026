@@ -38,7 +38,7 @@ export const AddToCartButton = ({
       setIsDisabled(false);
     }, 500);
 
-    toast(`Added to cart. ID: ${productId}`);
+    toast(`Added to cart: ${title}`);
   };
 
   return (
@@ -53,7 +53,7 @@ export const AddToCartButton = ({
             : `hover:brightness-80 hover:shadow-lg cursor-pointer`
         }
       />
-      {isAdded && <div>{count} ADDED TO CART</div>}
+      {isAdded && <div aria-live="polite">{count} ADDED TO CART</div>}
     </>
   );
 };

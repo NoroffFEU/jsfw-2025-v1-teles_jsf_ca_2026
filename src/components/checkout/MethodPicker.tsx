@@ -7,8 +7,29 @@ import {
   ItemTitle,
 } from "@/components/ui/item/Item";
 import { Button } from "../ui/button/Button";
+import { useState } from "react";
+import toast from "react-hot-toast";
+
+type PaymentMethod = "klarna" | "vipps" | "card";
+type DeliveryMethod = "home" | "office" | "box";
 
 export const MethodPicker = () => {
+  const [selectedPay, setSelectedPay] = useState<PaymentMethod | null>(null);
+  const [selectedDelivery, setSelectedDelivery] =
+    useState<DeliveryMethod | null>(null);
+
+  const handleSelectPayment = (type: PaymentMethod) => {
+    toast.remove();
+    setSelectedPay(type);
+    toast(`Selected payment: ${type}`);
+  };
+
+  const handleSelectDelivery = (type: DeliveryMethod) => {
+    toast.remove();
+    setSelectedDelivery(type);
+    toast(`Selected delivery: ${type}`);
+  };
+
   return (
     <div className="grid grid-rows-2 gap-4">
       <h3 className="text-lg font-semibold">PAYMENT</h3>
@@ -24,12 +45,19 @@ export const MethodPicker = () => {
             />
           </ItemMedia>
           <ItemTitle className="sr-only">Klarna</ItemTitle>
-          <ItemDescription>
+          <ItemDescription id="desc-klarna">
             Get your order now and pay later with Klarna invoice.
           </ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Button>Select</Button>
+          <Button
+            role="radio"
+            aria-describedby="desc-klarna"
+            aria-checked={selectedPay === "klarna"}
+            onClick={() => handleSelectPayment("klarna")}
+          >
+            Select
+          </Button>
         </ItemActions>
       </Item>
 
@@ -44,10 +72,19 @@ export const MethodPicker = () => {
             />
           </ItemMedia>
           <ItemTitle className="sr-only">Vipps</ItemTitle>
-          <ItemDescription>Easy payment with Vipps Mobile Pay.</ItemDescription>
+          <ItemDescription id="desc-vipps">
+            Easy payment with Vipps Mobile Pay.
+          </ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Button>Select</Button>
+          <Button
+            role="radio"
+            aria-describedby="desc-vipps"
+            aria-checked={selectedPay === "vipps"}
+            onClick={() => handleSelectPayment("vipps")}
+          >
+            Select
+          </Button>
         </ItemActions>
       </Item>
 
@@ -69,12 +106,19 @@ export const MethodPicker = () => {
             </div>
           </ItemMedia>
           <ItemTitle className="sr-only">Card Payment</ItemTitle>
-          <ItemDescription>
+          <ItemDescription id="desc-card">
             Pay with your preferred debit or mastercard.
           </ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Button>Select</Button>
+          <Button
+            role="radio"
+            aria-describedby="desc-card"
+            aria-checked={selectedPay === "card"}
+            onClick={() => handleSelectPayment("card")}
+          >
+            Select
+          </Button>
         </ItemActions>
       </Item>
 
@@ -85,37 +129,58 @@ export const MethodPicker = () => {
       <Item>
         <ItemContent>
           <ItemTitle>Home Delivery</ItemTitle>
-          <ItemDescription>
+          <ItemDescription id="desc-home">
             Your order will be delivered at your registered delivery address.
           </ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Button>Select</Button>
+          <Button
+            role="radio"
+            aria-describedby="desc-home"
+            aria-checked={selectedDelivery === "home"}
+            onClick={() => handleSelectDelivery("home")}
+          >
+            Select
+          </Button>
         </ItemActions>
       </Item>
 
       <Item>
         <ItemContent>
           <ItemTitle>Post Office</ItemTitle>
-          <ItemDescription>
+          <ItemDescription id="desc-office">
             Your order will be available for pick-up at your nearest
             post-office.
           </ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Button>Select</Button>
+          <Button
+            role="radio"
+            aria-describedby="desc-office"
+            aria-checked={selectedDelivery === "office"}
+            onClick={() => handleSelectDelivery("office")}
+          >
+            Select
+          </Button>
         </ItemActions>
       </Item>
 
       <Item>
         <ItemContent>
           <ItemTitle>Post Box</ItemTitle>
-          <ItemDescription>
+          <ItemDescription id="desc-box">
             Your order will be available for pick-up at your nearest post-box.
           </ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Button>Select</Button>
+          <Button
+            role="radio"
+            aria-describedby="desc-box"
+            aria-checked={selectedDelivery === "box"}
+            onClick={() => handleSelectDelivery("box")}
+          >
+            Select
+          </Button>
         </ItemActions>
       </Item>
     </div>

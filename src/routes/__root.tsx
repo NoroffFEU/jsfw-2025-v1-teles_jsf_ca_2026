@@ -1,6 +1,6 @@
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools"; // for dev
 // import { TanStackRouterDevtoolsInProd } from '@tanstack/react-router-devtools' // for prod
-import { Outlet } from "@tanstack/react-router";
+import { HeadContent, Outlet } from "@tanstack/react-router";
 import { createRootRoute } from "@tanstack/react-router";
 import { Footer } from "../components/layout/Footer";
 import { Header } from "../components/layout/Header";
@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 
 const RootLayout = () => (
   <>
+    <HeadContent />
     <main>
       <Toaster
         position="top-center"
@@ -45,4 +46,23 @@ const RootLayout = () => (
   </>
 );
 
-export const Route = createRootRoute({ component: RootLayout });
+export const Route = createRootRoute({
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "Online retail shop selling various products",
+      },
+      {
+        title: "ShopNet",
+      },
+    ],
+    links: [
+      {
+        rel: "icon",
+        href: "/ShopNet.svg",
+      },
+    ],
+  }),
+  component: RootLayout,
+});

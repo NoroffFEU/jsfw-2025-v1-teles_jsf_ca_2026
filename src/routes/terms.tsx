@@ -1,6 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/terms")({
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "Terms and condition page for ShopNet online shop",
+      },
+      {
+        title: "Terms & Conditions - ShopNet",
+      },
+    ],
+  }),
   component: Terms,
 });
 
@@ -13,14 +24,14 @@ function Terms() {
 
       <p className="text-sm">Last updated: April 25, 2026</p>
 
-      <h2>
+      <p>
         <strong>Welcome to ShopNet.</strong> These Terms and Conditions apply to
-        your use of ShopNet’s website and to all purchases made through it.
+        your use of ShopNet's website and to all purchases made through it.
         ShopNet is an online store offering physical consumer products,
         including shoes, electronics, toys, bags, headphones, and similar goods.
         By placing an order or using the website, you agree to these Terms and
         Conditions.
-      </h2>
+      </p>
 
       <h3 className="font-semibold">1. Scope and acceptance</h3>
       <p>

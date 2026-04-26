@@ -3,6 +3,17 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/cart/checkout")({
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "Checkout at ShopNet online shop",
+      },
+      {
+        title: "Checkout - ShopNet",
+      },
+    ],
+  }),
   component: Checkout,
 });
 

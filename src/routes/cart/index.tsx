@@ -3,6 +3,17 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
 
 export const Route = createFileRoute("/cart/")({
+  head: () => ({
+    meta: [
+      {
+        name: "description",
+        content: "Cart at ShopNet online shop",
+      },
+      {
+        title: "Cart - ShopNet",
+      },
+    ],
+  }),
   component: ShoppingCart,
 });
 
