@@ -43,11 +43,13 @@ const ProductList = () => {
           >
             <CardContent className="grid gap-2 justify-self-center transition duration-200">
               <Link to="/products/$productId" params={{ productId: item.id }}>
-                <img
-                  src={item.image.url}
-                  alt={item.image.alt}
-                  className="w-52 mx-auto cursor-pointer"
-                />
+                <div className="flex w-60 h-60 justify-self-center overflow-hidden">
+                  <img
+                    src={item.image.url}
+                    alt={item.image.alt}
+                    className="w-full rounded-xs object-cover cursor-pointer"
+                  />
+                </div>
               </Link>
               <Link to="/products/$productId" params={{ productId: item.id }}>
                 <h3 className="w-fit text-2xl font-bold hover:underline cursor-pointer">
