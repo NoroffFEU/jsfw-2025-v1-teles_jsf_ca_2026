@@ -95,6 +95,7 @@ This application is deployed with Netlify, as a sub-domain to: `telecasternilsen
 - [Aria live region attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions)
 - [Radio group pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/)
 - [Tanstack Router meta](https://tanstack.com/router/latest/docs/guide/document-head-management#single-page-applications)
+- [Tanstack Query options](https://tanstack.com/query/latest/docs/framework/react/guides/query-options)
 
 ---
 

@@ -5,27 +5,18 @@ import { routeTree } from "./routeTree.gen";
 import { Provider } from "react-redux";
 import { store, persistor } from "./lib/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@/lib/query-client";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.css";
+
+const router = createRouter({ routeTree, context: { queryClient } });
 
 declare module "@tanstack/react-router" {
   interface Register {
     router: typeof router;
   }
 }
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000,
-      gcTime: 10 * 60 * 1000,
-      refetchOnWindowFocus: true,
-    },
-  },
-});
-
-const router = createRouter({ routeTree, context: { queryClient } });
 
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {

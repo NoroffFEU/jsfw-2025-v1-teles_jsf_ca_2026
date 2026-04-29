@@ -7,6 +7,7 @@
   - skeleton loaders
   - accessibility and seo
 - Checkout flow missing
+  - Clear cart state
   - discount and delivery calculation
   - disable or hide other delivery/payment methods when one is chosen
 - Search and Sort --> needs API and render results logic

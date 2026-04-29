@@ -44,9 +44,8 @@ const CheckoutSummary = () => {
           <DialogContent>
             <DialogHeader>
               <DialogTitle className="sr-only">Payment Processing</DialogTitle>
-              <DialogDescription>
-                <PaymentProcessing />
-              </DialogDescription>
+              <DialogDescription className="sr-only"></DialogDescription>
+              <PaymentProcessing />
             </DialogHeader>
           </DialogContent>
         </Dialog>
@@ -54,7 +53,7 @@ const CheckoutSummary = () => {
 
       <div className="grid gap-2">
         <p>
-          Discount code: <Input placeholder="SUMMER_26" />
+          Discount code: <Input id="discount-input" placeholder="SUMMER_26" />
         </p>
         <p>Order value: {totalPrice},-</p>
         <p>Discount: 0,-</p>
