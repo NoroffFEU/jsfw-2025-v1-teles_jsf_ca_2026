@@ -24,6 +24,8 @@
 - React
 - Typescript
 - Tanstack router
+- Tanstack Query
+- Zod
 - Tailwind (styles)
   - Lucide Icons
   - shadcn component and styling principles
@@ -34,6 +36,9 @@
 
 **Why Tanstack Router?**<br/>
 Simply because I like the idea of file-based routing and their type-safe approach.
+
+**Why Tanstack Query?**<br/>
+Architectural consistency by utilising Tanstack's ecosystem, it goes well with their Router. I appreciate their take on the developer experience when working with caching and server state updates.
 
 **Why Redux Toolkit (RTK)?**<br/>
 Currently, this applications first iteration holds a rather simple state management. But it's the kind of application that quickly scales into a complex ecosystem with payment and shipping methods, address data, promotions, inventory checks, and order history. Therefore, I chose to implement a system with RTK, so the app's scalability aligns with a growing app and developer team. Taking advantage of benefits such as:
