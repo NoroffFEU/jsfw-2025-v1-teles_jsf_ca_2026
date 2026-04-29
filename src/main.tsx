@@ -5,6 +5,8 @@ import { routeTree } from "./routeTree.gen";
 import { Provider } from "react-redux";
 import { store, persistor } from "./lib/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.css";
 
 const router = createRouter({ routeTree });
@@ -15,16 +17,29 @@ declare module "@tanstack/react-router" {
   }
 }
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,
+      gcTime: 10 * 60 * 1000,
+      refetchOnWindowFocus: true,
+    },
+  },
+});
+
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <RouterProvider router={router} />
-        </PersistGate>
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <RouterProvider router={router} />
+          </PersistGate>
+        </Provider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </StrictMode>,
   );
 }

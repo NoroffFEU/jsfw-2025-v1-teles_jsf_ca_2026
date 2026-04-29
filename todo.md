@@ -6,11 +6,12 @@
   - style improvements
   - skeleton loaders
   - accessibility and seo
+- Header NAV:
+  - Shopping cart + badge
 - Checkout flow missing
   - discount and delivery calculation
   - disable or hide other delivery/payment methods when one is chosen
 - Search and Sort --> needs API and render results logic
-- Contact form (validated) --> needs to redirect to success page
 
 ### **TECHNICAL**
 

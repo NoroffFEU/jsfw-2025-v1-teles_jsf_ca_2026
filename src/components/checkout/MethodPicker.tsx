@@ -45,7 +45,9 @@ export const MethodPicker = () => {
                 className="w-20 -ml-2.5 rounded-sm"
               />
             </ItemMedia>
-            <ItemTitle className="sr-only">Klarna</ItemTitle>
+            <ItemTitle className="sr-only" aria-label="klarna">
+              Klarna
+            </ItemTitle>
             <ItemDescription id="desc-klarna">
               Get your order now and pay later with Klarna invoice.
             </ItemDescription>
@@ -53,6 +55,7 @@ export const MethodPicker = () => {
           <ItemActions>
             <Button
               role="radio"
+              aria-labelledby="klarna"
               aria-describedby="desc-klarna"
               aria-checked={selectedPay === "klarna"}
               onClick={() => handleSelectPayment("klarna")}
@@ -72,7 +75,9 @@ export const MethodPicker = () => {
                 className="w-20 -ml-2.5 rounded-sm"
               />
             </ItemMedia>
-            <ItemTitle className="sr-only">Vipps</ItemTitle>
+            <ItemTitle className="sr-only" aria-label="vipps">
+              Vipps
+            </ItemTitle>
             <ItemDescription id="desc-vipps">
               Easy payment with Vipps Mobile Pay.
             </ItemDescription>
@@ -80,6 +85,7 @@ export const MethodPicker = () => {
           <ItemActions>
             <Button
               role="radio"
+              aria-labelledby="vipps"
               aria-describedby="desc-vipps"
               aria-checked={selectedPay === "vipps"}
               onClick={() => handleSelectPayment("vipps")}
@@ -106,7 +112,9 @@ export const MethodPicker = () => {
                 />
               </div>
             </ItemMedia>
-            <ItemTitle className="sr-only">Card Payment</ItemTitle>
+            <ItemTitle className="sr-only" aria-label="card">
+              Card Payment
+            </ItemTitle>
             <ItemDescription id="desc-card">
               Pay with your preferred debit or mastercard.
             </ItemDescription>
@@ -114,6 +122,7 @@ export const MethodPicker = () => {
           <ItemActions>
             <Button
               role="radio"
+              aria-labelledby="card"
               aria-describedby="desc-card"
               aria-checked={selectedPay === "card"}
               onClick={() => handleSelectPayment("card")}
@@ -131,7 +140,7 @@ export const MethodPicker = () => {
       <div role="radiogroup">
         <Item>
           <ItemContent>
-            <ItemTitle>Home Delivery</ItemTitle>
+            <ItemTitle aria-label="home">Home Delivery</ItemTitle>
             <ItemDescription id="desc-home">
               Your order will be delivered at your registered delivery address.
             </ItemDescription>
@@ -139,6 +148,7 @@ export const MethodPicker = () => {
           <ItemActions>
             <Button
               role="radio"
+              aria-labelledby="home"
               aria-describedby="desc-home"
               aria-checked={selectedDelivery === "home"}
               onClick={() => handleSelectDelivery("home")}
@@ -150,7 +160,7 @@ export const MethodPicker = () => {
 
         <Item>
           <ItemContent>
-            <ItemTitle>Post Office</ItemTitle>
+            <ItemTitle aria-label="office">Post Office</ItemTitle>
             <ItemDescription id="desc-office">
               Your order will be available for pick-up at your nearest
               post-office.
@@ -159,6 +169,7 @@ export const MethodPicker = () => {
           <ItemActions>
             <Button
               role="radio"
+              aria-labelledby="office"
               aria-describedby="desc-office"
               aria-checked={selectedDelivery === "office"}
               onClick={() => handleSelectDelivery("office")}
@@ -170,7 +181,7 @@ export const MethodPicker = () => {
 
         <Item>
           <ItemContent>
-            <ItemTitle>Post Box</ItemTitle>
+            <ItemTitle aria-label="box"> Post Box</ItemTitle>
             <ItemDescription id="desc-box">
               Your order will be available for pick-up at your nearest post-box.
             </ItemDescription>
@@ -178,6 +189,7 @@ export const MethodPicker = () => {
           <ItemActions>
             <Button
               role="radio"
+              aria-labelledby="box"
               aria-describedby="desc-box"
               aria-checked={selectedDelivery === "box"}
               onClick={() => handleSelectDelivery("box")}

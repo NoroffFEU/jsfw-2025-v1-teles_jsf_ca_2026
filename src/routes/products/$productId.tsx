@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 // import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
+// import { selectProductsById } from "@/lib/redux/slices/productSlice";
 import { fetchProductById } from "@/services/api/products/fetch/fetch-product-by-id";
 import { AddToCartButton } from "@/components/products/AddToCartButton";
 import { Badge } from "@/components/ui/badge/Badge";
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/products/$productId")({
         content: "Product details at ShopNet online shop",
       },
       {
-        title: "Product - ShopNet",
+        title: "Product",
       },
     ],
   }),
@@ -22,8 +23,8 @@ export const Route = createFileRoute("/products/$productId")({
 
 function ProductDetail() {
   const product = Route.useLoaderData().data;
-  // const selectProductName = (state) => state.product.title;
-  // const productName = useAppSelector(selectProductName);
+  // const productsById = useAppSelector(selectProductsById);
+
   const hasDiscount = product.discountedPrice !== product.price;
   const hasReviews = product.reviews.length !== 0;
   const hasTags = product.tags.length !== 0;

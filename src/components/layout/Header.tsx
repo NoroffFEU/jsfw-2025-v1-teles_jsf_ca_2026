@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingCart } from "lucide-react";
 import { SearchBar } from "@/components/search/SearchBar";
 import { BrandLogo } from "./Logo";
 import { navOptions } from "@/lib/link-options";
+import { ShoppingBag } from "@/components/layout/ShoppingBag";
 
 export const Header = () => {
   return (
@@ -17,11 +17,7 @@ export const Header = () => {
               key={item.label}
               className=" [&.active]:border-selection [&.active]:font-semibold font-mono border-b-2 border-transparent hover:border-b-2 hover:border-selection"
             >
-              {item.icon ? (
-                <ShoppingCart aria-label={item.label} />
-              ) : (
-                item.label
-              )}
+              {item.icon ? <ShoppingBag aria-label={item.label} /> : item.label}
             </Link>
           );
         })}
