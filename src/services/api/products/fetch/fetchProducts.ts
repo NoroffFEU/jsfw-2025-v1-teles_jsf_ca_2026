@@ -1,5 +1,5 @@
 import { BASE_URL, SHOP_URL } from "@/services/api/config";
-import { ApiError } from "@/services/api/api-error";
+import { ApiError } from "@/services/api/apiError";
 import type { ApiProduct } from "@/services/models/product";
 
 export const fetchProducts = async (): Promise<ApiProduct> => {

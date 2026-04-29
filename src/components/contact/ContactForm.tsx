@@ -26,7 +26,7 @@ import {
   InputGroupTextarea,
 } from "@/components/ui/input/input/InputGroup";
 import { useNavigate } from "@tanstack/react-router";
-import { contactSuccessLinkOptions } from "@/lib/link-options";
+import { contactSuccessLinkOptions } from "@/lib/linkOptions";
 
 const ContactForm = () => {
   const [values, setValues] = useState({
@@ -60,7 +60,7 @@ const ContactForm = () => {
     } else {
       setErrors({});
       toast.success("Message sent! :)");
-      // ?? dispatch(submitContactForm(result.data));
+      // ?? dispatch(submitContactForm(result.data)); --- placeholder for future implementation
       navigate(contactSuccessLinkOptions);
       handleReset();
     }

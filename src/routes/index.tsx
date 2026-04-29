@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { productsQuery } from "@/lib/products-query";
+import { productsQuery } from "@/lib/productsQuery";
 import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 import { setProducts } from "@/lib/redux/slices/productSlice";
 import { Card, CardContent, CardFooter } from "@/components/ui/card/Card";

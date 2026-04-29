@@ -1,6 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
-import { fetchProducts } from "@/services/api/products/fetch/fetch-products";
-import { fetchProductById } from "@/services/api/products/fetch/fetch-product-by-id";
+import { fetchProducts } from "@/services/api/products/fetch/fetchProducts";
+import { fetchProductById } from "@/services/api/products/fetch/fetchProductById";
 
 export const productsQuery = () => {
   return queryOptions({

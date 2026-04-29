@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { useNavigate, Link } from "@tanstack/react-router";
-import { paymentSuccessLinkOptions } from "@/lib/link-options";
+import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
+import { paymentSuccessLinkOptions } from "@/lib/linkOptions";
 import {
   selectTotalCartQuantity,
   selectTotalPrice,
@@ -19,7 +20,6 @@ import { Button } from "@/components/ui/button/Button";
 import { Input } from "../ui/input/input/Input";
 import { PaymentProcessing } from "./PaymentProcessing";
 import toast from "react-hot-toast";
-import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 
 const CheckoutSummary = () => {
   const [openDialog, setOpenDialog] = useState(false);
