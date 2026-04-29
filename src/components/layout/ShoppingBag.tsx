@@ -9,7 +9,7 @@ export const ShoppingBag = () => {
     <div className="flex p-0 m-0">
       <ShoppingCart />
       <Badge
-        className="-ml-1 bg-green-300 rounded-full items-center justify-items-center"
+        className="w-4 h-4 bg-green-300 rounded-full items-center justify-items-center"
         variant="secondary"
         children={totalItems}
       />

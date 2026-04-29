@@ -12,6 +12,6 @@ export const formSchema = z.object({
     .max(32, "Title must be at most 32 characters."),
   description: z
     .string()
-    .min(20, "Description must be at least 10 characters.")
+    .min(10, "Description must be at least 10 characters.")
     .max(200, "Description must be at most 200 characters."),
 });

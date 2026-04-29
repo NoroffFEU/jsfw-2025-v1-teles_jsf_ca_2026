@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { fetchProducts } from "@/services/api/products/fetch/fetch-products";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { productsQuery } from "@/lib/products-query";
 import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 import { setProducts } from "@/lib/redux/slices/productSlice";
 import { Card, CardContent, CardFooter } from "@/components/ui/card/Card";
@@ -20,11 +21,12 @@ export const Route = createFileRoute("/")({
     ],
   }),
   component: Products,
-  loader: () => fetchProducts(),
+  loader: ({ context }) => context.queryClient.ensureQueryData(productsQuery()),
 });
 
 const ProductList = () => {
-  const products = Route.useLoaderData().data;
+  const { data } = useSuspenseQuery(productsQuery());
+  const products = data.data;
   const dispatch = useAppDispatch();
 
   useEffect(() => {
