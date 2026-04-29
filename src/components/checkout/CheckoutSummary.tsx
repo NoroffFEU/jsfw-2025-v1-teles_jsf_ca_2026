@@ -18,10 +18,10 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button/Button";
 import { Input } from "../ui/input/input/Input";
-import { PaymentProcessing } from "./PaymentProcessing";
+import { PaymentProcessing } from "./index";
 import toast from "react-hot-toast";
 
-const CheckoutSummary = () => {
+export const CheckoutSummary = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const totalItems = useAppSelector(selectTotalCartQuantity);
   const totalPrice = useAppSelector(selectTotalPrice);
@@ -93,5 +93,3 @@ const CheckoutSummary = () => {
     </div>
   );
 };
-
-export default CheckoutSummary;

@@ -2,12 +2,11 @@ import { useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { removeItem } from "@/lib/redux/slices/cartSlice";
-import CheckoutSummary from "./CheckoutSummary";
 import { selectTotalCartQuantity } from "@/lib/redux/slices/cartSlice";
 import { Button } from "../ui/button/Button";
 import { Trash2 } from "lucide-react";
 import { AlertBox } from "../alerts/AlertBox";
-import { MethodPicker } from "./MethodPicker";
+import { MethodPicker, CheckoutSummary } from "./index";
 
 type User = {
   name: string;
@@ -27,7 +26,7 @@ const user: User = {
   country: "Norway",
 };
 
-const CheckoutDisplay = () => {
+export const CheckoutDisplay = () => {
   const [pendingItem, setIsPendingItem] = useState<string | null>(null);
   const alertRef = useRef<HTMLDivElement | null>(null);
   const totalItems = useAppSelector(selectTotalCartQuantity);
@@ -158,5 +157,3 @@ const CheckoutDisplay = () => {
     </div>
   );
 };
-
-export default CheckoutDisplay;

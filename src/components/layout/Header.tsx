@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { SearchBar } from "@/components/search/SearchBar";
-import { BrandLogo } from "./Logo";
+import { SearchBar } from "@/components/search/index";
 import { navOptions } from "@/lib/linkOptions";
-import { ShoppingBag } from "@/components/layout/ShoppingBag";
+import { ShoppingBag, BrandLogo } from "./index";
 
 export const Header = () => {
   return (

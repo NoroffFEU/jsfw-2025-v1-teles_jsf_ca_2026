@@ -1,4 +1,4 @@
-import CartDisplay from "@/components/cart/CartDisplay";
+import { CartDisplay } from "@/components/cart/index";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
 

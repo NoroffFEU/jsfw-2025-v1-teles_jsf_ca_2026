@@ -2,8 +2,7 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { HeadContent, Outlet } from "@tanstack/react-router";
 import { createRootRouteWithContext } from "@tanstack/react-router";
 import { QueryClient } from "@tanstack/react-query";
-import { Footer } from "../components/layout/Footer";
-import { Header } from "../components/layout/Header";
+import { Footer, Header } from "@/components/layout/index";
 import { Toaster } from "react-hot-toast";
 
 const RootLayout = () => (

@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 import { setProducts } from "@/lib/redux/slices/productSlice";
 import { Card, CardContent, CardFooter } from "@/components/ui/card/Card";
 import { AddToCartButton } from "@/components/products/AddToCartButton";
-import { SortSelect } from "@/components/search/SortSelect";
+import { SortSelect } from "@/components/search/index";
 
 export const Route = createFileRoute("/")({
   head: () => ({

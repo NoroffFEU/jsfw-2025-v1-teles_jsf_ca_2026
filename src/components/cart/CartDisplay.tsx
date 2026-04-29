@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { removeItem, updateQuantity } from "@/lib/redux/slices/cartSlice";
 
-import CartSummary from "@/components/cart/CartSummary";
+import { CartSummary } from "@/components/cart/index";
 import { Button } from "@/components/ui/button/Button";
 import { AlertBox } from "@/components/alerts/AlertBox";
 import { Trash2 } from "lucide-react";
 
-const CartDisplay = () => {
+export const CartDisplay = () => {
   const [pendingItem, setIsPendingItem] = useState<string | null>(null);
   const itemsMap = useAppSelector((state) => state.cart.items);
   const dispatch = useDispatch();
@@ -122,5 +122,3 @@ const CartDisplay = () => {
     </div>
   );
 };
-
-export default CartDisplay;

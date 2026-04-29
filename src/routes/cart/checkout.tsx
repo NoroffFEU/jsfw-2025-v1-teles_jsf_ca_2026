@@ -1,4 +1,4 @@
-import CheckoutDisplay from "@/components/checkout/CheckoutDisplay";
+import { CheckoutDisplay } from "@/components/checkout/index";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 

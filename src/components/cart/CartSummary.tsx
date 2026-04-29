@@ -8,7 +8,7 @@ import {
 } from "@/lib/redux/slices/cartSlice";
 import { Button } from "@/components/ui/button/Button";
 
-const CartSummary = () => {
+export const CartSummary = () => {
   const totalItems = useAppSelector(selectTotalCartQuantity);
   const totalPrice = useAppSelector(selectTotalPrice);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -51,5 +51,3 @@ const CartSummary = () => {
     </div>
   );
 };
-
-export default CartSummary;
