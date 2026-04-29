@@ -5,6 +5,7 @@ import { paymentSuccessLinkOptions } from "@/lib/link-options";
 import {
   selectTotalCartQuantity,
   selectTotalPrice,
+  clearCart,
 } from "@/lib/redux/slices/cartSlice";
 
 import {
@@ -18,6 +19,7 @@ import { Button } from "@/components/ui/button/Button";
 import { Input } from "../ui/input/input/Input";
 import { PaymentProcessing } from "./PaymentProcessing";
 import toast from "react-hot-toast";
+import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 
 const CheckoutSummary = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -25,6 +27,7 @@ const CheckoutSummary = () => {
   const totalPrice = useAppSelector(selectTotalPrice);
   const [isDisabled, setIsDisabled] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handlePaymentProcess = () => {
     setIsDisabled(true);
@@ -33,6 +36,7 @@ const CheckoutSummary = () => {
     setTimeout(() => {
       toast.success("Payment success");
       setIsDisabled(false);
+      dispatch(clearCart());
       navigate(paymentSuccessLinkOptions);
     }, 1500);
   };
