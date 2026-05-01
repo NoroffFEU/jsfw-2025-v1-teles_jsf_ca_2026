@@ -1,3 +1,4 @@
+import { defaultSearch } from "@/lib/zod/searchSchema";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
@@ -25,7 +26,11 @@ function Success() {
         </h1>
         <p className="text-xl mt-8">Thank you for your purchase!</p>
 
-        <Link to="/" className="w-fit flex gap-2 items-center hover:underline">
+        <Link
+          to="/"
+          search={defaultSearch}
+          className="w-fit flex gap-2 items-center hover:underline"
+        >
           <ArrowLeft /> View more products
         </Link>
       </div>

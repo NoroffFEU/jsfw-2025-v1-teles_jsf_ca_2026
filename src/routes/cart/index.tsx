@@ -1,4 +1,5 @@
 import { CartDisplay } from "@/components/cart/index";
+import { defaultSearch } from "@/lib/zod/searchSchema";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
 
@@ -28,6 +29,7 @@ function ShoppingCart() {
 
         <Link
           to="/"
+          search={defaultSearch}
           className="w-fit flex gap-2 justify-self-end items-center hover:underline"
         >
           <Plus /> Continue shopping
