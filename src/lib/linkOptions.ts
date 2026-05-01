@@ -1,4 +1,5 @@
 import { linkOptions } from "@tanstack/react-router";
+import { defaultSearch } from "./zod/searchSchema";
 
 export const checkoutLinkOptions = linkOptions({
   to: "/cart/checkout",
@@ -17,7 +18,11 @@ export const contactSuccessLinkOptions = linkOptions({
 
 export const navOptions = [
   {
-    link: linkOptions({ to: "/", activeOptions: { exact: true } }),
+    link: linkOptions({
+      to: "/",
+      search: defaultSearch,
+      activeOptions: { exact: true },
+    }),
     label: "Products",
     icon: false,
   },

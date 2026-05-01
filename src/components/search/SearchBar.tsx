@@ -1,29 +1,28 @@
 import { Field, FieldLabel } from "../ui/input/field/Field";
 import { Input } from "../ui/input/input/Input";
 import { Button } from "../ui/button/Button";
-import { useSearch } from "@/lib/hooks/useSearch";
-import type { ChangeEvent, SubmitEvent } from "react";
+import { useState, type ChangeEvent, type SubmitEvent } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { defaultSearch } from "@/lib/zod/searchSchema";
 
 export const SearchBar = () => {
-  const {
-    inputQuery,
-    setInputQuery,
-    query,
-    results,
-    hasResults,
-    search,
-    clearSearch,
-    error,
-  } = useSearch();
-
-  const hasSearched = query.length > 0;
+  const navigate = useNavigate();
+  const [inputQuery, setInputQuery] = useState("");
+  const hasSearched = inputQuery.trim().length > 0;
 
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const searchValue = inputQuery.trim();
-    if (!searchValue) return;
 
-    search(searchValue);
+    const trimmedQuery = inputQuery.trim();
+    navigate({
+      to: "/",
+      search: (prev) => ({
+        ...prev,
+        query: trimmedQuery,
+        page: 1,
+        sort: prev.sort ?? defaultSearch.sort,
+      }),
+    });
   };
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,9 +30,16 @@ export const SearchBar = () => {
   };
 
   const handleClearSearch = () => {
-    if (hasSearched) {
-      clearSearch();
-    }
+    setInputQuery("");
+    navigate({
+      to: "/",
+      search: (prev) => ({
+        ...prev,
+        query: "",
+        page: 1,
+        sort: prev.sort ?? defaultSearch.sort,
+      }),
+    });
   };
 
   return (
@@ -56,27 +62,13 @@ export const SearchBar = () => {
 
             <Button
               type={hasSearched ? "button" : "submit"}
-              onClick={handleClearSearch}
+              onClick={hasSearched ? handleClearSearch : undefined}
             >
               {hasSearched ? "Clear" : "Search"}
             </Button>
           </div>
         </Field>
       </form>
-
-      {query && (
-        <p className="mt-4 justify-self-center text-sm text-gray-400">
-          {hasResults
-            ? `Got ${results.length} results for "${query}"`
-            : `No results found for "${query}"`}
-        </p>
-      )}
-
-      {error && (
-        <p className="mt-4 justify-self-center text-md text-red-600">
-          Something went wrong with this search
-        </p>
-      )}
     </div>
   );
 };
