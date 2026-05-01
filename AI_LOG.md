@@ -30,6 +30,11 @@
 **Purpose:** To sum up my changes to suggest a good commit message<br/>
 **Outcome:** Received suggestion for efficient workflow<br/>
 
+**Tool used:** Perplexity<br/>
+**Date:** 01.05.2026<br/>
+**Purpose:** To understand why my approach with a Math method for finding highest rating didn't work as I intended.<br/>
+**Outcome:** It pointed me to be missing a number conversion, ex. `rev.rating` vs `Number(rev.rating)`<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.

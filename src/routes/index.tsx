@@ -9,7 +9,7 @@ import { AddToCartButton } from "@/components/products/AddToCartButton";
 import { SortSelect } from "@/components/search/index";
 import { searchSchema } from "@/lib/zod/searchSchema";
 import type { Product } from "@/services/models/product";
-import { PAGE_SIZE } from "@/lib/utils";
+import { PAGE_SIZE, normalize } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,21 +39,17 @@ const ProductList = () => {
   }, [dispatch, products]);
 
   const { visibleProducts, totalPages } = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
+    const normalizedQuery = normalize(query);
 
     const filtered = normalizedQuery
       ? products.filter((p) => {
-          const byTitle = p.title
-            .trim()
-            .toLowerCase()
-            .includes(normalizedQuery);
+          const byTitle = normalize(p.title).includes(normalizedQuery);
           const byTags = p.tags.some((tag) =>
-            tag.trim().toLowerCase().includes(normalizedQuery),
+            normalize(tag).includes(normalizedQuery),
           );
-          const byDescription = p.description
-            .trim()
-            .toLowerCase()
-            .includes(normalizedQuery);
+          const byDescription = normalize(p.description).includes(
+            normalizedQuery,
+          );
           return byTitle || byTags || byDescription;
         })
       : products;
@@ -81,6 +77,10 @@ const ProductList = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-2">
         {visibleProducts.map((item) => {
           const hasDiscount = item.discountedPrice !== item.price;
+          const highestRating =
+            item.reviews?.length > 0
+              ? Math.max(...item.reviews.map((rev) => Number(rev.rating)))
+              : "Not rated";
 
           return (
             <Card
@@ -115,7 +115,7 @@ const ProductList = () => {
 
               <CardFooter className="flex w-full h-full justify-between items-center text-sm">
                 <p>
-                  <span className="font-bold">Rating:</span> {item.rating}
+                  <span className="font-bold">Rating:</span> {highestRating}
                 </p>
                 {!hasDiscount && (
                   <p>
