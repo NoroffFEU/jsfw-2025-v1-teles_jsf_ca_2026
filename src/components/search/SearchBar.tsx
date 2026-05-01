@@ -8,12 +8,16 @@ import { defaultSearch } from "@/lib/zod/searchSchema";
 export const SearchBar = () => {
   const navigate = useNavigate();
   const [inputQuery, setInputQuery] = useState("");
-  const hasSearched = inputQuery.trim().length > 0;
+  const [submittedQuery, setSubmittedQuery] = useState("");
+  const showClearSearch =
+    submittedQuery.length > 0 && inputQuery.trim() === submittedQuery;
 
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const trimmedQuery = inputQuery.trim();
+    setInputQuery(trimmedQuery);
+    setSubmittedQuery(trimmedQuery);
+
     navigate({
       to: "/",
       search: (prev) => ({
@@ -31,6 +35,7 @@ export const SearchBar = () => {
 
   const handleClearSearch = () => {
     setInputQuery("");
+    setSubmittedQuery("");
     navigate({
       to: "/",
       search: (prev) => ({
@@ -61,10 +66,10 @@ export const SearchBar = () => {
             />
 
             <Button
-              type={hasSearched ? "button" : "submit"}
-              onClick={hasSearched ? handleClearSearch : undefined}
+              type={showClearSearch ? "button" : "submit"}
+              onClick={showClearSearch ? handleClearSearch : undefined}
             >
-              {hasSearched ? "Clear" : "Search"}
+              {showClearSearch ? "Clear" : "Search"}
             </Button>
           </div>
         </Field>

@@ -35,6 +35,11 @@
 **Purpose:** To understand why my approach with a Math method for finding highest rating didn't work as I intended.<br/>
 **Outcome:** It pointed me to be missing a number conversion, ex. `rev.rating` vs `Number(rev.rating)`<br/>
 
+**Tool used:** GPT-5.3-Codex<br/>
+**Date:** 01.05.2026<br/>
+**Purpose:** Explaining and suggesting fix for Lighthouse error on crawling robots, see [/robots.txt](/public/robots.txt)<br/>
+**Outcome:** Learnt about SEO crawlers and how to avoid allowing crawling sensitive information.<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.

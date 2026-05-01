@@ -67,7 +67,7 @@ export const CheckoutDisplay = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
       <section id="user-info" className="grid gap-6">
         <div>
-          <h3 className="text-lg font-semibold">MY INFORMATION</h3>
+          <h2 className="text-lg font-semibold">MY INFORMATION</h2>
           <p>{user.name}</p>
           <p>{user.email}</p>
           <Button

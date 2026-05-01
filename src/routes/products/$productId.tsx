@@ -63,11 +63,11 @@ function ProductDetail() {
             <div className="text-sm">
               <p className="font-bold">
                 Discount price:{" "}
-                <span className="text-green-600 font-bold">
+                <span className="text-green-700 font-bold">
                   {discountedPrice} NOK
                 </span>
               </p>
-              <s className="text-xs text-gray-500">
+              <s className="text-xs text-gray-800">
                 Original price: {price} NOK
               </s>
             </div>

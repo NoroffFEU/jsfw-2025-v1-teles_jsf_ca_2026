@@ -47,7 +47,7 @@ export const CartDisplay = () => {
 
           return (
             <li key={item.productId} className="grid gap-2 m-2 p-2">
-              <h3 className="font-semibold">{item.title}</h3>
+              <h2 className="font-semibold">{item.title}</h2>
               <div className="flex w-40 h-40 overflow-hidden">
                 <img
                   src={item.image.url}
@@ -64,11 +64,11 @@ export const CartDisplay = () => {
                 <div className="text-sm">
                   <p className="font-bold">
                     Discount price:{" "}
-                    <span className="text-green-600 font-bold">
+                    <span className="text-green-700 font-bold">
                       {item.discountedPrice} NOK
                     </span>
                   </p>
-                  <s className="text-xs text-gray-500">
+                  <s className="text-xs text-gray-800">
                     Original price: {item.price} NOK
                   </s>
                 </div>

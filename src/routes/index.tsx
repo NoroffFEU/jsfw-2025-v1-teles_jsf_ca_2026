@@ -88,7 +88,12 @@ const ProductList = () => {
               className="grid gap-2 items-center mt-2 md:hover:scale-102 transition duration-200"
             >
               <CardContent className="grid gap-2 justify-self-center transition duration-200">
-                <Link to="/products/$productId" params={{ productId: item.id }}>
+                <Link
+                  id={item.id}
+                  aria-label={`Image of ${item.title}`}
+                  to="/products/$productId"
+                  params={{ productId: item.id }}
+                >
                   <div className="flex w-60 h-60 justify-self-center overflow-hidden">
                     <img
                       src={item.image.url}
@@ -98,9 +103,9 @@ const ProductList = () => {
                   </div>
                 </Link>
                 <Link to="/products/$productId" params={{ productId: item.id }}>
-                  <h3 className="w-fit text-2xl font-bold hover:underline cursor-pointer">
+                  <h2 className="w-fit text-2xl font-bold hover:underline cursor-pointer">
                     {item.title}
-                  </h3>
+                  </h2>
                 </Link>
                 <p>{item.description}</p>
 
@@ -126,11 +131,11 @@ const ProductList = () => {
                   <div className="text-sm">
                     <p className="font-bold">
                       Discount price:{" "}
-                      <span className="text-green-600 font-bold">
+                      <span className="text-green-700 font-bold">
                         {item.discountedPrice} NOK
                       </span>
                     </p>
-                    <s className="text-xs text-gray-500">
+                    <s className="text-xs text-gray-800">
                       Original price: {item.price} NOK
                     </s>
                   </div>
@@ -174,7 +179,7 @@ function Products() {
       </h1>
       <p>Find your favourite gadget.</p>
       <hr />
-      <SortSelect />
+      <SortSelect id="sort-select" />
 
       <ProductList />
     </div>

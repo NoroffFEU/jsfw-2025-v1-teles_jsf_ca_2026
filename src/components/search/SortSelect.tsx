@@ -10,12 +10,20 @@ import { useNavigate } from "@tanstack/react-router";
 import { Route } from "@/routes/index";
 import { defaultSearch, type ProductSort } from "@/lib/zod/searchSchema";
 
-export const SortSelect = () => {
+type SortSelectProps = {
+  id: string;
+};
+
+export const SortSelect = ({ id }: SortSelectProps) => {
   const navigate = useNavigate();
   const { sort } = Route.useSearch();
 
   return (
     <div className="mt-10">
+      <label htmlFor={id} className="sr-only">
+        Sort products
+      </label>
+
       <Select
         value={sort}
         onValueChange={(nextSort) => {
@@ -29,8 +37,8 @@ export const SortSelect = () => {
           });
         }}
       >
-        <SelectTrigger className="w-45">
-          <SelectValue placeholder="Filter by" />
+        <SelectTrigger id={id} aria-label="Sort products" className="w-45">
+          <SelectValue placeholder="Sort by" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
