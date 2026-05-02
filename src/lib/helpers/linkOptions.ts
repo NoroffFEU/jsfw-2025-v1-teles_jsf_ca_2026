@@ -1,5 +1,5 @@
 import { linkOptions } from "@tanstack/react-router";
-import { defaultSearch } from "./zod/searchSchema";
+import { defaultSearch } from "@/lib/zod/searchSchema";
 
 export const checkoutLinkOptions = linkOptions({
   to: "/cart/checkout",

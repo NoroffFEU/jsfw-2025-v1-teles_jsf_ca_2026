@@ -11,7 +11,7 @@ export const defaultSearch = {
 };
 
 export const searchSchema = z.object({
-  page: z.coerce.number().int().min(1).catch(1),
-  query: z.string().trim().catch(""),
-  sort: z.enum(sortValues).catch(defaultSearch.sort),
+  page: z.coerce.number().int().min(1).default(1),
+  query: z.string().trim().default(""),
+  sort: z.enum(sortValues).default(defaultSearch.sort),
 });

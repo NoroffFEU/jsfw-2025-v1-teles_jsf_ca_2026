@@ -3,6 +3,8 @@ import { HeadContent, Outlet } from "@tanstack/react-router";
 import { createRootRouteWithContext } from "@tanstack/react-router";
 import { QueryClient } from "@tanstack/react-query";
 import { Footer, Header } from "@/components/layout/index";
+import { DefaultNotFound } from "@/lib/errors/DefaultNotFound";
+import { CustomError } from "@/lib/errors/CustomError";
 import { Toaster } from "react-hot-toast";
 
 const RootLayout = () => (
@@ -67,4 +69,6 @@ export const Route = createRootRouteWithContext<RouterContext>()({
     ],
   }),
   component: RootLayout,
+  notFoundComponent: DefaultNotFound,
+  errorComponent: CustomError,
 });

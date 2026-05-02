@@ -26,7 +26,7 @@ import {
   InputGroupTextarea,
 } from "@/components/ui/input/input/InputGroup";
 import { useNavigate } from "@tanstack/react-router";
-import { contactSuccessLinkOptions } from "@/lib/linkOptions";
+import { contactSuccessLinkOptions } from "@/lib/helpers/linkOptions";
 
 const ContactForm = () => {
   const [values, setValues] = useState({

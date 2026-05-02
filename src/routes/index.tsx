@@ -1,15 +1,17 @@
 import { useEffect, useMemo } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { productsQuery } from "@/lib/productsQuery";
+import { productsQuery } from "@/lib/helpers/productsQuery";
 import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 import { setProducts } from "@/lib/redux/slices/productSlice";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { searchSchema } from "@/lib/zod/searchSchema";
+import { CustomError } from "@/lib/errors/CustomError";
+import { PAGE_SIZE, normalize } from "@/lib/utils";
+import type { Product } from "@/services/models/product";
+
 import { Card, CardContent, CardFooter } from "@/components/ui/card/Card";
 import { AddToCartButton } from "@/components/products/AddToCartButton";
 import { SortSelect } from "@/components/search/index";
-import { searchSchema } from "@/lib/zod/searchSchema";
-import type { Product } from "@/services/models/product";
-import { PAGE_SIZE, normalize } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,6 +28,7 @@ export const Route = createFileRoute("/")({
   component: Products,
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQuery()),
   validateSearch: searchSchema,
+  errorComponent: CustomError,
 });
 
 const ProductList = () => {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { useNavigate, Link } from "@tanstack/react-router";
 import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
-import { paymentSuccessLinkOptions } from "@/lib/linkOptions";
+import { paymentSuccessLinkOptions } from "@/lib/helpers/linkOptions";
 import {
   selectTotalCartQuantity,
   selectTotalPrice,

@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { productByIdQuery } from "@/lib/productsQuery";
+import { productByIdQuery } from "@/lib/helpers/productsQuery";
 import { AddToCartButton } from "@/components/products/AddToCartButton";
 import { Badge } from "@/components/ui/badge/Badge";
+import { CustomError } from "@/lib/errors/CustomError";
 import type { Product } from "@/services/models/product";
 
 export const Route = createFileRoute("/products/$productId")({
@@ -22,6 +23,7 @@ export const Route = createFileRoute("/products/$productId")({
     ],
   }),
   component: ProductDetail,
+  errorComponent: CustomError,
 });
 
 function ProductDetail() {

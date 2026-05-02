@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { useNavigate } from "@tanstack/react-router";
-import { checkoutLinkOptions } from "@/lib/linkOptions";
+import { checkoutLinkOptions } from "@/lib/helpers/linkOptions";
 import {
   selectTotalCartQuantity,
   selectTotalPrice,
