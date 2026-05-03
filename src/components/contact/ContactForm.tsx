@@ -1,5 +1,5 @@
 import { toast } from "react-hot-toast";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema, type formSchemaType } from "@/lib/zod/formSchema";
 import { useNavigate } from "@tanstack/react-router";
@@ -34,13 +34,17 @@ const ContactForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
+    control,
   } = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
     mode: "onBlur",
   });
 
-  const descriptionValue = watch("description") || "";
+  const descriptionValue = useWatch({
+    control,
+    name: "description",
+    defaultValue: "",
+  });
 
   const onSubmit = (data: formSchemaType) => {
     try {

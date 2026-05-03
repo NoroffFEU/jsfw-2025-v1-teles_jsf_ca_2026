@@ -97,6 +97,8 @@ This application is deployed with Netlify, as a sub-domain to: `telecasternilsen
 - [Tanstack Router meta](https://tanstack.com/router/latest/docs/guide/document-head-management#single-page-applications)
 - [Tanstack Query options](https://tanstack.com/query/latest/docs/framework/react/guides/query-options)
 - [Tanstack Router search params](https://tanstack.com/router/latest/docs/guide/search-params)
+- [react-hook-form](https://react-hook-form.com/docs/)
+- [useWatch - react-hook-form](https://medium.com/@vmaineng/how-i-implemented-zod-and-react-hook-form-for-register-component-and-lessons-i-ve-learned-3a51c4dd3894)
 
 ---
 
