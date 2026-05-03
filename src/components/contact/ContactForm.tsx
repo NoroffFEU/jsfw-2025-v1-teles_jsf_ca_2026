@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import z from "zod";
 import { toast } from "react-hot-toast";
-import { formSchema } from "@/lib/zod/formSchema";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { formSchema, type formSchemaType } from "@/lib/zod/formSchema";
+import { useNavigate } from "@tanstack/react-router";
+import { contactSuccessLinkOptions } from "@/lib/helpers/linkOptions";
 
 import { Button } from "@/components/ui/button/Button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card/Card";
 import {
   Field,
-  FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/input/field/Field";
@@ -25,44 +25,37 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/components/ui/input/input/InputGroup";
-import { useNavigate } from "@tanstack/react-router";
-import { contactSuccessLinkOptions } from "@/lib/helpers/linkOptions";
 
 const ContactForm = () => {
-  const [values, setValues] = useState({
-    email: "",
-    fullname: "",
-    title: "",
-    description: "",
-  });
-  const [errors, setErrors] = useState<{ [k: string]: string[] }>({});
   const navigate = useNavigate();
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-    setValues((v) => ({ ...v, [name]: value }));
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    watch,
+  } = useForm<formSchemaType>({
+    resolver: zodResolver(formSchema),
+    mode: "onBlur",
+  });
 
-  const handleReset = () => {
-    setValues({ email: "", fullname: "", title: "", description: "" });
-    setErrors({});
-  };
+  const descriptionValue = watch("description") || "";
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const result = formSchema.safeParse(values);
+  const onSubmit = (data: formSchemaType) => {
+    try {
+      // if (import.meta.env.DEV && data.title === "fail") {
+      //   throw new Error("submit failure forced");
+      // }
 
-    if (!result.success) {
-      const { fieldErrors } = z.flattenError(result.error);
-      setErrors(fieldErrors);
-    } else {
-      setErrors({});
-      toast.success("Message sent! :)");
-      // ?? dispatch(submitContactForm(result.data)); --- placeholder for future implementation
+      // ?? await dispatch(submitContactForm(data)); --- placeholder for future implementation
+      toast.success(`Message sent by: ${data.email}`);
       navigate(contactSuccessLinkOptions);
-      handleReset();
+      reset();
+    } catch (error) {
+      toast.error(
+        `Sending failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
     }
   };
 
@@ -73,58 +66,46 @@ const ContactForm = () => {
         <CardDescription>Let us know what's on your mind.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form id="contact-form" onSubmit={handleSubmit}>
+        <form id="contact-form" onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup>
             <Field data-invalid={!!errors.email}>
               <FieldLabel htmlFor="email">Email</FieldLabel>
               <Input
-                id="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
+                {...register("email")}
                 aria-invalid={!!errors.email}
                 placeholder="Email..."
                 autoComplete="on"
               />
-              {errors.email && <FieldError errors={errors.email} />}
+              {errors.email && <p role="alert">{errors.email.message}</p>}
             </Field>
 
             <Field data-invalid={!!errors.fullname}>
               <FieldLabel htmlFor="fullname">Full Name</FieldLabel>
               <Input
-                id="fullname"
-                name="fullname"
-                value={values.fullname}
-                onChange={handleChange}
+                {...register("fullname")}
                 aria-invalid={!!errors.fullname}
                 placeholder="Full Name..."
                 autoComplete="on"
               />
-              {errors.fullname && <FieldError errors={errors.fullname} />}
+              {errors.fullname && <p role="alert">{errors.fullname.message}</p>}
             </Field>
 
             <Field data-invalid={!!errors.title}>
               <FieldLabel htmlFor="title">Title</FieldLabel>
               <Input
-                id="title"
-                name="title"
-                value={values.title}
-                onChange={handleChange}
+                {...register("title")}
                 aria-invalid={!!errors.title}
                 placeholder="Title..."
                 autoComplete="off"
               />
-              {errors.title && <FieldError errors={errors.title} />}
+              {errors.title && <p role="alert">{errors.title.message}</p>}
             </Field>
 
             <Field data-invalid={!!errors.description}>
               <FieldLabel htmlFor="description">Description</FieldLabel>
               <InputGroup>
                 <InputGroupTextarea
-                  id="description"
-                  name="description"
-                  value={values.description}
-                  onChange={handleChange}
+                  {...register("description")}
                   placeholder="Write your inquiry here..."
                   rows={6}
                   className="min-h-24 resize-none"
@@ -132,34 +113,34 @@ const ContactForm = () => {
                 />
                 <InputGroupAddon align="block-end">
                   <InputGroupText className="tabular-nums">
-                    {values.description.length}/200 characters
+                    {descriptionValue.length}/200 characters
                   </InputGroupText>
                 </InputGroupAddon>
               </InputGroup>
-              {errors.description && <FieldError errors={errors.description} />}
+              {errors.description && (
+                <p role="alert">{errors.description.message}</p>
+              )}
             </Field>
           </FieldGroup>
+
+          <Field orientation="horizontal" className="justify-end p-4">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => reset()}
+              className="hover:brightness-90 cursor-pointer"
+            >
+              Reset
+            </Button>
+            <Button
+              type="submit"
+              className="hover:brightness-90 cursor-pointer"
+            >
+              Submit
+            </Button>
+          </Field>
         </form>
       </CardContent>
-      <CardFooter>
-        <Field orientation="horizontal" className="justify-end">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={handleReset}
-            className="hover:brightness-90 cursor-pointer"
-          >
-            Reset
-          </Button>
-          <Button
-            type="submit"
-            form="contact-form"
-            className="hover:brightness-90 cursor-pointer"
-          >
-            Submit
-          </Button>
-        </Field>
-      </CardFooter>
     </Card>
   );
 };
