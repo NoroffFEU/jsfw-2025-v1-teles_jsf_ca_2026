@@ -5,7 +5,6 @@ import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 import { setProducts } from "@/lib/redux/slices/productSlice";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { searchSchema } from "@/lib/zod/searchSchema";
-import { CustomError } from "@/lib/errors/CustomError";
 import { PAGE_SIZE, normalize } from "@/lib/utils";
 import type { Product } from "@/services/models/product";
 
@@ -28,7 +27,6 @@ export const Route = createFileRoute("/")({
   component: Products,
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQuery()),
   validateSearch: searchSchema,
-  errorComponent: CustomError,
 });
 
 const ProductList = () => {

@@ -15,7 +15,13 @@
 
 ### **TECHNICAL**
 
-- Tanstack Query (search)
 - Tests (units + e2e)
 
 --
+
+### **ERROR HANDLING**
+
+- Refactor CustomError to specific error types
+  - network
+  - missing product
+  - unknown something
