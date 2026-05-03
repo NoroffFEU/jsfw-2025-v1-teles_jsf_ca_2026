@@ -26,6 +26,9 @@ export const SearchBar = () => {
         page: 1,
         sort: prev.sort ?? defaultSearch.sort,
       }),
+      state: {
+        scrollToResultId: Date.now(),
+      },
     });
   };
 

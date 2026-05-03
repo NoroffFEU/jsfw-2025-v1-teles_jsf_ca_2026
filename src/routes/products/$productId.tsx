@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { productByIdQuery } from "@/lib/helpers/productsQuery";
-import { AddToCartButton } from "@/components/products/AddToCartButton";
+import { AddToCartButton } from "@/components/products/index";
 import { Badge } from "@/components/ui/badge/Badge";
 import type { Product } from "@/services/models/product";
 

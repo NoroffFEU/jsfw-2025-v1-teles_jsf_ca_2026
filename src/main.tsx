@@ -27,6 +27,12 @@ declare module "@tanstack/react-router" {
   }
 }
 
+declare module "@tanstack/history" {
+  interface HistoryState {
+    scrollToResultId?: number;
+  }
+}
+
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);

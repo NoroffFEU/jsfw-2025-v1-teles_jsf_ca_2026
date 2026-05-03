@@ -34,6 +34,9 @@ export const SortSelect = ({ id }: SortSelectProps) => {
               query: prev.query ?? defaultSearch.query,
               sort: (nextSort as ProductSort) ?? defaultSearch.sort,
             }),
+            state: {
+              scrollToResultId: Date.now(),
+            },
           });
         }}
       >
