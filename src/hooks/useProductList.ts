@@ -74,5 +74,5 @@ export const useProductList = () => {
     });
   };
 
-  return { visibleProducts, totalPages, page, scrollToFirstElements };
+  return { products, visibleProducts, totalPages, page, scrollToFirstElements };
 };

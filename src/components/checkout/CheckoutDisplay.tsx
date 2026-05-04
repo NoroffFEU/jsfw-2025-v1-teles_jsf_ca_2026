@@ -5,7 +5,7 @@ import { removeItem } from "@/lib/redux/slices/cartSlice";
 import { selectTotalCartQuantity } from "@/lib/redux/slices/cartSlice";
 import { Button } from "../ui/button/Button";
 import { Trash2 } from "lucide-react";
-import { AlertBox } from "../alerts/AlertBox";
+import { AlertBox } from "../alert/AlertBox";
 import { MethodPicker, CheckoutSummary } from "./index";
 
 type User = {

@@ -5,7 +5,7 @@ import { removeItem, updateQuantity } from "@/lib/redux/slices/cartSlice";
 
 import { CartSummary } from "@/components/cart/index";
 import { Button } from "@/components/ui/button/Button";
-import { AlertBox } from "@/components/alerts/AlertBox";
+import { AlertBox } from "@/components/alert/AlertBox";
 import { Trash2 } from "lucide-react";
 
 export const CartDisplay = () => {

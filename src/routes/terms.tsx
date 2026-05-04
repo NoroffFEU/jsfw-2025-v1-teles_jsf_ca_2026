@@ -58,7 +58,7 @@ function Terms() {
 
       <h3 className="font-semibold">3. Products and product information</h3>
       <p>
-        ShopNet sells physical products such as shoes, hard disks, toys, women’s
+        ShopNet sells physical products such as shoes, hard disks, toys, women's
         bags, headphones, and other general consumer goods. We aim to ensure
         that product descriptions, images, prices, and availability information
         are accurate and up to date. However, errors may occur, and ShopNet
@@ -99,7 +99,7 @@ function Terms() {
         specify during checkout. Delivery times are estimates only unless a
         specific delivery date has been expressly agreed. Delays may occur due
         to carrier issues, customs, supply problems, or other circumstances
-        beyond ShopNet’s reasonable control. If delivery becomes impossible
+        beyond ShopNet's reasonable control. If delivery becomes impossible
         because of incorrect or incomplete address information provided by you,
         ShopNet is not responsible for the resulting delay or failed delivery.
         Risk in the goods passes to you when the goods are received, unless
@@ -144,7 +144,7 @@ function Terms() {
         determine their nature, properties, and function. You should handle
         products carefully and only as you would be allowed to do in a physical
         store if you want to preserve your full refund rights. If you go beyond
-        normal inspection and the product’s value is reduced as a result, you
+        normal inspection and the product's value is reduced as a result, you
         may be liable for the diminished value. This may be relevant, for
         example, if packaging is heavily damaged or the product shows signs of
         use.
@@ -216,7 +216,7 @@ function Terms() {
       <h3 className="font-semibold">16. Contact information</h3>
       <p>
         Questions about these Terms and Conditions, returns, withdrawals,
-        complaints, or orders should be directed to ShopNet’s customer support
+        complaints, or orders should be directed to ShopNet's customer support
         using the contact details published on the website. ShopNet should make
         these terms easily accessible to consumers at all times.
       </p>
