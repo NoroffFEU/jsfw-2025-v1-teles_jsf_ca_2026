@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { productsQuery } from "@/lib/helpers/productsQuery";
+import { normalizeIndex, clampIndex } from "@/lib/utils";
+import { Link } from "@tanstack/react-router";
 
 type CarouselProps = {
   id?: string;
@@ -15,21 +17,10 @@ type Slide = {
   alt: string;
 };
 
-const normalizeIndex = (next: number, length: number) => {
-  if (length === 0) return 0;
-  return (next + length) % length;
-};
-
-const clampIndex = (value: number, length: number) => {
-  if (length === 0) return 0;
-  return Math.min(Math.max(value, 0), length - 1);
-};
-
 export const Carousel = ({
   id = "default-carousel",
   startImageIndex = 0,
   autoplayDelayMs = 4000,
-  onImageClick,
 }: CarouselProps) => {
   const { data } = useSuspenseQuery(productsQuery());
   const products = data.data;
@@ -96,13 +87,19 @@ export const Carousel = ({
             data-carousel-item=""
             className={`absolute inset-0 transition-all duration-700 ease-in-out will-change-transform ${getSlideClass(i)}`}
           >
-            <img
-              id={`carousel-image-${i}`}
-              src={slide.src}
-              alt={slide.alt}
-              className="absolute inset-0 block w-full h-full object-cover rounded cursor-pointer"
-              onClick={() => onImageClick?.(slide.productId, slide.src)}
-            />
+            <Link
+              id={slide.productId}
+              aria-label={`Image of ${slide.productId}`}
+              to="/products/$productId"
+              params={{ productId: slide.productId }}
+            >
+              <img
+                id={`carousel-image-${i}`}
+                src={slide.src}
+                alt={slide.alt}
+                className="absolute inset-0 block w-full h-full object-cover rounded cursor-pointer"
+              />
+            </Link>
           </div>
         ))}
       </div>

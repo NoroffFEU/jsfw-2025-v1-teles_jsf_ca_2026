@@ -1,50 +1,19 @@
-import { useRef, useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
-import { removeItem } from "@/lib/redux/slices/cartSlice";
 import { selectTotalCartQuantity } from "@/lib/redux/slices/cartSlice";
-import { Button } from "../ui/button/Button";
+import { useCheckout } from "@/hooks/useCheckout";
+import { usePendingItem } from "@/hooks/usePendingItem";
+import { user } from "@/lib/data/User";
+
+import { Button } from "@/components/ui/button/Button";
 import { Trash2 } from "lucide-react";
-import { AlertBox } from "../alert/AlertBox";
+import { AlertBox } from "@/components/alert/AlertBox";
 import { MethodPicker, CheckoutSummary } from "./index";
 
-type User = {
-  name: string;
-  email: string;
-  address: string;
-  postalCode: number;
-  city: string;
-  country: string;
-};
-
-const user: User = {
-  name: "Tele Caster Nilsen",
-  email: "nilsen@email.com",
-  address: "Engelsviken 8",
-  postalCode: 1664,
-  city: "Fredrikstad",
-  country: "Norway",
-};
-
 export const CheckoutDisplay = () => {
-  const [pendingItem, setIsPendingItem] = useState<string | null>(null);
-  const alertRef = useRef<HTMLDivElement | null>(null);
   const totalItems = useAppSelector(selectTotalCartQuantity);
-  const itemsMap = useAppSelector((state) => state.cart.items);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!pendingItem || !alertRef.current) return;
-
-    const rect = alertRef.current.getBoundingClientRect();
-    const scrollTop = window.scrollY;
-    const offset = 150;
-
-    window.scrollTo({
-      top: rect.top + scrollTop - offset,
-      behavior: "smooth",
-    });
-  }, [pendingItem]);
+  const { alertRef, itemsMap } = useCheckout();
+  const { pendingItem, setIsPendingItem, confirmDelete, cancelRemove } =
+    usePendingItem();
 
   const itemsArray = Object.values(itemsMap);
   if (itemsArray.length === 0) {
@@ -52,16 +21,6 @@ export const CheckoutDisplay = () => {
   }
 
   const hasMultipleItems = itemsArray.some((item) => item.quantity > 1);
-
-  const confirmDelete = () => {
-    if (!pendingItem) return;
-    dispatch(removeItem(pendingItem));
-    setIsPendingItem(null);
-  };
-
-  const cancelRemove = () => {
-    setIsPendingItem(null);
-  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
@@ -111,7 +70,7 @@ export const CheckoutDisplay = () => {
             />
           </div>
         )}
-        <ul className="grid grid-cols-1 xl:grid-cols-2 gap-2">
+        <ul className="grid grid-cols-1 xl:grid-cols-2 gap-2 rounded bg-gray-100">
           {itemsArray.map((item) => (
             <li
               key={item.productId}
@@ -139,7 +98,7 @@ export const CheckoutDisplay = () => {
         </ul>
 
         {hasMultipleItems && (
-          <p className="text-xs mb-2 justify-self-end">
+          <p className="text-xs mt-2 mb-2 justify-self-end">
             Some products could have a higher quantity
           </p>
         )}

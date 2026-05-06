@@ -40,6 +40,11 @@
 **Purpose:** Explaining and suggesting fix for Lighthouse error on crawling robots, see [/robots.txt](/public/robots.txt)<br/>
 **Outcome:** Learnt about SEO crawlers and how to avoid allowing crawling sensitive information.<br/>
 
+**Tool used:** GPT-5.3-Codex<br/>
+**Date:** 05.05.2026<br/>
+**Purpose:** Help with correcting my math formula of finding the discounted percentage.<br/>
+**Outcome:** Turned out I was calculating what was left of the original price, not the discounted price. My formula: `(discountedPrice / price) * 100`, corrected: `(discountedPrice - price) / price * 100`<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.

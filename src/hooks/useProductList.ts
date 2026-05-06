@@ -1,29 +1,16 @@
 import { productsQuery } from "@/lib/helpers/productsQuery";
-import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
-import { setProducts } from "@/lib/redux/slices/productSlice";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useLocation } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import { PAGE_SIZE, normalize } from "@/lib/utils";
 import { Route } from "@/routes/index";
 import type { Product } from "@/services/models/product";
 
 export const useProductList = () => {
   const { page, query, sort } = Route.useSearch();
-  const location = useLocation();
-  const lastHandledNonce = useRef<number | null>(null);
   const { data } = useSuspenseQuery(productsQuery());
   const products = data.data;
-  const dispatch = useAppDispatch();
 
-  const scrollId = (location.state as { scrollToResultId?: number } | undefined)
-    ?.scrollToResultId;
-
-  useEffect(() => {
-    dispatch(setProducts(products));
-  }, [dispatch, products]);
-
-  const { visibleProducts, totalPages } = useMemo(() => {
+  return useMemo(() => {
     const normalizedQuery = normalize(query);
 
     const filtered = normalizedQuery
@@ -52,27 +39,10 @@ export const useProductList = () => {
     });
 
     const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
-    const firstPage = (page - 1) * PAGE_SIZE;
-    const visibleProducts = sorted.slice(firstPage, firstPage + PAGE_SIZE);
-    return { visibleProducts, totalPages, firstPage };
+    const visibleProducts = sorted.slice(
+      (page - 1) * PAGE_SIZE,
+      page * PAGE_SIZE,
+    );
+    return { products, visibleProducts, totalPages, page };
   }, [products, query, sort, page]);
-
-  const scrollToFirstElements = () => {
-    if (!scrollId) return;
-    if (lastHandledNonce.current === scrollId) return;
-    if (!visibleProducts.length) {
-      lastHandledNonce.current = scrollId;
-      return;
-    }
-
-    const firstProd = visibleProducts[0];
-    requestAnimationFrame(() => {
-      document
-        .getElementById(`product-${firstProd.id}`)
-        ?.scrollIntoView({ behavior: "smooth", block: "start" });
-      lastHandledNonce.current = scrollId;
-    });
-  };
-
-  return { products, visibleProducts, totalPages, page, scrollToFirstElements };
 };

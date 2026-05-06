@@ -1,16 +1,25 @@
 # TO DO
 
+### Refactor
+
 ### **FEATURES**
 
-- Checkout flow missing
-  - discount and delivery calculation
-  - disable or hide other delivery/payment methods when one is chosen
+- Responsive HERO
 - Testing:
   - Install and wire up Vitest: https://learning.noroff.no/mod/book/view.php?id=69462&chapterid=117806
 
 ### **TECHNICAL**
 
 - Tests (units + e2e)
-- Refactor routes and hooks
 
 --
+
+#### For future:
+
+- Checkout flow missing
+  - delivery fee calculation
+  - disable or hide other delivery/payment methods when one is chosen
+- Auth logic
+  - register/login flow
+  - auth ui
+- Skeleton loaders

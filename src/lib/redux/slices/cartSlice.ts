@@ -106,3 +106,12 @@ export const selectTotalPrice = createSelector(
       return total + item.quantity * itemPrice;
     }, 0),
 );
+
+export const selectTotalDiscount = createSelector(
+  [selectCartItemsArray],
+  (itemsArray) =>
+    itemsArray.reduce((total, item) => {
+      const perItemDiscount = Math.max(item.price - item.discountedPrice, 0);
+      return total + perItemDiscount * item.quantity;
+    }, 0),
+);

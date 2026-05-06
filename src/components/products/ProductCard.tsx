@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Card, CardContent, CardFooter } from "@/components/ui/card/Card";
 import { AddToCartButton } from "@/components/products/index";
+import { Badge } from "@/components/ui/badge/Badge";
+import { useProductDetail } from "@/hooks/useProductDetail";
 import type { Product } from "@/services/models/product";
 
 type ProductCardProps = {
@@ -8,17 +10,20 @@ type ProductCardProps = {
 };
 
 export const ProductCard = ({ item }: ProductCardProps) => {
-  const hasDiscount = item.discountedPrice !== item.price;
-  const highestRating =
-    item.reviews?.length > 0
-      ? Math.max(...item.reviews.map((rev) => Number(rev.rating)))
-      : "Not rated";
+  const { hasDiscount, highestRating, discount } = useProductDetail(item.id);
 
   return (
     <Card
       id={`product-${item.id}`}
       className="grid gap-2 items-center mt-2 md:hover:scale-102 transition duration-200"
     >
+      {hasDiscount && (
+        <Badge
+          className="bg-selection text-black rounded-full p-1 mr-4 justify-self-end"
+          children={`-${discount}%`}
+        />
+      )}
+
       <CardContent className="grid gap-2 justify-self-center transition duration-200">
         <Link
           id={item.id}
