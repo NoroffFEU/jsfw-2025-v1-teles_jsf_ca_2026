@@ -107,6 +107,16 @@ export const selectTotalPrice = createSelector(
     }, 0),
 );
 
+export const selectTotalOriginalPrice = createSelector(
+  [selectCartItemsArray, selectProductsById],
+  (itemsArray, productsById) =>
+    itemsArray.reduce((total, item) => {
+      const product = productsById[item.productId];
+      const itemPrice = product?.price;
+      return total + item.quantity * itemPrice;
+    }, 0),
+);
+
 export const selectTotalDiscount = createSelector(
   [selectCartItemsArray],
   (itemsArray) =>

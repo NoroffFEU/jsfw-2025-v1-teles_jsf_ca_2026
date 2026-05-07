@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 import {
   selectTotalCartQuantity,
   selectTotalDiscount,
+  selectTotalOriginalPrice,
   selectTotalPrice,
 } from "@/lib/redux/slices/cartSlice";
 
@@ -15,8 +16,10 @@ export const CheckoutSummary = () => {
   const totalItems = useAppSelector(selectTotalCartQuantity);
   const totalPrice = useAppSelector(selectTotalPrice);
   const fixedTotal = totalPrice.toFixed(2);
+  const originalPrice = useAppSelector(selectTotalOriginalPrice).toFixed(2);
   const discount = useAppSelector(selectTotalDiscount).toFixed(2);
   const deliveryFee = 49;
+  const totalPriceToPay = totalPrice + deliveryFee;
 
   const { handlePaymentProcess, openDialog, isDisabled } = usePaymentProcess();
 
@@ -28,14 +31,28 @@ export const CheckoutSummary = () => {
         <p>
           Discount code: <Input id="discount-input" placeholder="SUMMER_26" />
         </p>
-        <p>Order value: {fixedTotal},-</p>
-        <p>Discount: -{discount},-</p>
-        <p>Delivery fee: {deliveryFee},-</p>
+        <div className="flex justify-between">
+          <p>Original price:</p>
+          <span>{originalPrice},-</span>
+        </div>
+        <div className="flex justify-between">
+          <p>Discount:</p>
+          <span>-{discount},-</span>
+        </div>
+        <div className="flex justify-between">
+          <p>Price after discount:</p>
+          <span>{fixedTotal},-</span>
+        </div>
+        <div className="flex justify-between">
+          <p>Delivery fee:</p>
+          <span>{deliveryFee},-</span>
+        </div>
+
         <h3 className="font-bold mt-6 pt-6 border-t-2 border-t-black">
           Payment Summary
         </h3>
         <p>
-          Total: <strong>{fixedTotal} NOK</strong>
+          Total: <strong>{totalPriceToPay} NOK</strong>
         </p>
 
         <p className="text-xs">
