@@ -1,32 +1,23 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
-import { removeItem, updateQuantity } from "@/lib/redux/slices/cartSlice";
+import { updateQuantity } from "@/lib/redux/slices/cartSlice";
 
 import { CartSummary } from "@/components/cart/index";
 import { Button } from "@/components/ui/button/Button";
 import { AlertBox } from "@/components/alert/AlertBox";
 import { Trash2 } from "lucide-react";
+import { usePendingItem } from "@/hooks/usePendingItem";
 
 export const CartDisplay = () => {
-  const [pendingItem, setIsPendingItem] = useState<string | null>(null);
   const itemsMap = useAppSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+  const { pendingItem, setIsPendingItem, confirmDelete, cancelRemove } =
+    usePendingItem();
 
   const itemsArray = Object.values(itemsMap);
   if (itemsArray.length === 0) {
     return <p className="mt-6 mb-4">Shopping cart is empty.</p>;
   }
-
-  const confirmDelete = () => {
-    if (!pendingItem) return;
-    dispatch(removeItem(pendingItem));
-    setIsPendingItem(null);
-  };
-
-  const cancelRemove = () => {
-    setIsPendingItem(null);
-  };
 
   return (
     <div className="grid gap-4 mt-6">

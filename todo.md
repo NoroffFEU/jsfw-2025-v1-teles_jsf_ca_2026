@@ -1,7 +1,5 @@
 # TO DO
 
-### Refactor
-
 ### **FEATURES**
 
 - Testing:
