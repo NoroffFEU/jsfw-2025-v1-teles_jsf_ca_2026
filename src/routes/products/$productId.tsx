@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useProductDetail } from "@/hooks/useProductDetail";
 import { productByIdQuery } from "@/lib/helpers/productsQuery";
 import { ProductSummary, ProductReviews } from "@/components/products/index";
+import { RouteLoader } from "@/components/layout/RouteLoader";
 import type { Product } from "@/services/models/product";
 
 export const Route = createFileRoute("/products/$productId")({
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/products/$productId")({
       { title: loaderData?.title ?? "Product" },
     ],
   }),
+  pendingComponent: RouteLoader,
   component: ProductDetail,
 });
 

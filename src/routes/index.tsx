@@ -1,8 +1,8 @@
 import { productsQuery } from "@/lib/helpers/productsQuery";
 import { createFileRoute } from "@tanstack/react-router";
 import { searchSchema } from "@/lib/zod/searchSchema";
-import { CustomPending } from "@/lib/routeStates/index";
 
+import { RouteLoader } from "@/components/layout/RouteLoader";
 import { ProductList } from "@/components/products/index";
 import { SortSelect } from "@/components/search/index";
 import { Hero } from "@/components/hero/Hero";
@@ -22,8 +22,8 @@ export const Route = createFileRoute("/")({
   }),
   component: Products,
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQuery()),
-  pendingComponent: CustomPending,
-  pendingMs: 300,
+  shouldReload: false,
+  pendingComponent: RouteLoader,
   validateSearch: searchSchema,
 });
 

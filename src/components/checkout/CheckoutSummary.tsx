@@ -52,7 +52,7 @@ export const CheckoutSummary = () => {
           Payment Summary
         </h3>
         <p>
-          Total: <strong>{totalPriceToPay} NOK</strong>
+          Total: <strong>{totalPriceToPay.toFixed(2)} NOK</strong>
         </p>
 
         <p className="text-xs">
