@@ -77,7 +77,7 @@ export const Carousel = ({
   return (
     <div
       id={id}
-      className="relative w-[40%] justify-self-center"
+      className="relative w-[80%] md:w-[40%] justify-self-center"
       data-carousel="slide"
     >
       <div className="media-carousel">
