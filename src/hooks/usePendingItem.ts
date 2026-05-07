@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 import { removeItem } from "@/lib/redux/slices/cartSlice";
+import toast from "react-hot-toast";
 
 export const usePendingItem = () => {
   const [pendingItem, setIsPendingItem] = useState<string | null>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const confirmDelete = () => {
     if (!pendingItem) return;
+    toast("Removed from cart");
     dispatch(removeItem(pendingItem));
     setIsPendingItem(null);
   };

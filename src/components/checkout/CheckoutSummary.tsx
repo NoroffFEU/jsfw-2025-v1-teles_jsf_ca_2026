@@ -15,7 +15,7 @@ export const CheckoutSummary = () => {
   const totalItems = useAppSelector(selectTotalCartQuantity);
   const totalPrice = useAppSelector(selectTotalPrice);
   const fixedTotal = totalPrice.toFixed(2);
-  const discount = useAppSelector(selectTotalDiscount);
+  const discount = useAppSelector(selectTotalDiscount).toFixed(2);
   const deliveryFee = 49;
 
   const { handlePaymentProcess, openDialog, isDisabled } = usePaymentProcess();

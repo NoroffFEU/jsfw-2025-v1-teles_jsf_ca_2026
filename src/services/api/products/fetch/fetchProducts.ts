@@ -1,18 +1,20 @@
 import { BASE_URL, SHOP_URL } from "@/services/api/config";
 import { ApiError } from "@/services/api/apiError";
 import type { ApiProduct } from "@/services/models/product";
+import { apiProductSchema } from "@/lib/zod/apiProductSchema";
 
 export const fetchProducts = async (): Promise<ApiProduct> => {
   const response = await fetch(`${BASE_URL}${SHOP_URL}`);
-  const payload = await response.json();
 
   if (!response.ok) {
-    throw new ApiError(
-      payload.error ?? payload.message ?? "Get all products failed",
-      response.status || 400,
-      payload,
-    );
+    throw new ApiError("Invalid API response", response.status);
   }
 
-  return payload as ApiProduct;
+  const payload: unknown = await response.json();
+  const parsedPayload = apiProductSchema.safeParse(payload);
+  if (!parsedPayload.success) {
+    throw new ApiError("Invalid parsed API response", 500, parsedPayload.error);
+  }
+
+  return parsedPayload.data;
 };

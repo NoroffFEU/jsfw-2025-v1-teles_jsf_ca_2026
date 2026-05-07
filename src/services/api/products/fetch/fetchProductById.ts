@@ -1,20 +1,22 @@
 import { BASE_URL, SHOP_URL } from "@/services/api/config";
 import { ApiError } from "@/services/api/apiError";
-import type { Product, ProductMeta } from "@/services/models/product";
+import { productByIdSchema } from "@/lib/zod/productByIdSchema";
+import z from "zod";
 
 export const fetchProductById = async (
   id: string,
-): Promise<{ data: Product; meta: ProductMeta }> => {
+): Promise<z.infer<typeof productByIdSchema>> => {
   const response = await fetch(`${BASE_URL}${SHOP_URL}/${id}`);
-  const payload = await response.json();
 
   if (!response.ok) {
-    throw new ApiError(
-      payload.error ?? payload.message ?? "Fetching article by id failed",
-      response.status || 400,
-      payload,
-    );
+    throw new ApiError("Invalid API response", response.status);
   }
 
-  return payload as { data: Product; meta: ProductMeta };
+  const payload: unknown = await response.json();
+  const parsedPayload = productByIdSchema.safeParse(payload);
+  if (!parsedPayload.success) {
+    throw new ApiError("Invalid parsed API response", 500, parsedPayload.error);
+  }
+
+  return parsedPayload.data;
 };

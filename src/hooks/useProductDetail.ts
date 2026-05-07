@@ -11,7 +11,7 @@ export const useProductDetail = (productId: Product["id"]) => {
   const hasTags = product.tags.length !== 0;
   const highestRating =
     product.reviews?.length > 0
-      ? Math.max(...product.reviews.map((rev) => Number(rev.rating)))
+      ? Math.max(...product.reviews.map((rev) => rev.rating))
       : "Not rated";
   const discountPercentage =
     ((product.price - product.discountedPrice) / product.price) * 100;

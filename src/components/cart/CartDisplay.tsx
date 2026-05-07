@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { updateQuantity } from "@/lib/redux/slices/cartSlice";
 
@@ -7,10 +6,11 @@ import { Button } from "@/components/ui/button/Button";
 import { AlertBox } from "@/components/alert/AlertBox";
 import { Trash2 } from "lucide-react";
 import { usePendingItem } from "@/hooks/usePendingItem";
+import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 
 export const CartDisplay = () => {
   const itemsMap = useAppSelector((state) => state.cart.items);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { pendingItem, setIsPendingItem, confirmDelete, cancelRemove } =
     usePendingItem();
 

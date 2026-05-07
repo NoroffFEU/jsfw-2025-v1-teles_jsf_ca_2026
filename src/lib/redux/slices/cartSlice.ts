@@ -3,8 +3,8 @@ import {
   createSelector,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import type { RootState } from "@/lib/redux/store";
 import { selectProductsById } from "./productSlice";
+import type { RootState } from "@/lib/redux/store";
 
 type CartItem = {
   productId: string;
