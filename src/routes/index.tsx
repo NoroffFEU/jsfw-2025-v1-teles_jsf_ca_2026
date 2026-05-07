@@ -1,10 +1,12 @@
 import { productsQuery } from "@/lib/helpers/productsQuery";
 import { createFileRoute } from "@tanstack/react-router";
 import { searchSchema } from "@/lib/zod/searchSchema";
+import { CustomPending } from "@/lib/routeStates/index";
 
 import { ProductList } from "@/components/products/index";
 import { SortSelect } from "@/components/search/index";
 import { Hero } from "@/components/hero/Hero";
+import { Separator } from "@/components/ui/separator/Separator";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,6 +22,8 @@ export const Route = createFileRoute("/")({
   }),
   component: Products,
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQuery()),
+  pendingComponent: CustomPending,
+  pendingMs: 300,
   validateSearch: searchSchema,
 });
 
@@ -32,7 +36,7 @@ function Products() {
           Products
         </h1>
         <p>Find your favourite gadget.</p>
-        <hr />
+        <Separator />
         <SortSelect id="sort-select" />
         <ProductList />
       </div>

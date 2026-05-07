@@ -1,7 +1,7 @@
 import { type ErrorComponentProps, useNavigate } from "@tanstack/react-router";
 import { defaultSearch } from "@/lib/zod/searchSchema";
 import { Button } from "@/components/ui/button/Button";
-import { classifyError } from "@/lib/errors/errorTypes";
+import { classifyError } from "@/lib/routeStates/errorTypes";
 
 export const CustomError = ({ error, reset }: ErrorComponentProps) => {
   const navigate = useNavigate();
@@ -20,12 +20,18 @@ export const CustomError = ({ error, reset }: ErrorComponentProps) => {
             message: "This product does not exist or the URL is invalid.",
             showRetry: false,
           }
-        : {
-            title: "Something went wrong",
-            message: error.message || "An unexpected error occurred.",
-            showRetry: true,
-          };
-
+        : type === "invalid"
+          ? {
+              title: "Unexpected data",
+              message:
+                "We received invalid data from the server. Please try again.",
+              showRetry: true,
+            }
+          : {
+              title: "Something went wrong",
+              message: error.message || "An unexpected error occurred.",
+              showRetry: true,
+            };
   return (
     <div className="flex flex-col gap-2 justify-center items-center pt-12">
       <h2 className="text-red-700 text-2xl mb-1">{errorInfo.title}</h2>{" "}

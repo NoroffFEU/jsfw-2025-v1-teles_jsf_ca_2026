@@ -1,12 +1,13 @@
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { updateQuantity } from "@/lib/redux/slices/cartSlice";
+import { usePendingItem } from "@/hooks/usePendingItem";
+import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 
 import { CartSummary } from "@/components/cart/index";
 import { Button } from "@/components/ui/button/Button";
 import { AlertBox } from "@/components/alert/AlertBox";
+import { Separator } from "@/components/ui/separator/Separator";
 import { Trash2 } from "lucide-react";
-import { usePendingItem } from "@/hooks/usePendingItem";
-import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 
 export const CartDisplay = () => {
   const itemsMap = useAppSelector((state) => state.cart.items);
@@ -103,7 +104,7 @@ export const CartDisplay = () => {
                   <Trash2 aria-label="Remove item from cart" />
                 </Button>
               </div>
-              <hr />
+              <Separator />
             </li>
           );
         })}

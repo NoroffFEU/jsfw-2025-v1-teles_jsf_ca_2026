@@ -13,7 +13,11 @@ export const fetchProducts = async (): Promise<ApiProduct> => {
   const payload: unknown = await response.json();
   const parsedPayload = apiProductSchema.safeParse(payload);
   if (!parsedPayload.success) {
-    throw new ApiError("Invalid parsed API response", 500, parsedPayload.error);
+    throw new ApiError(
+      "Payload failed schema validation",
+      500,
+      parsedPayload.error,
+    );
   }
 
   return parsedPayload.data;

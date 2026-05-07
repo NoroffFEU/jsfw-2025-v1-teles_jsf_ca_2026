@@ -2,10 +2,11 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { HeadContent, Outlet } from "@tanstack/react-router";
 import { createRootRouteWithContext } from "@tanstack/react-router";
 import { QueryClient } from "@tanstack/react-query";
-import { Footer, Header } from "@/components/layout/index";
-import { DefaultNotFound } from "@/lib/errors/DefaultNotFound";
-import { CustomError } from "@/lib/errors/CustomError";
 import { Toaster } from "react-hot-toast";
+import { DefaultNotFound, CustomError } from "@/lib/routeStates/index";
+
+import { Footer, Header } from "@/components/layout/index";
+import { Separator } from "@/components/ui/separator/Separator";
 
 const RootLayout = () => (
   <>
@@ -35,9 +36,8 @@ const RootLayout = () => (
         },
       }}
     />
-
     <Header />
-    <hr />
+    <Separator />
     <main>
       <Outlet />
     </main>
@@ -68,7 +68,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       },
     ],
   }),
-  component: RootLayout,
-  notFoundComponent: DefaultNotFound,
   errorComponent: CustomError,
+  notFoundComponent: DefaultNotFound,
+  component: RootLayout,
 });

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button/Button";
 import { Trash2 } from "lucide-react";
 import { AlertBox } from "@/components/alert/AlertBox";
 import { MethodPicker, CheckoutSummary } from "./index";
+import { Separator } from "@/components/ui/separator/Separator";
 
 export const CheckoutDisplay = () => {
   const totalItems = useAppSelector(selectTotalCartQuantity);
@@ -36,7 +37,7 @@ export const CheckoutDisplay = () => {
             Edit info
           </Button>
         </div>
-        <hr />
+        <Separator />
 
         <div id="user-billing" className="">
           <h3 className="text-lg font-semibold">BILLING ADDRESS</h3>
@@ -52,7 +53,7 @@ export const CheckoutDisplay = () => {
             Edit info
           </Button>
         </div>
-        <hr />
+        <Separator />
 
         <MethodPicker />
       </section>

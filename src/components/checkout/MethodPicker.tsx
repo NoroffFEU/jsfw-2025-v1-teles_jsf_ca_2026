@@ -1,3 +1,7 @@
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { Separator } from "@/components/ui/separator/Separator";
+import { Button } from "@/components/ui/button/Button";
 import {
   Item,
   ItemActions,
@@ -6,9 +10,6 @@ import {
   ItemMedia,
   ItemTitle,
 } from "@/components/ui/item/Item";
-import { Button } from "../ui/button/Button";
-import { useState } from "react";
-import toast from "react-hot-toast";
 
 type PaymentMethod = "klarna" | "vipps" | "card";
 type DeliveryMethod = "home" | "office" | "box";
@@ -133,7 +134,7 @@ export const MethodPicker = () => {
         </Item>
       </div>
 
-      <hr />
+      <Separator />
 
       <h3 className="text-lg font-semibold">DELIVERY</h3>
       <h4 className="text-sm">Select your preferred delivery method</h4>

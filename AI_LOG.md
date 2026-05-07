@@ -45,6 +45,11 @@
 **Purpose:** Help with correcting my math formula of finding the discounted percentage.<br/>
 **Outcome:** Turned out I was calculating what was left of the original price, not the discounted price. My formula: `(discountedPrice / price) * 100`, corrected: `(discountedPrice - price) / price * 100`<br/>
 
+**Tool used:** GPT-5.3-Codex<br/>
+**Date:** 07.05.2026<br/>
+**Purpose:** Help with how to test my pendingComponent.<br/>
+**Outcome:** I configured the component in '\_\_root.tsx' as a default component, adjusted throttling in my browser but it didn't render. Learnt that for a default pending component in Tanstack Router must be configured in the `router`, as `defaultPendingComponent` instead of 'pendingComponent', which clearly is route specific.<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.
