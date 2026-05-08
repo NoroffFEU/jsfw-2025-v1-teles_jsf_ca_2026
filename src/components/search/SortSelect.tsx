@@ -37,6 +37,7 @@ export const SortSelect = ({ id }: SortSelectProps) => {
             state: {
               scrollToResultId: Date.now(),
             },
+            resetScroll: false,
           });
         }}
       >

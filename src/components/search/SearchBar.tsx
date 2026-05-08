@@ -29,6 +29,7 @@ export const SearchBar = () => {
       state: {
         scrollToResultId: Date.now(),
       },
+      resetScroll: false,
     });
   };
 
