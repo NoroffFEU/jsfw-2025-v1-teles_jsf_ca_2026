@@ -3,7 +3,6 @@ import {
   createSelector,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import { selectProductsById } from "./productSlice";
 import type { RootState } from "@/lib/redux/store";
 
 type CartItem = {
@@ -84,7 +83,6 @@ export const { addItem, removeItem, updateQuantity, clearCart } =
 
 export default cartSlice.reducer;
 
-// selectors;
 const selectCartItemsMap = (state: RootState) => state.cart.items;
 
 export const selectCartItemsArray = createSelector(
@@ -98,30 +96,21 @@ export const selectTotalCartQuantity = createSelector(
 );
 
 export const selectTotalPrice = createSelector(
-  [selectCartItemsArray, selectProductsById],
-  (itemsArray, productsById) =>
-    itemsArray.reduce((total, item) => {
-      const product = productsById[item.productId];
-      const itemPrice = product?.discountedPrice ?? 0;
-      return total + item.quantity * itemPrice;
-    }, 0),
+  [selectCartItemsArray],
+  (itemsArray) =>
+    itemsArray.reduce(
+      (total, item) => total + item.quantity * item.discountedPrice,
+      0,
+    ),
 );
 
 export const selectTotalOriginalPrice = createSelector(
-  [selectCartItemsArray, selectProductsById],
-  (itemsArray, productsById) =>
-    itemsArray.reduce((total, item) => {
-      const product = productsById[item.productId];
-      const itemPrice = product?.price;
-      return total + item.quantity * itemPrice;
-    }, 0),
+  [selectCartItemsArray],
+  (itemsArray) =>
+    itemsArray.reduce((total, item) => total + item.quantity * item.price, 0),
 );
 
 export const selectTotalDiscount = createSelector(
-  [selectCartItemsArray],
-  (itemsArray) =>
-    itemsArray.reduce((total, item) => {
-      const perItemDiscount = Math.max(item.price - item.discountedPrice, 0);
-      return total + perItemDiscount * item.quantity;
-    }, 0),
+  [selectTotalOriginalPrice, selectTotalPrice],
+  (original, discounted) => Math.max(original - discounted, 0),
 );
