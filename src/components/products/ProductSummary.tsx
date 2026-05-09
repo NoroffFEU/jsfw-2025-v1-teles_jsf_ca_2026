@@ -1,14 +1,15 @@
-import { useProductDetail } from "@/hooks/useProductDetail";
+import { getProductCardMeta } from "@/lib/helpers/getProductCardMeta";
 import { Badge } from "@/components/ui/badge/Badge";
 import { AddToCartButton } from "./index";
 import type { Product } from "@/services/models/product";
 
-type ProductSummaryProps = {
-  id: Product["id"];
-};
-
-export const ProductSummary = ({ id }: ProductSummaryProps) => {
-  const { product, hasDiscount, discount, hasTags } = useProductDetail(id);
+export const ProductSummary = ({ product }: { product: Product }) => {
+  const { hasDiscount, hasTags, discount } = getProductCardMeta({
+    discountedPrice: product.discountedPrice,
+    price: product.price,
+    tags: product.tags,
+    reviews: product.reviews,
+  });
 
   return (
     <div className="grid gap-2 grid-cols-1 md:grid-cols-2 pt-10 pl-2 pr-2 md:pl-20 md:pr-20 justify-self-center justify-center">

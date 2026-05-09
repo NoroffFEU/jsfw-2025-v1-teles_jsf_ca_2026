@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useProductDetail } from "@/hooks/useProductDetail";
 import { productByIdQuery } from "@/lib/helpers/productsQuery";
 import { ProductSummary, ProductReviews } from "@/components/products/index";
 import { RouteLoader } from "@/components/layout/RouteLoader";
@@ -26,12 +25,12 @@ export const Route = createFileRoute("/products/$productId")({
 });
 
 function ProductDetail() {
-  const { productId } = Route.useParams();
-  const { product, hasReviews } = useProductDetail(productId);
+  const product = Route.useLoaderData();
+  const hasReviews = product.reviews.length > 0;
 
   return (
     <>
-      <ProductSummary id={productId} />{" "}
+      <ProductSummary product={product} />{" "}
       <ProductReviews product={product} hasReviews={hasReviews} />
     </>
   );

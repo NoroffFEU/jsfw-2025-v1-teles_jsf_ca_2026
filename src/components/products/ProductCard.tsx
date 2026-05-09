@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
+import { getProductCardMeta } from "@/lib/helpers/getProductCardMeta";
 import { Card, CardContent, CardFooter } from "@/components/ui/card/Card";
 import { AddToCartButton } from "@/components/products/index";
 import { Badge } from "@/components/ui/badge/Badge";
-import { useProductDetail } from "@/hooks/useProductDetail";
 import type { Product } from "@/services/models/product";
 
 type ProductCardProps = {
@@ -10,7 +10,12 @@ type ProductCardProps = {
 };
 
 export const ProductCard = ({ item }: ProductCardProps) => {
-  const { hasDiscount, highestRating, discount } = useProductDetail(item.id);
+  const { hasDiscount, highestRating, discount } = getProductCardMeta({
+    discountedPrice: item.discountedPrice,
+    price: item.price,
+    tags: item.tags,
+    reviews: item.reviews,
+  });
 
   return (
     <Card
