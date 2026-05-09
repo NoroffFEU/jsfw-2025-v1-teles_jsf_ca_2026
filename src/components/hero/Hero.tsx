@@ -25,7 +25,7 @@ export const Hero = () => {
           <Button
             onClick={handleRemoveHero}
             variant="link"
-            className="absolute top-0 right-0 m-8 p-2 hover:bg-green-200 rounded-md z-50"
+            className="absolute top-0 right-0 m-8 p-2 hover:bg-green-200 rounded-md"
           >
             <X />
           </Button>
