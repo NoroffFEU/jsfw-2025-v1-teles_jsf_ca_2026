@@ -9,6 +9,21 @@ import { AlertBox } from "@/components/alert/AlertBox";
 import { Separator } from "@/components/ui/separator/Separator";
 import { Trash2 } from "lucide-react";
 
+/**
+ * Displays the complete shopping cart with interactive items.
+ *
+ * Renders cart items with image, pricing (with discount strikethrough),
+ * quantity controls (+/- buttons), and delete confirmation flow.
+ * Shows empty state when no items present.
+ *
+ * Integrates with `usePendingItem` for delete confirmation UX.
+ *
+ * @returns {JSX.Element} Cart display with items or empty state
+ *
+ * @example
+ * // Used in cart/checkout pages
+ * <CartDisplay />
+ */
 export const CartDisplay = () => {
   const itemsMap = useAppSelector((state) => state.cart.items);
   const dispatch = useAppDispatch();
@@ -17,7 +32,7 @@ export const CartDisplay = () => {
 
   const itemsArray = Object.values(itemsMap);
   if (itemsArray.length === 0) {
-    return <p className="mt-6 mb-4">Shopping cart is empty.</p>;
+    return <p className="mt-6 mb-4">Nothing here yet it seems...</p>;
   }
 
   return (

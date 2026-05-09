@@ -8,6 +8,21 @@ import {
 } from "@/lib/redux/slices/cartSlice";
 import { Button } from "@/components/ui/button/Button";
 
+/**
+ * Cart checkout summary with total calculation and navigation.
+ *
+ * Displays item count, total price, and "Proceed to Checkout" button.
+ * Handles brief loading state on click with navigation to checkout page.
+ * Conditionally renders button when cart has items.
+ *
+ * Uses Redux selectors for totals: `selectTotalCartQuantity`, `selectTotalPrice`.
+ *
+ * @returns {JSX.Element} Summary panel with totals and checkout button
+ *
+ * @example
+ * // Used at bottom of CartDisplay
+ * <CartSummary />
+ */
 export const CartSummary = () => {
   const totalItems = useAppSelector(selectTotalCartQuantity);
   const totalPrice = useAppSelector(selectTotalPrice);

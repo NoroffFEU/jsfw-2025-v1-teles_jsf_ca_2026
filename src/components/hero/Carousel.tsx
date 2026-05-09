@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { useCarousel } from "@/hooks/useCarousel";
 import { productsQuery } from "@/lib/helpers/productsQuery";
-import { normalizeIndex, clampIndex } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 
 type CarouselProps = {
@@ -38,26 +38,11 @@ export const Carousel = ({
     [products],
   );
 
-  const [index, setIndex] = useState(() =>
-    clampIndex(startImageIndex, slides.length),
-  );
-
-  const activeIndex =
-    slides.length === 0 ? 0 : normalizeIndex(index, slides.length);
-
-  useEffect(() => {
-    if (slides.length <= 1) return;
-
-    const autoplayId = window.setInterval(() => {
-      setIndex((prev) => normalizeIndex(prev + 1, slides.length));
-    }, autoplayDelayMs);
-
-    return () => window.clearInterval(autoplayId);
-  }, [slides.length, autoplayDelayMs]);
-
-  const setActive = (next: number) => {
-    setIndex(normalizeIndex(next, slides.length));
-  };
+  const { activeIndex, setActive } = useCarousel<Slide>({
+    items: slides,
+    startImageIndex,
+    autoplayDelayMs,
+  });
 
   const getSlideClass = (i: number) => {
     const total = slides.length;
@@ -112,7 +97,7 @@ export const Carousel = ({
               type="button"
               className="w-3 h-3 rounded-full z-10 bg-black/40 dark:bg-gray-600/40 transition aria-current:bg-black dark:aria-current:bg-white aria-current:scale-110 cursor-pointer"
               aria-label={`Slide ${i + 1}`}
-              aria-current={i === index ? "true" : "false"}
+              aria-current={i === activeIndex ? "true" : "false"}
               onClick={() => setActive(i)}
             />
           ))}

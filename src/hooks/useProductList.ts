@@ -5,6 +5,35 @@ import { PAGE_SIZE, normalize } from "@/lib/utils";
 import { Route } from "@/routes/index";
 import type { Product } from "@/services/models/product";
 
+/**
+ * Custom hook for product list with search, sorting, and pagination.
+ *
+ * Fetches all products and applies client-side filtering, sorting,
+ * and pagination based on URL search params.
+ *
+ * @returns {Object} Product list data with pagination
+ * @returns {Product[]} returns.products - All available products (unfiltered)
+ * @returns {Product[]} returns.visibleProducts - Currently visible products (paginated)
+ * @returns {number} returns.totalPages - Total number of pages
+ * @returns {number} returns.page - Current page number
+ *
+ * **Search params:**
+ * - `query`: Filters by title, tags, or description (case-insensitive)
+ * - `sort`: "priceLow", "priceHigh", "ratingHigh", "onSale"
+ * - `page`: Current page number
+ *
+ * @example
+ * const { visibleProducts, totalPages, page } = useProductList();
+ *
+ * return (
+ *   <div>
+ *     {visibleProducts.map(product => (
+ *       <ProductCard key={product.id} product={product} />
+ *     ))}
+ *     <Pagination current={page} total={totalPages} />
+ *   </div>
+ * );
+ */
 export const useProductList = () => {
   const { page, query, sort } = Route.useSearch();
   const { data } = useSuspenseQuery(productsQuery());

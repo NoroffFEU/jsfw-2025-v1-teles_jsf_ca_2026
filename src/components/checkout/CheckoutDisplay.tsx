@@ -10,6 +10,23 @@ import { AlertBox } from "@/components/alert/AlertBox";
 import { MethodPicker, CheckoutSummary } from "./index";
 import { Separator } from "@/components/ui/separator/Separator";
 
+/**
+ * Main checkout page layout with 3-column responsive design.
+ *
+ * Renders complete checkout experience:
+ * - User info & billing address (with edit links)
+ * - Compact cart items list with delete confirmation
+ * - Fixed checkout summary sidebar
+ * - Multiple quantity warning
+ *
+ * Integrates `useCheckout()` for scroll-to-alert behavior and `usePendingItem()` for deletions.
+ *
+ * @returns {JSX.Element} Full checkout layout or empty cart message
+ *
+ * @example
+ * // Main checkout page component
+ * <CheckoutDisplay />
+ */
 export const CheckoutDisplay = () => {
   const totalItems = useAppSelector(selectTotalCartQuantity);
   const { alertRef, itemsMap } = useCheckout();

@@ -14,6 +14,22 @@ import {
 type PaymentMethod = "klarna" | "vipps" | "card";
 type DeliveryMethod = "home" | "office" | "box";
 
+/**
+ * Payment and delivery method selector for checkout flow.
+ *
+ * Radio-group style picker for:
+ * - **Payment**: Klarna, Vipps, Card (Visa/Mastercard)
+ * - **Delivery**: Home, Post Office, Post Box
+ *
+ * Provides toast feedback on selection with `toast.remove()` to clear previous.
+ * Full a11y support with `role="radio"` + ARIA labels/descriptions.
+ *
+ * @returns {JSX.Element} Payment & delivery method picker UI
+ *
+ * @example
+ * // Used in CheckoutDisplay user-info section
+ * <MethodPicker />
+ */
 export const MethodPicker = () => {
   const [selectedPay, setSelectedPay] = useState<PaymentMethod | null>(null);
   const [selectedDelivery, setSelectedDelivery] =

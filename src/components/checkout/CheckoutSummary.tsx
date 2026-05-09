@@ -12,6 +12,24 @@ import { Button } from "@/components/ui/button/Button";
 import { Input } from "@/components/ui/input/input/Input";
 import { PaymentProcessing } from "./index";
 
+/**
+ * Checkout payment summary with discount breakdown and final payment trigger.
+ *
+ * Shows complete pricing breakdown:
+ * - Original price vs discounted price
+ * - Delivery fee (fixed 49 NOK)
+ * - Final total to pay
+ * - Discount code input field
+ *
+ * Integrates `usePaymentProcess()` for payment flow with loading state.
+ * Includes terms agreement link and conditional pay button.
+ *
+ * @returns {JSX.Element} Payment summary panel
+ *
+ * @example
+ * // Used in CheckoutDisplay right sidebar
+ * <CheckoutSummary />
+ */
 export const CheckoutSummary = () => {
   const totalItems = useAppSelector(selectTotalCartQuantity);
   const totalPrice = useAppSelector(selectTotalPrice);

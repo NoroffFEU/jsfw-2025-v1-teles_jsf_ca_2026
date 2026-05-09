@@ -24,7 +24,7 @@ function Checkout() {
         to="/cart"
         className="w-fit flex gap-2 items-center hover:underline"
       >
-        <ArrowLeft /> Back to shoppingbag
+        <ArrowLeft /> Back to shopping cart
       </Link>
 
       <h1 className="w-fit p-1 rounded-sm text-3xl mt-4 mb-2 font-mono bg-selection">

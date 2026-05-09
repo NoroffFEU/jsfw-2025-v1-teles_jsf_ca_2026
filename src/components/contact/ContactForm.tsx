@@ -26,6 +26,21 @@ import {
   InputGroupTextarea,
 } from "@/components/ui/input/input/InputGroup";
 
+/**
+ * Contact form with Zod validation and React Hook Form integration.
+ *
+ * Handles user inquiries with fields: email, full name, title, description (200 char limit).
+ * Provides real-time character counter, form reset, success/error toasts, and success page navigation.
+ * Full a11y with `aria-invalid`, `role="alert"` error messages.
+ *
+ * Validates via `formSchema` (Zod) with `onBlur` mode.
+ *
+ * @returns {JSX.Element} Validated contact form UI
+ *
+ * @example
+ * // Contact page main component
+ * <ContactForm />
+ */
 const ContactForm = () => {
   const navigate = useNavigate();
 
@@ -48,11 +63,6 @@ const ContactForm = () => {
 
   const onSubmit = (data: formSchemaType) => {
     try {
-      // if (import.meta.env.DEV && data.title === "fail") {
-      //   throw new Error("submit failure forced");
-      // }
-
-      // ?? await dispatch(submitContactForm(data)); --- placeholder for future implementation
       toast.success(`Message sent by: ${data.email}`);
       navigate(contactSuccessLinkOptions);
       reset();

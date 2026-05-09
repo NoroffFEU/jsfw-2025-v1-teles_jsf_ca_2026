@@ -19,6 +19,20 @@ type PaymentProcessingProps = {
   open: boolean;
 };
 
+/**
+ * Payment processing loading dialog shown during checkout.
+ *
+ * Displays spinner with total amount and "Processing payment..." status.
+ * Uses `aria-live="assertive"` for screen reader announcements.
+ * Screen-reader optimized with `sr-only` titles/descriptions.
+ *
+ * @param {boolean} open - Controls dialog visibility
+ * @returns {JSX.Element} Loading dialog during payment
+ *
+ * @example
+ * // Controlled by usePaymentProcess() hook
+ * <PaymentProcessing open={openDialog} />
+ */
 export const PaymentProcessing = ({ open }: PaymentProcessingProps) => {
   const totalPrice = useAppSelector(selectTotalPrice);
   const fixedTotal = totalPrice.toFixed(2);
