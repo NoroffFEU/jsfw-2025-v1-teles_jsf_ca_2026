@@ -72,6 +72,6 @@ export const useProductList = () => {
       (page - 1) * PAGE_SIZE,
       page * PAGE_SIZE,
     );
-    return { products, visibleProducts, totalPages, page };
+    return { products, visibleProducts, totalPages, page, query };
   }, [products, query, sort, page]);
 };

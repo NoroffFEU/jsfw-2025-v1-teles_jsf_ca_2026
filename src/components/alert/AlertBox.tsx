@@ -10,8 +10,8 @@ type AlertBoxProps = {
   action: boolean;
   title: React.ReactNode;
   description?: React.ReactNode;
-  onConfirm: () => void;
-  onCancel: () => void;
+  onConfirm?: () => void;
+  onCancel?: () => void;
 };
 
 export const AlertBox = ({
