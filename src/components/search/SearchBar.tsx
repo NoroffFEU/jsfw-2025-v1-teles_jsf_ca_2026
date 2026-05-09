@@ -1,55 +1,16 @@
-import { Field, FieldLabel } from "../ui/input/field/Field";
-import { Input } from "../ui/input/input/Input";
-import { Button } from "../ui/button/Button";
-import { useState, type ChangeEvent, type SubmitEvent } from "react";
-import { useNavigate } from "@tanstack/react-router";
-import { defaultSearch } from "@/lib/zod/searchSchema";
+import { Field, FieldLabel } from "@/components/ui/input/field/Field";
+import { Input } from "@/components/ui/input/input/Input";
+import { Button } from "@/components/ui/button/Button";
+import { useSearchBar } from "@/hooks/useSearchBar";
 
 export const SearchBar = () => {
-  const navigate = useNavigate();
-  const [inputQuery, setInputQuery] = useState("");
-  const [submittedQuery, setSubmittedQuery] = useState("");
-  const showClearSearch =
-    submittedQuery.length > 0 && inputQuery.trim() === submittedQuery;
-
-  const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const trimmedQuery = inputQuery.trim();
-    setInputQuery(trimmedQuery);
-    setSubmittedQuery(trimmedQuery);
-
-    navigate({
-      to: "/",
-      search: (prev) => ({
-        ...prev,
-        query: trimmedQuery,
-        page: 1,
-        sort: prev.sort ?? defaultSearch.sort,
-      }),
-      state: {
-        scrollToResultId: Date.now(),
-      },
-      resetScroll: false,
-    });
-  };
-
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputQuery(event.target.value);
-  };
-
-  const handleClearSearch = () => {
-    setInputQuery("");
-    setSubmittedQuery("");
-    navigate({
-      to: "/",
-      search: (prev) => ({
-        ...prev,
-        query: "",
-        page: 1,
-        sort: prev.sort ?? defaultSearch.sort,
-      }),
-    });
-  };
+  const {
+    inputQuery,
+    showClearSearch,
+    handleSubmit,
+    handleOnChange,
+    handleClearSearch,
+  } = useSearchBar();
 
   return (
     <div className="grid">
