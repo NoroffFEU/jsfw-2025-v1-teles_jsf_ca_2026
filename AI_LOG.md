@@ -50,6 +50,11 @@
 **Purpose:** Help with how to test my pendingComponent.<br/>
 **Outcome:** I configured the component in '\_\_root.tsx' as a default component, adjusted throttling in my browser but it didn't render. Learnt that for a default pending component in Tanstack Router must be configured in the `router`, as `defaultPendingComponent` instead of 'pendingComponent', which clearly is route specific.<br/>
 
+**Tool used:** Perplexity<br/>
+**Date:** 09.05.2026<br/>
+**Purpose:** Help with time consuming tasks: write JSDoc comments per my request.<br/>
+**Outcome:** Efficient workflow.<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.

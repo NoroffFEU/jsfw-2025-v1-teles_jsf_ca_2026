@@ -4,6 +4,28 @@ import { useCarousel } from "@/hooks/useCarousel";
 import { productsQuery } from "@/lib/helpers/productsQuery";
 import { Link } from "@tanstack/react-router";
 
+/**
+ * Auto-playing product image carousel.
+ *
+ * Fetches products, builds up to 5 image slides, and displays them in a looping carousel.
+ * Supports autoplay, manual slide selection, and optional configuration for the root element.
+ * Each slide links to its product detail page.
+ *
+ * @param {CarouselProps} props - Carousel configuration
+ * @param {string} [props.id="default-carousel"] - Optional DOM id for the carousel container
+ * @param {number} [props.startImageIndex=0] - Initial active slide index
+ * @param {number} [props.autoplayDelayMs=4000] - Delay between automatic slide changes in milliseconds
+ * @param {(productId: string, imageUrl: string) => void} [props.onImageClick] - Optional click handler for image interactions
+ *
+ * @returns {JSX.Element | null} Carousel UI, or null when no valid slides exist
+ *
+ * @example
+ * <Carousel
+ *   id="home-carousel"
+ *   startImageIndex={0}
+ *   autoplayDelayMs={5000}
+ * />
+ */
 type CarouselProps = {
   id?: string;
   startImageIndex?: number;
