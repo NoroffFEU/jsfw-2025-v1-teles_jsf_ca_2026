@@ -1,7 +1,6 @@
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { selectTotalCartQuantity } from "@/lib/redux/slices/cartSlice";
 import { useCheckout } from "@/hooks/useCheckout";
-import { usePendingItem } from "@/hooks/usePendingItem";
 import { user } from "@/lib/data/User";
 
 import { Button } from "@/components/ui/button/Button";
@@ -29,9 +28,14 @@ import { Separator } from "@/components/ui/separator/Separator";
  */
 export const CheckoutDisplay = () => {
   const totalItems = useAppSelector(selectTotalCartQuantity);
-  const { alertRef, itemsMap } = useCheckout();
-  const { pendingItem, setIsPendingItem, confirmDelete, cancelRemove } =
-    usePendingItem();
+  const {
+    alertRef,
+    itemsMap,
+    pendingItem,
+    setIsPendingItem,
+    confirmDelete,
+    cancelRemove,
+  } = useCheckout();
 
   const itemsArray = Object.values(itemsMap);
   if (itemsArray.length === 0) {

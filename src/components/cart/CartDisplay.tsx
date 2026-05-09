@@ -1,6 +1,5 @@
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { updateQuantity } from "@/lib/redux/slices/cartSlice";
-import { usePendingItem } from "@/hooks/usePendingItem";
 import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 
 import { CartSummary } from "@/components/cart/index";
@@ -8,6 +7,7 @@ import { Button } from "@/components/ui/button/Button";
 import { AlertBox } from "@/components/alert/AlertBox";
 import { Separator } from "@/components/ui/separator/Separator";
 import { Trash2 } from "lucide-react";
+import { useCheckout } from "@/hooks/useCheckout";
 
 /**
  * Displays the complete shopping cart with interactive items.
@@ -27,8 +27,13 @@ import { Trash2 } from "lucide-react";
 export const CartDisplay = () => {
   const itemsMap = useAppSelector((state) => state.cart.items);
   const dispatch = useAppDispatch();
-  const { pendingItem, setIsPendingItem, confirmDelete, cancelRemove } =
-    usePendingItem();
+  const {
+    alertRef,
+    pendingItem,
+    setIsPendingItem,
+    confirmDelete,
+    cancelRemove,
+  } = useCheckout();
 
   const itemsArray = Object.values(itemsMap);
   if (itemsArray.length === 0) {
@@ -38,14 +43,16 @@ export const CartDisplay = () => {
   return (
     <div className="grid gap-4 mt-6">
       {pendingItem && (
-        <AlertBox
-          open={true}
-          action={true}
-          title="Remove from cart?"
-          description="This will remove the selected product(s) from your cart."
-          onConfirm={confirmDelete}
-          onCancel={cancelRemove}
-        />
+        <div ref={alertRef}>
+          <AlertBox
+            open={true}
+            action={true}
+            title="Remove from cart?"
+            description="This will remove the selected product(s) from your cart."
+            onConfirm={confirmDelete}
+            onCancel={cancelRemove}
+          />
+        </div>
       )}
 
       <ul className="grid gap-2 w-fit sm:w-200 justify-self-center p-8 rounded-sm bg-gray-100">

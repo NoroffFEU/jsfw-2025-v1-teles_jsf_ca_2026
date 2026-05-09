@@ -1,6 +1,9 @@
 import { useRef, useEffect } from "react";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { usePendingItem } from "./usePendingItem";
+import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
+import { removeItem } from "@/lib/redux/slices/cartSlice";
+import toast from "react-hot-toast";
 
 /**
  * Custom hook for managing checkout-related UI state and behavior.
@@ -30,6 +33,7 @@ export const useCheckout = () => {
   const { pendingItem, setIsPendingItem } = usePendingItem();
   const alertRef = useRef<HTMLDivElement | null>(null);
   const itemsMap = useAppSelector((state) => state.cart.items);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!pendingItem || !alertRef.current) return;
@@ -44,10 +48,23 @@ export const useCheckout = () => {
     });
   }, [pendingItem]);
 
+  const confirmDelete = () => {
+    if (!pendingItem) return;
+    toast("Removed from cart");
+    dispatch(removeItem(pendingItem));
+    setIsPendingItem(null);
+  };
+
+  const cancelRemove = () => {
+    setIsPendingItem(null);
+  };
+
   return {
     pendingItem,
     setIsPendingItem,
     alertRef,
     itemsMap,
+    cancelRemove,
+    confirmDelete,
   };
 };
