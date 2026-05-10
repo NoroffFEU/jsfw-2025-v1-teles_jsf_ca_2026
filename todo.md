@@ -2,8 +2,6 @@
 
 ### **FEATURES**
 
-- Checkout flow missing
-  - delivery fee calculation in CheckoutSummary
 - Testing:
   - Install and wire up Vitest: https://learning.noroff.no/mod/book/view.php?id=69462&chapterid=117806
 
