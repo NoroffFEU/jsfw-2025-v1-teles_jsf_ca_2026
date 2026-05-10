@@ -3,7 +3,6 @@
 @import "@fontsource-variable/inter";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "./css/sliders.css";
 
 @layer base {
   #root {
@@ -20,6 +19,36 @@
 
   html {
     @apply font-sans;
+  }
+}
+
+@layer components {
+  .media-carousel {
+    @apply w-full relative h-56 overflow-hidden rounded-md md:h-96 dark:bg-gray-900;
+  }
+
+  .slide-default {
+    @apply absolute inset-0 transition-all duration-700 ease-in-out;
+  }
+
+  .slide-active {
+    @apply translate-x-0 scale-100 opacity-100 z-20 pointer-events-auto;
+  }
+
+  .slide-next {
+    @apply translate-x-[60%] scale-[0.8] opacity-40 z-10 pointer-events-none;
+  }
+
+  .slide-previous {
+    @apply -translate-x-[60%] scale-[0.8] opacity-40 z-10 pointer-events-none;
+  }
+
+  .slide-off-right {
+    @apply translate-x-[200%] scale-[0.9] opacity-0 z-0 pointer-events-none;
+  }
+
+  .slide-off-left {
+    @apply -translate-x-[200%] scale-[0.9] opacity-0 z-0 pointer-events-none;
   }
 }
 

@@ -55,6 +55,11 @@
 **Purpose:** Help with time consuming tasks: write JSDoc comments per my request.<br/>
 **Outcome:** Efficient workflow.<br/>
 
+**Tool used:** GPT-5.3-Codex<br/>
+**Date:** 10.05.2026<br/>
+**Purpose:** Converting existing slide styles to Tailwind @apply<br/>
+**Outcome:** Efficient workflow.<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.
