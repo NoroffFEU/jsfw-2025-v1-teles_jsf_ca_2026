@@ -23,7 +23,7 @@ export const Hero = () => {
           <Carousel />
 
           <Button
-            name="remove-hero"
+            aria-label="remove-hero"
             onClick={handleRemoveHero}
             variant="link"
             className="absolute top-0 right-0 m-8 p-2 hover:bg-green-200 rounded-md"
