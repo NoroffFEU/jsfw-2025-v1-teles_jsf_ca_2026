@@ -2,9 +2,10 @@
 
 ### **FEATURES**
 
+- Checkout flow missing
+  - delivery fee calculation in CheckoutSummary
 - Testing:
   - Install and wire up Vitest: https://learning.noroff.no/mod/book/view.php?id=69462&chapterid=117806
-- Documentation JSDoc
 
 ### **TECHNICAL**
 
@@ -15,9 +16,9 @@
 #### For future:
 
 - Checkout flow missing
-  - delivery fee calculation
   - disable or hide other delivery/payment methods when one is chosen
+- User accounts
 - Auth logic
   - register/login flow
   - auth ui
-- Skeleton loaders
+- Skeleton loaders?

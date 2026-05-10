@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
 import { paymentSuccessLinkOptions } from "@/lib/helpers/linkOptions";
+import { resetCheckoutSelection } from "@/lib/redux/slices/checkoutSlice";
 import { clearCart } from "@/lib/redux/slices/cartSlice";
 import toast from "react-hot-toast";
 
@@ -50,6 +51,7 @@ export const usePaymentProcess = () => {
       toast.success("Payment success");
       setIsDisabled(false);
       dispatch(clearCart());
+      dispatch(resetCheckoutSelection());
       navigate(paymentSuccessLinkOptions);
     }, 1500);
   };

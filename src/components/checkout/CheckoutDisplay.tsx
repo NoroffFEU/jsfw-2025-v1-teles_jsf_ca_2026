@@ -99,7 +99,7 @@ export const CheckoutDisplay = () => {
               className="grid gap-2 m-2 p-2 justify-items-center text-center"
             >
               <div className="grid grid-cols-2 items-center">
-                <h3 className="font-semibold">{item.title}</h3>
+                <h3 className="text-sm font-semibold">{item.title}</h3>
                 <Button
                   onClick={() => setIsPendingItem(item.productId)}
                   className="text-red-600 bg-transparent m-0 p-0"
@@ -125,7 +125,7 @@ export const CheckoutDisplay = () => {
           </p>
         )}
 
-        <p className="justify-self-end">
+        <p className="mt-2 justify-self-end">
           Total products: <strong>{totalItems}</strong>
         </p>
       </section>

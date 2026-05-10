@@ -1,7 +1,16 @@
-import { useState } from "react";
 import toast from "react-hot-toast";
-import { Separator } from "@/components/ui/separator/Separator";
-import { Button } from "@/components/ui/button/Button";
+import { DeliveryOptions, PaymentOptions } from "@/lib/data/index";
+import { useAppDispatch } from "@/lib/redux/hooks/useAppDispatch";
+import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
+import {
+  selectSelectedDelivery,
+  selectSelectedPayment,
+  setSelectedPayment,
+  type PaymentMethod,
+  type DeliveryMethod,
+  setSelectedDelivery,
+} from "@/lib/redux/slices/checkoutSlice";
+
 import {
   Item,
   ItemActions,
@@ -10,9 +19,8 @@ import {
   ItemMedia,
   ItemTitle,
 } from "@/components/ui/item/Item";
-
-type PaymentMethod = "klarna" | "vipps" | "card";
-type DeliveryMethod = "home" | "office" | "box";
+import { Separator } from "@/components/ui/separator/Separator";
+import { Button } from "@/components/ui/button/Button";
 
 /**
  * Payment and delivery method selector for checkout flow.
@@ -31,19 +39,19 @@ type DeliveryMethod = "home" | "office" | "box";
  * <MethodPicker />
  */
 export const MethodPicker = () => {
-  const [selectedPay, setSelectedPay] = useState<PaymentMethod | null>(null);
-  const [selectedDelivery, setSelectedDelivery] =
-    useState<DeliveryMethod | null>(null);
+  const dispatch = useAppDispatch();
+  const selectedPay = useAppSelector(selectSelectedPayment);
+  const selectedDelivery = useAppSelector(selectSelectedDelivery);
 
   const handleSelectPayment = (type: PaymentMethod) => {
     toast.remove();
-    setSelectedPay(type);
+    dispatch(setSelectedPayment(type));
     toast(`Selected payment: ${type}`);
   };
 
   const handleSelectDelivery = (type: DeliveryMethod) => {
     toast.remove();
-    setSelectedDelivery(type);
+    dispatch(setSelectedDelivery(type));
     toast(`Selected delivery: ${type}`);
   };
 
@@ -52,169 +60,79 @@ export const MethodPicker = () => {
       <h3 className="text-lg font-semibold">PAYMENT</h3>
       <h4 className="text-sm">Select your preferred payment method</h4>
       <div role="radiogroup">
-        <Item>
-          <ItemContent>
-            <ItemMedia variant="icon">
-              {" "}
-              <img
-                src="/payment-methods/klarna-rosa.jpg"
-                alt="Klarna logo"
-                className="w-20 -ml-2.5 rounded-sm"
-              />
-            </ItemMedia>
-            <ItemTitle className="sr-only" aria-label="klarna">
-              Klarna
-            </ItemTitle>
-            <ItemDescription id="desc-klarna">
-              Get your order now and pay later with Klarna invoice.
-            </ItemDescription>
-          </ItemContent>
-          <ItemActions>
-            <Button
-              role="radio"
-              aria-labelledby="klarna"
-              aria-describedby="desc-klarna"
-              aria-checked={selectedPay === "klarna"}
-              onClick={() => handleSelectPayment("klarna")}
-            >
-              Select
-            </Button>
-          </ItemActions>
-        </Item>
-
-        <Item>
-          <ItemContent>
-            <ItemMedia variant="icon">
-              {" "}
-              <img
-                src="/payment-methods/vipps-mobilepay.png"
-                alt="Vipps logo"
-                className="w-20 -ml-2.5 rounded-sm"
-              />
-            </ItemMedia>
-            <ItemTitle className="sr-only" aria-label="vipps">
-              Vipps
-            </ItemTitle>
-            <ItemDescription id="desc-vipps">
-              Easy payment with Vipps Mobile Pay.
-            </ItemDescription>
-          </ItemContent>
-          <ItemActions>
-            <Button
-              role="radio"
-              aria-labelledby="vipps"
-              aria-describedby="desc-vipps"
-              aria-checked={selectedPay === "vipps"}
-              onClick={() => handleSelectPayment("vipps")}
-            >
-              Select
-            </Button>
-          </ItemActions>
-        </Item>
-
-        <Item>
-          <ItemContent>
-            <ItemMedia variant="icon">
-              {" "}
-              <div className="grid grid-cols-2 gap-2 justify-center items-center">
-                <img
-                  src="/payment-methods/Visa-Symbol.png"
-                  alt="Visa logo"
-                  className="w-10 rounded-sm"
-                />
-                <img
-                  src="/payment-methods/Mastercard-logo-730x410.jpg"
-                  alt="Mastercard logo"
-                  className="w-10 rounded-sm"
-                />
-              </div>
-            </ItemMedia>
-            <ItemTitle className="sr-only" aria-label="card">
-              Card Payment
-            </ItemTitle>
-            <ItemDescription id="desc-card">
-              Pay with your preferred debit or mastercard.
-            </ItemDescription>
-          </ItemContent>
-          <ItemActions>
-            <Button
-              role="radio"
-              aria-labelledby="card"
-              aria-describedby="desc-card"
-              aria-checked={selectedPay === "card"}
-              onClick={() => handleSelectPayment("card")}
-            >
-              Select
-            </Button>
-          </ItemActions>
-        </Item>
+        {Object.values(PaymentOptions).map((option) => (
+          <Item key={option.id}>
+            <ItemContent>
+              <ItemMedia variant="icon">
+                {" "}
+                {Array.isArray(option.logo) ? (
+                  <div className="grid grid-cols-2 justify-center items-center">
+                    {option.logo.map((img, index) => (
+                      <img
+                        key={index}
+                        src={img.src}
+                        alt={img.alt}
+                        className="w-10 rounded-sm"
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <img
+                    src={option.logo.src}
+                    alt={option.logo.alt}
+                    className="w-20 -ml-2.5 rounded-sm"
+                  />
+                )}
+              </ItemMedia>
+              <ItemTitle className="sr-only" aria-label={option.id}>
+                {option.title}
+              </ItemTitle>
+              <ItemDescription id={option.id}>{option.desc}</ItemDescription>
+            </ItemContent>
+            <ItemActions>
+              <Button
+                role="radio"
+                aria-labelledby={option.id}
+                aria-describedby={`desc-${option.id}`}
+                aria-checked={selectedPay === option.id}
+                onClick={() => handleSelectPayment(option.id as PaymentMethod)}
+              >
+                Select
+              </Button>
+            </ItemActions>
+          </Item>
+        ))}
       </div>
 
       <Separator />
 
       <h3 className="text-lg font-semibold">DELIVERY</h3>
       <h4 className="text-sm">Select your preferred delivery method</h4>
+
       <div role="radiogroup">
-        <Item>
-          <ItemContent>
-            <ItemTitle aria-label="home">Home Delivery</ItemTitle>
-            <ItemDescription id="desc-home">
-              Your order will be delivered at your registered delivery address.
-            </ItemDescription>
-          </ItemContent>
-          <ItemActions>
-            <Button
-              role="radio"
-              aria-labelledby="home"
-              aria-describedby="desc-home"
-              aria-checked={selectedDelivery === "home"}
-              onClick={() => handleSelectDelivery("home")}
-            >
-              Select
-            </Button>
-          </ItemActions>
-        </Item>
-
-        <Item>
-          <ItemContent>
-            <ItemTitle aria-label="office">Post Office</ItemTitle>
-            <ItemDescription id="desc-office">
-              Your order will be available for pick-up at your nearest
-              post-office.
-            </ItemDescription>
-          </ItemContent>
-          <ItemActions>
-            <Button
-              role="radio"
-              aria-labelledby="office"
-              aria-describedby="desc-office"
-              aria-checked={selectedDelivery === "office"}
-              onClick={() => handleSelectDelivery("office")}
-            >
-              Select
-            </Button>
-          </ItemActions>
-        </Item>
-
-        <Item>
-          <ItemContent>
-            <ItemTitle aria-label="box"> Post Box</ItemTitle>
-            <ItemDescription id="desc-box">
-              Your order will be available for pick-up at your nearest post-box.
-            </ItemDescription>
-          </ItemContent>
-          <ItemActions>
-            <Button
-              role="radio"
-              aria-labelledby="box"
-              aria-describedby="desc-box"
-              aria-checked={selectedDelivery === "box"}
-              onClick={() => handleSelectDelivery("box")}
-            >
-              Select
-            </Button>
-          </ItemActions>
-        </Item>
+        {Object.values(DeliveryOptions).map((option) => (
+          <Item key={option.id}>
+            <ItemContent>
+              <ItemTitle aria-label={option.id}>{option.title}</ItemTitle>
+              <ItemDescription id={`desc-${option.id}`}>
+                {option.desc} NOK: {option.price},-
+              </ItemDescription>
+            </ItemContent>
+            <ItemActions>
+              <Button
+                role="radio"
+                aria-labelledby={option.id}
+                aria-describedby={option.id}
+                aria-checked={selectedDelivery === option.id}
+                onClick={() =>
+                  handleSelectDelivery(option.id as DeliveryMethod)
+                }
+              >
+                Select
+              </Button>
+            </ItemActions>
+          </Item>
+        ))}
       </div>
     </div>
   );

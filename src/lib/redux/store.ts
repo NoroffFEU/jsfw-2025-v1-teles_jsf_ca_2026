@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import cartReducer from "./slices/cartSlice";
+import checkoutReducer from "./slices/checkoutSlice";
 
 import {
   persistStore,
@@ -15,13 +16,14 @@ import storage from "redux-persist/es/storage";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
+  checkout: checkoutReducer,
 });
 
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  whitelist: ["cart"],
+  whitelist: ["cart", "checkout"],
   // blacklist: ["reducer-to-blacklist"],
 };
 

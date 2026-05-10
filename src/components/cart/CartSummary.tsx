@@ -28,7 +28,6 @@ export const CartSummary = () => {
   const totalPrice = useAppSelector(selectTotalPrice);
   const [isDisabled, setIsDisabled] = useState(false);
   const navigate = useNavigate();
-  const fixedTotal = totalPrice.toFixed(2);
 
   const handleProceedToCheckout = () => {
     setIsDisabled(true);
@@ -47,7 +46,7 @@ export const CartSummary = () => {
           Total products: <strong>{totalItems}</strong>
         </p>
         <p>
-          Total price: <strong>{fixedTotal} NOK</strong>
+          Total price: <strong>{totalPrice} NOK</strong>
         </p>
       </div>
 

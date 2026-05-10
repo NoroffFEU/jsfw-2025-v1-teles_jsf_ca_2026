@@ -35,7 +35,6 @@ type PaymentProcessingProps = {
  */
 export const PaymentProcessing = ({ open }: PaymentProcessingProps) => {
   const totalPrice = useAppSelector(selectTotalPrice);
-  const fixedTotal = totalPrice.toFixed(2);
   return (
     <Dialog open={open}>
       <DialogContent>
@@ -53,7 +52,7 @@ export const PaymentProcessing = ({ open }: PaymentProcessingProps) => {
                 </ItemTitle>
               </ItemContent>
               <ItemContent className="flex-none justify-end">
-                <span className="text-sm tabular-nums">{fixedTotal} NOK</span>
+                <span className="text-sm tabular-nums">{totalPrice} NOK</span>
               </ItemContent>
             </Item>
           </div>

@@ -11,13 +11,18 @@ import {
 import { Button } from "@/components/ui/button/Button";
 import { Input } from "@/components/ui/input/input/Input";
 import { PaymentProcessing } from "./index";
+import {
+  selectSelectedDelivery,
+  selectSelectedDeliveryFee,
+} from "@/lib/redux/slices/checkoutSlice";
+import { DeliveryOptions } from "@/lib/data";
 
 /**
  * Checkout payment summary with discount breakdown and final payment trigger.
  *
  * Shows complete pricing breakdown:
  * - Original price vs discounted price
- * - Delivery fee (fixed 49 NOK)
+ * - Delivery fee
  * - Final total to pay
  * - Discount code input field
  *
@@ -33,10 +38,10 @@ import { PaymentProcessing } from "./index";
 export const CheckoutSummary = () => {
   const totalItems = useAppSelector(selectTotalCartQuantity);
   const totalPrice = useAppSelector(selectTotalPrice);
-  const fixedTotal = totalPrice.toFixed(2);
-  const originalPrice = useAppSelector(selectTotalOriginalPrice).toFixed(2);
-  const discount = useAppSelector(selectTotalDiscount).toFixed(2);
-  const deliveryFee = 49;
+  const originalPrice = useAppSelector(selectTotalOriginalPrice);
+  const discount = useAppSelector(selectTotalDiscount);
+  const deliveryFee = useAppSelector(selectSelectedDeliveryFee);
+  const selectedDelivery = useAppSelector(selectSelectedDelivery);
   const totalPriceToPay = totalPrice + deliveryFee;
 
   const { handlePaymentProcess, openDialog, isDisabled } = usePaymentProcess();
@@ -59,18 +64,23 @@ export const CheckoutSummary = () => {
         </div>
         <div className="flex justify-between">
           <p>Price after discount:</p>
-          <span>{fixedTotal},-</span>
+          <span>{totalPrice},-</span>
         </div>
         <div className="flex justify-between">
           <p>Delivery fee:</p>
           <span>{deliveryFee},-</span>
         </div>
+        {selectedDelivery && (
+          <p className="text-xs">
+            Delivery method: {DeliveryOptions[selectedDelivery].title}
+          </p>
+        )}
 
         <h3 className="font-bold mt-6 pt-6 border-t-2 border-t-black">
           Payment Summary
         </h3>
         <p>
-          Total: <strong>{totalPriceToPay.toFixed(2)} NOK</strong>
+          Total: <strong>{totalPriceToPay} NOK</strong>
         </p>
 
         <p className="text-xs">

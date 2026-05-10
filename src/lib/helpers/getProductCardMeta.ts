@@ -20,9 +20,8 @@ export const getProductCardMeta = ({
     reviews?.length > 0
       ? Math.max(...reviews.map((rev) => rev.rating))
       : "Not rated";
-  const discountPercentage =
-    price > 0 ? ((price - discountedPrice) / price) * 100 : 0;
-  const discount = discountPercentage.toFixed(0);
+  const discount =
+    price > 0 ? Math.floor(((price - discountedPrice) / price) * 100) : 0;
 
   return {
     hasDiscount,
