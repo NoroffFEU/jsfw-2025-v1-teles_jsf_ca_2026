@@ -26,6 +26,7 @@
 - Tanstack router
 - Tanstack Query
 - Zod
+- Redux Toolkit
 - Tailwind (styles)
   - Lucide Icons
   - shadcn component and styling principles

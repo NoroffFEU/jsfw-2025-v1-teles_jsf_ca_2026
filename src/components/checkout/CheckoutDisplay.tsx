@@ -8,6 +8,7 @@ import { Trash2 } from "lucide-react";
 import { AlertBox } from "@/components/alert/AlertBox";
 import { MethodPicker, CheckoutSummary } from "./index";
 import { Separator } from "@/components/ui/separator/Separator";
+import toast from "react-hot-toast";
 
 /**
  * Main checkout page layout with 3-column responsive design.
@@ -44,6 +45,11 @@ export const CheckoutDisplay = () => {
 
   const hasMultipleItems = itemsArray.some((item) => item.quantity > 1);
 
+  const handleClickEdit = () => {
+    toast.remove();
+    toast("Feature coming soon...");
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
       <section id="user-info" className="grid gap-6">
@@ -52,6 +58,7 @@ export const CheckoutDisplay = () => {
           <p>{user.name}</p>
           <p>{user.email}</p>
           <Button
+            onClick={handleClickEdit}
             variant="link"
             className="w-fit p-0 underline hover:no-underline cursor-pointer"
           >
@@ -68,6 +75,7 @@ export const CheckoutDisplay = () => {
           <p>{user.city}</p>
           <p>{user.country}</p>
           <Button
+            onClick={handleClickEdit}
             variant="link"
             className="w-fit p-0 underline hover:no-underline cursor-pointer"
           >
