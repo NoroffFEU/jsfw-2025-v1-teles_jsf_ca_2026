@@ -104,6 +104,8 @@ export const Carousel = ({
                 id={`carousel-image-${i}`}
                 src={slide.src}
                 alt={slide.alt}
+                loading="lazy"
+                fetchPriority="high"
                 className="absolute inset-0 block w-full h-full object-cover rounded cursor-pointer"
               />
             </Link>
