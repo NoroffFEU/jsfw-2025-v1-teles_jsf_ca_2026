@@ -5,13 +5,19 @@ export const Footer = () => {
   const url = "https://telecasternilsen.com";
 
   return (
-    <footer className="w-full mt-12 justify-self-center justify-items-center">
+    <footer className="w-full mt-12">
       <Separator className="w-full" />
-      <div className="mt-4">
-        &copy; {currentYear} -{" "}
-        <a href={url} className="hover:underline">
-          Devtones Studio
-        </a>
+
+      <div className="flex flex-col items-center md:flex-row md:justify-between w-full p-4 mt-4 text-sm">
+        <div className="flex gap-2 items-center">
+          <img className="w-15" src="/ShopNet.svg" /> All rights reserved.
+        </div>
+        <div>
+          &copy; {currentYear} -{" "}
+          <a href={url} className="hover:underline">
+            Devtones Studio
+          </a>
+        </div>
       </div>
     </footer>
   );
