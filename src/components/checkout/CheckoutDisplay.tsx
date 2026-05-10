@@ -116,11 +116,12 @@ export const CheckoutDisplay = () => {
                 </Button>
               </div>
 
-              <div className="flex w-40 h-40 overflow-hidden">
+              <div className="flex w-full overflow-hidden">
                 <img
                   src={item.image.url}
                   alt={item.image.alt}
-                  className="w-full rounded-xs object-cover"
+                  fetchPriority="high"
+                  className="w-40 h-40 rounded-xs object-cover"
                 />
               </div>
             </li>

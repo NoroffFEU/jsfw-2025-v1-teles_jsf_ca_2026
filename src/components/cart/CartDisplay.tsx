@@ -58,15 +58,18 @@ export const CartDisplay = () => {
       <ul className="grid gap-2 w-fit sm:w-200 justify-self-center p-8 rounded-sm bg-gray-100">
         {itemsArray.map((item) => {
           const hasDiscount = item.discountedPrice < item.price;
-
           return (
-            <li key={item.productId} className="grid gap-2 m-2 p-2">
+            <li
+              key={item.productId}
+              className="grid gap-2 m-2 p-2 justify-items-center"
+            >
               <h2 className="font-semibold">{item.title}</h2>
-              <div className="flex w-40 h-40 overflow-hidden">
+              <div className="flex w-full overflow-hidden">
                 <img
                   src={item.image.url}
                   alt={item.image.alt}
-                  className="w-full rounded-xs object-cover"
+                  fetchPriority="high"
+                  className="w-40 h-40 rounded-xs object-cover"
                 />
               </div>
               {!hasDiscount && (

@@ -20,6 +20,10 @@
   html {
     @apply font-sans;
   }
+
+  img {
+    @apply block-auto max-inline-full;
+  }
 }
 
 @layer components {

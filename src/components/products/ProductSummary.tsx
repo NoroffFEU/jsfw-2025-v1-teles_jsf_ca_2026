@@ -16,7 +16,8 @@ export const ProductSummary = ({ product }: { product: Product }) => {
       <img
         src={product.image.url}
         alt={product.title}
-        className="w-80 m-4 justify-self-center rounded-sm hover:scale-102 shadow-xl transition duration-200"
+        fetchPriority="high"
+        className="w-80 h-auto m-4 justify-self-center rounded-sm hover:scale-102 shadow-xl transition duration-200"
       />
       <div className="grid gap-4 w-80 justify-self-center">
         <h1 className="text-4xl font-bold">{product.title}</h1>

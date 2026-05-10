@@ -10,8 +10,13 @@ export const Footer = () => {
 
       <div className="flex flex-col items-center md:flex-row md:justify-between w-full p-4 mt-4 text-sm">
         <div className="flex gap-2 items-center">
-          <img className="w-15" src="/ShopNet.svg" alt="Shopnet logo" /> All
-          rights reserved.
+          <img
+            className="w-15 h-auto"
+            src="/ShopNet.svg"
+            alt="Shopnet logo"
+            fetchPriority="high"
+          />{" "}
+          All rights reserved.
         </div>
         <div>
           &copy; {currentYear} -{" "}

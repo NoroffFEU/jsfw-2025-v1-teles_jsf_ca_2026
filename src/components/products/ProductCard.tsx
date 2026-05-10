@@ -40,7 +40,8 @@ export const ProductCard = ({ item }: ProductCardProps) => {
             <img
               src={item.image.url}
               alt={item.image.alt}
-              className="w-full rounded-xs object-cover cursor-pointer"
+              fetchPriority="high"
+              className="w-full h-auto rounded-xs object-cover cursor-pointer"
             />
           </div>
         </Link>

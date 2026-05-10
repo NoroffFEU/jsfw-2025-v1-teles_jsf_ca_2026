@@ -72,7 +72,8 @@ export const MethodPicker = () => {
                         key={index}
                         src={img.src}
                         alt={img.alt}
-                        className="w-10 rounded-sm"
+                        fetchPriority="high"
+                        className="w-10 h-auto rounded-sm"
                       />
                     ))}
                   </div>
@@ -80,7 +81,7 @@ export const MethodPicker = () => {
                   <img
                     src={option.logo.src}
                     alt={option.logo.alt}
-                    className="w-20 -ml-2.5 rounded-sm"
+                    className="w-20 h-auto -ml-2.5 rounded-sm"
                   />
                 )}
               </ItemMedia>
