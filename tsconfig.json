@@ -2,11 +2,12 @@
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    { "path": "./tsconfig.node.json" },
   ],
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+      "@/*": ["./src/*", "vite.config.ts", "src/test/setup.ts"],
+    },
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"],
+  },
 }
