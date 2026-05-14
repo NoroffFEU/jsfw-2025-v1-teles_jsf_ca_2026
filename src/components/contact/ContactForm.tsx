@@ -80,7 +80,7 @@ const ContactForm = () => {
         <CardDescription>Let us know what's on your mind.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form id="contact-form" onSubmit={handleSubmit(onSubmit)}>
+        <form id="contact-form" role="form" onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup>
             <Field data-invalid={!!errors.email}>
               <FieldLabel htmlFor="email">Email</FieldLabel>
@@ -139,6 +139,7 @@ const ContactForm = () => {
 
           <Field orientation="horizontal" className="justify-end p-4">
             <Button
+              role="button"
               type="button"
               variant="outline"
               onClick={() => reset()}
@@ -147,6 +148,7 @@ const ContactForm = () => {
               Reset
             </Button>
             <Button
+              role="button"
               type="submit"
               className="hover:brightness-90 cursor-pointer"
             >

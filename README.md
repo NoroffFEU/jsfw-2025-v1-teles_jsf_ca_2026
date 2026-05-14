@@ -107,6 +107,7 @@ This application is deployed with Netlify, as a sub-domain to: `telecasternilsen
 - [vitest toMatchObject calls](https://stackoverflow.com/questions/47953305/jest-passing-an-object-to-expect-tobecalledwith)
 - [redux selector testing](https://dev.to/cathyc93/testing-redux-selectors-with-resultfunc-5c11)
 - [vitest act usage on custom hooks](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning)
+- [vitest hoisted](https://vitest.dev/api/vi.html#vi-hoisted)
 
 
 ---
