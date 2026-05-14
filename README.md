@@ -101,6 +101,8 @@ This application is deployed with Netlify, as a sub-domain to: `telecasternilsen
 - [react-hook-form](https://react-hook-form.com/docs/)
 - [useWatch - react-hook-form](https://medium.com/@vmaineng/how-i-implemented-zod-and-react-hook-form-for-register-component-and-lessons-i-ve-learned-3a51c4dd3894)
 - [fetchpriority](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/fetchpriority)
+- [clamping](https://www.omarileon.me/blog/javascript-clamp)
+- [vitest](https://vitest.dev/guide/)
 
 ---
 
