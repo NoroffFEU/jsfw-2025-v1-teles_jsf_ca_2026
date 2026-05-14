@@ -6,6 +6,7 @@ import {
   selectTotalCartQuantity,
   selectTotalPrice,
 } from "@/lib/redux/slices/cartSlice";
+import { formatCurrency } from "@/lib/helpers/formatCurrency";
 import { Button } from "@/components/ui/button/Button";
 
 /**
@@ -46,7 +47,7 @@ export const CartSummary = () => {
           Total products: <strong>{totalItems}</strong>
         </p>
         <p>
-          Total price: <strong>{totalPrice} NOK</strong>
+          Total price: <strong>{formatCurrency(totalPrice)}</strong>
         </p>
       </div>
 

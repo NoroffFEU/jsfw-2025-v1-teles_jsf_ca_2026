@@ -8,6 +8,7 @@ import { AlertBox } from "@/components/alert/AlertBox";
 import { Separator } from "@/components/ui/separator/Separator";
 import { Trash2 } from "lucide-react";
 import { useCheckout } from "@/hooks/useCheckout";
+import { formatCurrency } from "@/lib/helpers/formatCurrency";
 
 /**
  * Displays the complete shopping cart with interactive items.
@@ -74,7 +75,8 @@ export const CartDisplay = () => {
               </div>
               {!hasDiscount && (
                 <p>
-                  <span className="font-bold">Price:</span> {item.price} NOK
+                  <span className="font-bold">Price:</span>{" "}
+                  {formatCurrency(item.price)}
                 </p>
               )}
               {hasDiscount && (
@@ -82,11 +84,11 @@ export const CartDisplay = () => {
                   <p className="font-bold">
                     Discount price:{" "}
                     <span className="text-green-700 font-bold">
-                      {item.discountedPrice} NOK
+                      {formatCurrency(item.discountedPrice)}
                     </span>
                   </p>
                   <s className="text-xs text-gray-800">
-                    Original price: {item.price} NOK
+                    Original price: {formatCurrency(item.price)}
                   </s>
                 </div>
               )}

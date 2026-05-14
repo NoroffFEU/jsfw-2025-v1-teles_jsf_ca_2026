@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card/Card";
 import { AddToCartButton } from "@/components/products/index";
 import { Badge } from "@/components/ui/badge/Badge";
 import type { Product } from "@/services/models/product";
+import { formatCurrency } from "@/lib/helpers/formatCurrency";
 
 type ProductCardProps = {
   item: Product;
@@ -67,7 +68,8 @@ export const ProductCard = ({ item }: ProductCardProps) => {
         </p>
         {!hasDiscount && (
           <p>
-            <span className="font-bold">Price:</span> {item.price} NOK
+            <span className="font-bold">Price:</span>{" "}
+            {formatCurrency(item.price)}
           </p>
         )}
         {hasDiscount && (
@@ -75,11 +77,11 @@ export const ProductCard = ({ item }: ProductCardProps) => {
             <p className="font-bold">
               Discount price:{" "}
               <span className="text-green-700 font-bold">
-                {item.discountedPrice} NOK
+                {formatCurrency(item.discountedPrice)}
               </span>
             </p>
             <s className="text-xs text-gray-800">
-              Original price: {item.price} NOK
+              Original price: {formatCurrency(item.price)}
             </s>
           </div>
         )}

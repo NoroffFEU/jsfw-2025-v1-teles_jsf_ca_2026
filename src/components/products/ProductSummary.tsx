@@ -2,6 +2,7 @@ import { getProductCardMeta } from "@/lib/helpers/getProductCardMeta";
 import { Badge } from "@/components/ui/badge/Badge";
 import { AddToCartButton } from "./index";
 import type { Product } from "@/services/models/product";
+import { formatCurrency } from "@/lib/helpers/formatCurrency";
 
 export const ProductSummary = ({ product }: { product: Product }) => {
   const { hasDiscount, hasTags, discount } = getProductCardMeta({
@@ -35,7 +36,8 @@ export const ProductSummary = ({ product }: { product: Product }) => {
 
         {!hasDiscount && (
           <p>
-            <span className="font-bold">Price:</span> {product.price} NOK
+            <span className="font-bold">Price:</span>{" "}
+            {formatCurrency(product.price)}
           </p>
         )}
 
@@ -44,11 +46,11 @@ export const ProductSummary = ({ product }: { product: Product }) => {
             <p className="font-bold">
               Discount price:{" "}
               <span className="text-green-700 font-bold">
-                {product.discountedPrice} NOK
+                {formatCurrency(product.discountedPrice)}
               </span>
             </p>
             <s className="text-xs text-gray-800">
-              Original price: {product.price} NOK
+              Original price: {formatCurrency(product.price)}
             </s>
           </div>
         )}

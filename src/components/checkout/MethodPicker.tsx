@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/item/Item";
 import { Separator } from "@/components/ui/separator/Separator";
 import { Button } from "@/components/ui/button/Button";
+import { formatCurrency } from "@/lib/helpers/formatCurrency";
 
 /**
  * Payment and delivery method selector for checkout flow.
@@ -116,7 +117,7 @@ export const MethodPicker = () => {
             <ItemContent>
               <ItemTitle aria-label={option.id}>{option.title}</ItemTitle>
               <ItemDescription id={`desc-${option.id}`}>
-                {option.desc} NOK: {option.price},-
+                {option.desc}: {formatCurrency(option.price)}
               </ItemDescription>
             </ItemContent>
             <ItemActions>

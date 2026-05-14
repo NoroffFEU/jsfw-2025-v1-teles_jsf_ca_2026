@@ -7,6 +7,7 @@ import {
   selectTotalOriginalPrice,
   selectTotalPrice,
 } from "@/lib/redux/slices/cartSlice";
+import { formatCurrency } from "@/lib/helpers/formatCurrency";
 
 import { Button } from "@/components/ui/button/Button";
 import { Input } from "@/components/ui/input/input/Input";
@@ -56,19 +57,19 @@ export const CheckoutSummary = () => {
         </p>
         <div className="flex justify-between">
           <p>Original price:</p>
-          <span>{originalPrice},-</span>
+          <span>{formatCurrency(originalPrice)}</span>
         </div>
         <div className="flex justify-between">
           <p>Discount:</p>
-          <span>-{discount},-</span>
+          <span>-{formatCurrency(discount)}</span>
         </div>
         <div className="flex justify-between">
           <p>Price after discount:</p>
-          <span>{totalPrice},-</span>
+          <span>{formatCurrency(totalPrice)}</span>
         </div>
         <div className="flex justify-between">
           <p>Delivery fee:</p>
-          <span>{deliveryFee},-</span>
+          <span>{formatCurrency(deliveryFee)}</span>
         </div>
         {selectedDelivery && (
           <p className="text-xs">
@@ -80,7 +81,7 @@ export const CheckoutSummary = () => {
           Payment Summary
         </h3>
         <p>
-          Total: <strong>{totalPriceToPay} NOK</strong>
+          Total: <strong>{formatCurrency(totalPriceToPay)}</strong>
         </p>
 
         <p className="text-xs">

@@ -14,6 +14,7 @@ import {
 import { Spinner } from "@/components/ui/spinner/Spinner";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { selectTotalPrice } from "@/lib/redux/slices/cartSlice";
+import { formatCurrency } from "@/lib/helpers/formatCurrency";
 
 type PaymentProcessingProps = {
   open: boolean;
@@ -52,7 +53,9 @@ export const PaymentProcessing = ({ open }: PaymentProcessingProps) => {
                 </ItemTitle>
               </ItemContent>
               <ItemContent className="flex-none justify-end">
-                <span className="text-sm tabular-nums">{totalPrice} NOK</span>
+                <span className="text-sm tabular-nums">
+                  {formatCurrency(totalPrice)}
+                </span>
               </ItemContent>
             </Item>
           </div>
