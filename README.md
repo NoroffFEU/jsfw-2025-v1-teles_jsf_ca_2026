@@ -103,6 +103,11 @@ This application is deployed with Netlify, as a sub-domain to: `telecasternilsen
 - [fetchpriority](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/fetchpriority)
 - [clamping](https://www.omarileon.me/blog/javascript-clamp)
 - [vitest](https://vitest.dev/guide/)
+- [vitest mocking](https://vitest.dev/guide/mocking/functions.html)
+- [vitest toMatchObject calls](https://stackoverflow.com/questions/47953305/jest-passing-an-object-to-expect-tobecalledwith)
+- [redux selector testing](https://dev.to/cathyc93/testing-redux-selectors-with-resultfunc-5c11)
+- [vitest act usage on custom hooks](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning)
+
 
 ---
 
