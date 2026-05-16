@@ -15,6 +15,7 @@ import { Spinner } from "@/components/ui/spinner/Spinner";
 import { useAppSelector } from "@/lib/redux/hooks/useAppSelector";
 import { selectTotalPrice } from "@/lib/redux/slices/cartSlice";
 import { formatCurrency } from "@/lib/helpers/formatCurrency";
+import { selectSelectedDeliveryFee } from "@/lib/redux/slices/checkoutSlice";
 
 type PaymentProcessingProps = {
   open: boolean;
@@ -36,6 +37,8 @@ type PaymentProcessingProps = {
  */
 export const PaymentProcessing = ({ open }: PaymentProcessingProps) => {
   const totalPrice = useAppSelector(selectTotalPrice);
+  const deliveryFee = useAppSelector(selectSelectedDeliveryFee);
+  const totalPriceToPay = totalPrice + deliveryFee;
   return (
     <Dialog open={open}>
       <DialogContent>
@@ -54,7 +57,7 @@ export const PaymentProcessing = ({ open }: PaymentProcessingProps) => {
               </ItemContent>
               <ItemContent className="flex-none justify-end">
                 <span className="text-sm tabular-nums">
-                  {formatCurrency(totalPrice)}
+                  {formatCurrency(totalPriceToPay)}
                 </span>
               </ItemContent>
             </Item>
