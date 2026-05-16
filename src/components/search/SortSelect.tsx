@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/select/select";
 import { useNavigate } from "@tanstack/react-router";
 import { Route } from "@/routes/index";
-import { defaultSearch, type ProductSort } from "@/lib/zod/searchSchema";
+import { isProductSort } from "@/lib/zod/searchSchema";
 
 type SortSelectProps = {
   id: string;
@@ -27,12 +27,13 @@ export const SortSelect = ({ id }: SortSelectProps) => {
       <Select
         value={sort}
         onValueChange={(nextSort) => {
+          if (!isProductSort(nextSort)) return;
           navigate({
             to: "/",
             search: (prev) => ({
               page: 1,
-              query: prev.query ?? defaultSearch.query,
-              sort: (nextSort as ProductSort) ?? defaultSearch.sort,
+              query: prev.query,
+              sort: nextSort,
             }),
             state: {
               scrollToResultId: Date.now(),

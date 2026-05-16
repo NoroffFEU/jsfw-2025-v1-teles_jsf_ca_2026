@@ -6,10 +6,9 @@ import {
   selectSelectedDelivery,
   selectSelectedPayment,
   setSelectedPayment,
-  type PaymentMethod,
-  type DeliveryMethod,
   setSelectedDelivery,
 } from "@/lib/redux/slices/checkoutSlice";
+import type { PaymentMethod, DeliveryMethod } from "@/lib/data/index";
 
 import {
   Item,
@@ -66,38 +65,36 @@ export const MethodPicker = () => {
             <ItemContent>
               <ItemMedia variant="icon">
                 {" "}
-                {Array.isArray(option.logo) ? (
-                  <div className="grid grid-cols-2 justify-center items-center">
-                    {option.logo.map((img, index) => (
-                      <img
-                        key={index}
-                        src={img.src}
-                        alt={img.alt}
-                        fetchPriority="high"
-                        className="w-10 h-auto rounded-sm"
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <img
-                    src={option.logo.src}
-                    alt={option.logo.alt}
-                    className="w-20 h-auto -ml-2.5 rounded-sm"
-                  />
-                )}
+                <div className="grid grid-cols-2 justify-center items-center">
+                  {option.logo.map((img) => (
+                    <img
+                      key={img.src}
+                      src={img.src}
+                      alt={img.alt}
+                      fetchPriority="high"
+                      className="w-10 h-auto rounded-sm"
+                    />
+                  ))}
+                </div>
               </ItemMedia>
-              <ItemTitle className="sr-only" aria-label={option.id}>
+              <ItemTitle
+                className="sr-only"
+                id={`title-${option.id}`}
+                aria-label={option.id}
+              >
                 {option.title}
               </ItemTitle>
-              <ItemDescription id={option.id}>{option.desc}</ItemDescription>
+              <ItemDescription id={`desc-${option.id}`}>
+                {option.desc}
+              </ItemDescription>
             </ItemContent>
             <ItemActions>
               <Button
                 role="radio"
-                aria-labelledby={option.id}
+                aria-labelledby={`title-${option.id}`}
                 aria-describedby={`desc-${option.id}`}
                 aria-checked={selectedPay === option.id}
-                onClick={() => handleSelectPayment(option.id as PaymentMethod)}
+                onClick={() => handleSelectPayment(option.id)}
               >
                 Select
               </Button>
@@ -115,7 +112,9 @@ export const MethodPicker = () => {
         {Object.values(DeliveryOptions).map((option) => (
           <Item key={option.id}>
             <ItemContent>
-              <ItemTitle aria-label={option.id}>{option.title}</ItemTitle>
+              <ItemTitle id={`title-${option.id}`} aria-label={option.id}>
+                {option.title}
+              </ItemTitle>
               <ItemDescription id={`desc-${option.id}`}>
                 {option.desc}: {formatCurrency(option.price)}
               </ItemDescription>
@@ -123,12 +122,10 @@ export const MethodPicker = () => {
             <ItemActions>
               <Button
                 role="radio"
-                aria-labelledby={option.id}
-                aria-describedby={option.id}
+                aria-labelledby={`title-${option.id}`}
+                aria-describedby={`desc-${option.id}`}
                 aria-checked={selectedDelivery === option.id}
-                onClick={() =>
-                  handleSelectDelivery(option.id as DeliveryMethod)
-                }
+                onClick={() => handleSelectDelivery(option.id)}
               >
                 Select
               </Button>

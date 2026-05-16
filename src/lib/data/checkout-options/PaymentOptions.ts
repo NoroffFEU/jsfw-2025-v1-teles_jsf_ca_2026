@@ -3,13 +3,13 @@ export const PaymentOptions = {
     id: "klarna",
     title: "Klarna",
     desc: "Get your order now and pay later with Klarna invoice.",
-    logo: { src: "/payment-methods/klarna-rosa.jpg", alt: "Klarna logo" },
+    logo: [{ src: "/payment-methods/klarna-rosa.jpg", alt: "Klarna logo" }],
   },
   vipps: {
     id: "vipps",
     title: "Vipps",
     desc: "Easy payment with Vipps Mobile Pay.",
-    logo: { src: "/payment-methods/vipps-mobilepay.png", alt: "Vipps logo" },
+    logo: [{ src: "/payment-methods/vipps-mobilepay.png", alt: "Vipps logo" }],
   },
   card: {
     id: "card",
@@ -23,4 +23,6 @@ export const PaymentOptions = {
       },
     ],
   },
-};
+} as const;
+
+export type PaymentMethod = keyof typeof PaymentOptions;

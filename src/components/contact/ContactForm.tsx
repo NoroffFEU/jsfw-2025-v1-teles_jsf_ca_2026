@@ -85,6 +85,7 @@ const ContactForm = () => {
             <Field data-invalid={!!errors.email}>
               <FieldLabel htmlFor="email">Email</FieldLabel>
               <Input
+                id="email"
                 {...register("email")}
                 aria-invalid={!!errors.email}
                 placeholder="Email..."
@@ -96,6 +97,7 @@ const ContactForm = () => {
             <Field data-invalid={!!errors.fullname}>
               <FieldLabel htmlFor="fullname">Full Name</FieldLabel>
               <Input
+                id="fullname"
                 {...register("fullname")}
                 aria-invalid={!!errors.fullname}
                 placeholder="Full Name..."
@@ -107,6 +109,7 @@ const ContactForm = () => {
             <Field data-invalid={!!errors.title}>
               <FieldLabel htmlFor="title">Title</FieldLabel>
               <Input
+                id="title"
                 {...register("title")}
                 aria-invalid={!!errors.title}
                 placeholder="Title..."
@@ -119,6 +122,7 @@ const ContactForm = () => {
               <FieldLabel htmlFor="description">Description</FieldLabel>
               <InputGroup>
                 <InputGroupTextarea
+                  id="description"
                   {...register("description")}
                   placeholder="Write your inquiry here..."
                   rows={6}

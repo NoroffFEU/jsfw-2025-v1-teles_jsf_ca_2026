@@ -4,10 +4,12 @@ import {
   type PayloadAction,
 } from "@reduxjs/toolkit";
 import type { RootState } from "@/lib/redux/store";
-import { DeliveryOptions, PaymentOptions } from "@/lib/data";
+import {
+  DeliveryOptions,
+  type DeliveryMethod,
+  type PaymentMethod,
+} from "@/lib/data";
 
-export type DeliveryMethod = keyof typeof DeliveryOptions;
-export type PaymentMethod = keyof typeof PaymentOptions;
 type CheckoutState = {
   selectedDelivery: DeliveryMethod | null;
   selectedPayment: PaymentMethod | null;

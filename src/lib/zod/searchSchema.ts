@@ -1,13 +1,27 @@
 import z from "zod";
 
-const sortValues = ["newest", "onSale", "ratingHigh", "priceLow", "priceHigh"];
+const sortValues = [
+  "newest",
+  "onSale",
+  "ratingHigh",
+  "priceLow",
+  "priceHigh",
+] as const;
 
 export type ProductSort = (typeof sortValues)[number];
+export const isProductSort = (value: string): value is ProductSort =>
+  (sortValues as readonly string[]).includes(value);
 
-export const defaultSearch = {
+type DefaultSearchProps = {
+  page: number;
+  query: string;
+  sort: ProductSort;
+};
+
+export const defaultSearch: DefaultSearchProps = {
   page: 1,
   query: "",
-  sort: "newest" as ProductSort,
+  sort: "newest",
 };
 
 export const searchSchema = z.object({

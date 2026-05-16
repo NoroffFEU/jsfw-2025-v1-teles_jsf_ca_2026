@@ -20,4 +20,6 @@ export const DeliveryOptions = {
     price: 49,
     deliveryTime: "2-3 days",
   },
-};
+} as const;
+
+export type DeliveryMethod = keyof typeof DeliveryOptions;
