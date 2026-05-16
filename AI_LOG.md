@@ -60,6 +60,21 @@
 **Purpose:** Converting existing slide styles to Tailwind @apply<br/>
 **Outcome:** Efficient workflow.<br/>
 
+**Tool used:** GPT-5.3-Codex<br/>
+**Date:** 13.05.2026<br/>
+**Purpose:** Make a list of features/components to write tests for.<br/>
+**Outcome:** Understanding which parts of the application should be tested with Vitest/Playwright. Efficient workflow by following a list of filenames.<br/>
+
+**Tool used:** GPT-5.3-Codex<br/>
+**Date:** 15.05.2026<br/>
+**Purpose:** Understanding what went wrong when using a shared mocks file for tests.<br/>
+**Outcome:** Learnt that hoisted mocks should also be imported first(obviously) and fixed an import mismatch where I did not import `toast` with default in ContactForm, causing the test to fail when using the shared mocks file.<br/>
+
+**Tool used:** Perplexity<br/>
+**Date:** 16.05.2026<br/>
+**Purpose:** Made it generate a generic accessibility commitment article.<br/>
+**Outcome:** Efficient workflow.<br/>
+
 ---
 
 **<u>All</u>** decisions and code implementations in this project are performed by me.

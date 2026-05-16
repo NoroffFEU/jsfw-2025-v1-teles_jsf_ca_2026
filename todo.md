@@ -1,12 +1,5 @@
 # TO DO
 
-### **TECHNICAL**
-
-- Tests (units + e2e)
-
-### FIX BUGS
-- Total price in checkout decimals are on acid
-
 #### Delivery
 
 - PDF written reflection
@@ -16,14 +9,23 @@
 
 --
 
-#### For future:
+#### Remaining for future:
 
-- Checkout flow missing
-  - disable or hide other delivery/payment methods when one is chosen
+UI
+- Checkout flow
+  - disable or hide delivery/payment methods when one is chosen
   - user and billing info input logic
-- User accounts
-- Order history
 - Auth logic
-  - register/login flow
-  - auth ui
+  - Register/login flow
+  - User accounts
+  - Order history
 - Skeleton loaders?
+
+TECHNICAL
+- e2e tests with Playwright:
+  - Browse, search, sort and pagination
+  - Product details route + add to cart
+  - Cart flow and checkout flow
+  - Payment success and failure flow
+  - Contact form flow (validation + submit)
+  - Redux state persistence (cart badge + contents)

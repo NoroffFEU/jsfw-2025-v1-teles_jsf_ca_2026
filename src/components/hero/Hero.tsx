@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Carousel } from "./Carousel";
 import { X } from "lucide-react";
-import { Button } from "../ui/button/Button";
+import { Button } from "@/components/ui/button/Button";
 
 export const Hero = () => {
   const [isHidden, setIsHidden] = useState(false);

@@ -1,11 +1,8 @@
-import { useSearchBar } from "../hooks/useSearchBar";
+import { getSharedMocks } from "@/tests/shared-mocks";
+import { useSearchBar } from "@/hooks/useSearchBar";
 import { renderHook, act } from "@testing-library/react";
 
-const mockedNavigate = vi.fn();
-
-vi.mock("@tanstack/react-router", () => ({
-  useNavigate: () => mockedNavigate,
-}));
+const { mockedNavigate } = getSharedMocks();
 
 describe("useSearchBar", () => {
   beforeEach(() => {

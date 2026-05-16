@@ -1,50 +1,60 @@
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import { HeadContent, Outlet } from "@tanstack/react-router";
+import { HeadContent, Outlet, useRouterState } from "@tanstack/react-router";
 import { createRootRouteWithContext } from "@tanstack/react-router";
 import { QueryClient } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { DefaultNotFound, CustomError } from "@/lib/routeStates/index";
+import { brandSettings } from "@/lib/data/company/brandSettings";
 
 import { Footer, Header } from "@/components/layout/index";
 import { Separator } from "@/components/ui/separator/Separator";
 
-const RootLayout = () => (
-  <>
-    <HeadContent />
-    <Toaster
-      position="top-center"
-      toastOptions={{
-        duration: 5000,
-        style: {
-          color: "#1e40af",
-          backgroundColor: "#dbeafe",
-          border: "1px solid #93c5fd",
-        },
-        success: {
+const RootLayout = () => {
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+
+  const hideFooter = pathname.includes("/checkout");
+
+  return (
+    <>
+      <HeadContent />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 4000,
           style: {
-            color: "#166534",
-            backgroundColor: "#f0fdf4",
-            border: "1px solid #86efac",
+            color: "#1e40af",
+            backgroundColor: "#dbeafe",
+            border: "1px solid #93c5fd",
           },
-        },
-        error: {
-          style: {
-            color: "#991b1b",
-            backgroundColor: "#fef2f2",
-            border: "1px solid #fca5a5",
+          success: {
+            style: {
+              color: "#166534",
+              backgroundColor: "#f0fdf4",
+              border: "1px solid #86efac",
+            },
           },
-        },
-      }}
-    />
-    <Header />
-    <Separator />
-    <main>
-      <Outlet />
-    </main>
-    <Footer />
-    <TanStackRouterDevtools />
-  </>
-);
+          error: {
+            style: {
+              color: "#991b1b",
+              backgroundColor: "#fef2f2",
+              border: "1px solid #fca5a5",
+            },
+          },
+        }}
+      />
+      <Header />
+      <Separator />
+      <main>
+        <Outlet />
+      </main>
+
+      {!hideFooter && <Footer />}
+      <TanStackRouterDevtools />
+    </>
+  );
+};
 
 type RouterContext = {
   queryClient: QueryClient;
@@ -55,16 +65,16 @@ export const Route = createRootRouteWithContext<RouterContext>()({
     meta: [
       {
         name: "description",
-        content: "Online retail shop selling various products",
+        content: `${brandSettings.description}`,
       },
       {
-        title: "ShopNet",
+        title: `${brandSettings.name}`,
       },
     ],
     links: [
       {
         rel: "icon",
-        href: "/ShopNet.svg",
+        href: `${brandSettings.logo}`,
       },
     ],
   }),

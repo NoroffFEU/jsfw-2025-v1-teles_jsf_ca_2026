@@ -1,4 +1,4 @@
-import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "@tanstack/react-router";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -63,7 +63,7 @@ const ContactForm = () => {
 
   const onSubmit = (data: formSchemaType) => {
     try {
-      toast.success(`Message sent by: ${data.email}`);
+      toast.success(`Message sent by: ${data.email}`, { duration: 2000 });
       navigate(contactSuccessLinkOptions);
       reset();
     } catch (error) {

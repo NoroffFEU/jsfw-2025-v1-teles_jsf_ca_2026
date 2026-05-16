@@ -44,16 +44,22 @@ export const usePaymentProcess = () => {
   const dispatch = useAppDispatch();
 
   const handlePaymentProcess = () => {
-    setIsDisabled(true);
-    setOpenDialog(true);
+    try {
+      setIsDisabled(true);
+      setOpenDialog(true);
 
-    setTimeout(() => {
-      toast.success("Payment success");
+      setTimeout(() => {
+        toast.success("Payment success", { duration: 1000 });
+        setIsDisabled(false);
+        dispatch(clearCart());
+        dispatch(resetCheckoutSelection());
+        navigate(paymentSuccessLinkOptions);
+      }, 1500);
+    } catch (error) {
+      toast.error("Payment failed");
       setIsDisabled(false);
-      dispatch(clearCart());
-      dispatch(resetCheckoutSelection());
-      navigate(paymentSuccessLinkOptions);
-    }, 1500);
+      throw error;
+    }
   };
 
   return { handlePaymentProcess, openDialog, isDisabled };

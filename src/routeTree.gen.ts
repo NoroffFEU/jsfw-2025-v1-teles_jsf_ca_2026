@@ -13,10 +13,12 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactIndexRouteImport } from './routes/contact/index'
 import { Route as CartIndexRouteImport } from './routes/cart/index'
+import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
 import { Route as ContactThankYouRouteImport } from './routes/contact/thank-you'
 import { Route as CartSuccessRouteImport } from './routes/cart/success'
 import { Route as CartCheckoutRouteImport } from './routes/cart/checkout'
+import { Route as AboutAccessibilityRouteImport } from './routes/about/accessibility'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -36,6 +38,11 @@ const ContactIndexRoute = ContactIndexRouteImport.update({
 const CartIndexRoute = CartIndexRouteImport.update({
   id: '/cart/',
   path: '/cart/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutIndexRoute = AboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
@@ -58,24 +65,33 @@ const CartCheckoutRoute = CartCheckoutRouteImport.update({
   path: '/cart/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutAccessibilityRoute = AboutAccessibilityRouteImport.update({
+  id: '/about/accessibility',
+  path: '/about/accessibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/terms': typeof TermsRoute
+  '/about/accessibility': typeof AboutAccessibilityRoute
   '/cart/checkout': typeof CartCheckoutRoute
   '/cart/success': typeof CartSuccessRoute
   '/contact/thank-you': typeof ContactThankYouRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/about/': typeof AboutIndexRoute
   '/cart/': typeof CartIndexRoute
   '/contact/': typeof ContactIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/terms': typeof TermsRoute
+  '/about/accessibility': typeof AboutAccessibilityRoute
   '/cart/checkout': typeof CartCheckoutRoute
   '/cart/success': typeof CartSuccessRoute
   '/contact/thank-you': typeof ContactThankYouRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/about': typeof AboutIndexRoute
   '/cart': typeof CartIndexRoute
   '/contact': typeof ContactIndexRoute
 }
@@ -83,10 +99,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/terms': typeof TermsRoute
+  '/about/accessibility': typeof AboutAccessibilityRoute
   '/cart/checkout': typeof CartCheckoutRoute
   '/cart/success': typeof CartSuccessRoute
   '/contact/thank-you': typeof ContactThankYouRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/about/': typeof AboutIndexRoute
   '/cart/': typeof CartIndexRoute
   '/contact/': typeof ContactIndexRoute
 }
@@ -95,30 +113,36 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/terms'
+    | '/about/accessibility'
     | '/cart/checkout'
     | '/cart/success'
     | '/contact/thank-you'
     | '/products/$productId'
+    | '/about/'
     | '/cart/'
     | '/contact/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/terms'
+    | '/about/accessibility'
     | '/cart/checkout'
     | '/cart/success'
     | '/contact/thank-you'
     | '/products/$productId'
+    | '/about'
     | '/cart'
     | '/contact'
   id:
     | '__root__'
     | '/'
     | '/terms'
+    | '/about/accessibility'
     | '/cart/checkout'
     | '/cart/success'
     | '/contact/thank-you'
     | '/products/$productId'
+    | '/about/'
     | '/cart/'
     | '/contact/'
   fileRoutesById: FileRoutesById
@@ -126,10 +150,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   TermsRoute: typeof TermsRoute
+  AboutAccessibilityRoute: typeof AboutAccessibilityRoute
   CartCheckoutRoute: typeof CartCheckoutRoute
   CartSuccessRoute: typeof CartSuccessRoute
   ContactThankYouRoute: typeof ContactThankYouRoute
   ProductsProductIdRoute: typeof ProductsProductIdRoute
+  AboutIndexRoute: typeof AboutIndexRoute
   CartIndexRoute: typeof CartIndexRoute
   ContactIndexRoute: typeof ContactIndexRoute
 }
@@ -164,6 +190,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about/': {
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about/'
+      preLoaderRoute: typeof AboutIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/$productId': {
       id: '/products/$productId'
       path: '/products/$productId'
@@ -192,16 +225,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about/accessibility': {
+      id: '/about/accessibility'
+      path: '/about/accessibility'
+      fullPath: '/about/accessibility'
+      preLoaderRoute: typeof AboutAccessibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TermsRoute: TermsRoute,
+  AboutAccessibilityRoute: AboutAccessibilityRoute,
   CartCheckoutRoute: CartCheckoutRoute,
   CartSuccessRoute: CartSuccessRoute,
   ContactThankYouRoute: ContactThankYouRoute,
   ProductsProductIdRoute: ProductsProductIdRoute,
+  AboutIndexRoute: AboutIndexRoute,
   CartIndexRoute: CartIndexRoute,
   ContactIndexRoute: ContactIndexRoute,
 }

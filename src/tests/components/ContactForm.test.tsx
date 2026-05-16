@@ -1,30 +1,11 @@
-import ContactForm from "@/components/contact/ContactForm";
-import { contactSuccessLinkOptions } from "@/lib/helpers/linkOptions";
+import { getSharedMocks } from "@/tests/shared-mocks";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import ContactForm from "@/components/contact/ContactForm";
+import { contactSuccessLinkOptions } from "@/lib/helpers/linkOptions";
 
-const { mockedNavigate, mockedToastSuccess, mockedToastError } = vi.hoisted(
-  () => ({
-    mockedNavigate: vi.fn(),
-    mockedToastSuccess: vi.fn(),
-    mockedToastError: vi.fn(),
-  }),
-);
-
-vi.mock("react-hot-toast", () => ({
-  toast: {
-    success: mockedToastSuccess,
-    error: mockedToastError,
-  },
-}));
-
-vi.mock("@tanstack/react-router", async () => {
-  const actual = await vi.importActual("@tanstack/react-router");
-  return {
-    ...actual,
-    useNavigate: () => mockedNavigate,
-  };
-});
+const { mockedNavigate, mockedToastSuccess, mockedToastError } =
+  getSharedMocks();
 
 describe("ContactForm", () => {
   beforeEach(() => {
@@ -82,6 +63,7 @@ describe("ContactForm", () => {
     await waitFor(() => {
       expect(mockedToastSuccess).toHaveBeenCalledWith(
         `Message sent by: ${userEmail}`,
+        { duration: 2000 },
       );
 
       expect(mockedNavigate).toHaveBeenCalledWith(contactSuccessLinkOptions);

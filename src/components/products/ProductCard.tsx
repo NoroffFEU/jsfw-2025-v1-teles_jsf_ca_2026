@@ -21,7 +21,7 @@ export const ProductCard = ({ item }: ProductCardProps) => {
   return (
     <Card
       id={`product-${item.id}`}
-      className="grid gap-2 items-center mt-2 md:hover:scale-102 transition duration-200"
+      className="grid gap-2 items-center mt-2 bg-gray-50 md:hover:scale-102 transition duration-200"
     >
       {hasDiscount && (
         <Badge

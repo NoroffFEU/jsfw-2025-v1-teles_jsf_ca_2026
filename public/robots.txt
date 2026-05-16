@@ -1,8 +1,3 @@
 User-agent: *
-Allow: /
 
-Disallow: /cart
 Disallow: /cart/
-Disallow: /cart/checkout
-Disallow: /cart/success
-Disallow: /contact/thank-you
