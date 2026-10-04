@@ -5,7 +5,8 @@ import { classifyError } from "@/lib/routeStates/errorTypes";
 
 export const CustomError = ({ error, reset }: ErrorComponentProps) => {
   const navigate = useNavigate();
-  const type = classifyError(error);
+  const err = error instanceof Error ? error : new Error(String(error));
+  const type = classifyError(err);
 
   const errorInfo =
     type === "network"
@@ -29,7 +30,7 @@ export const CustomError = ({ error, reset }: ErrorComponentProps) => {
             }
           : {
               title: "Something went wrong",
-              message: error.message || "An unexpected error occurred.",
+              message: err.message || "An unexpected error occurred.",
               showRetry: true,
             };
   return (

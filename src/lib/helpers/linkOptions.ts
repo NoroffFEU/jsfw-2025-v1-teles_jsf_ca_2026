@@ -3,17 +3,14 @@ import { defaultSearch } from "@/lib/zod/searchSchema";
 
 export const checkoutLinkOptions = linkOptions({
   to: "/cart/checkout",
-  search: { search: "" },
 });
 
 export const paymentSuccessLinkOptions = linkOptions({
   to: "/cart/success",
-  search: { search: "" },
 });
 
 export const contactSuccessLinkOptions = linkOptions({
   to: "/contact/thank-you",
-  search: { search: "" },
 });
 
 export const navOptions = [

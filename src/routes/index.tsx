@@ -1,6 +1,6 @@
 import { productsQuery } from "@/lib/helpers/productsQuery";
-import { createFileRoute } from "@tanstack/react-router";
-import { searchSchema } from "@/lib/zod/searchSchema";
+import { createFileRoute, stripSearchParams } from "@tanstack/react-router";
+import { searchSchema, defaultSearch } from "@/lib/zod/searchSchema";
 
 import { RouteLoader } from "@/components/layout/RouteLoader";
 import { ProductList } from "@/components/products/index";
@@ -25,6 +25,9 @@ export const Route = createFileRoute("/")({
   shouldReload: false,
   pendingComponent: RouteLoader,
   validateSearch: searchSchema,
+  search: {
+    middlewares: [stripSearchParams(defaultSearch)],
+  },
 });
 
 function Products() {
